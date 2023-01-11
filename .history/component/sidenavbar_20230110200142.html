@@ -1,0 +1,71 @@
+<ul class="nav list-group w-100">
+    <div class="accordion w-100" id="accordionExample">
+      <li class="list-group-item bg-secondary text-light p-0"
+      ng-repeat="y in myarray" ng-init="i = $index" style="cursor: pointer;">
+        <!-- main of list -->
+        <div ng-if="!y.content" class="p-2 ps-3" ng-click="stateGo(y.path,y.params)">
+          <i ng-class="y.icon"></i> &nbsp;&nbsp;&nbsp;
+          {{y.name}}
+        </div>
+
+        <!-- sub -->
+        <div class="accordion accordion-flush p-0 w-100" id="accordionFlushExample" ng-if="y.content">
+          <div class="accordion-item">
+            <h2 class="accordion-header  bg-secondary" id="flush-headingOne">
+              <button class="accordion-button collapsed  bg-secondary text-light p-3 py-2" type="button"
+                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"+$index aria-expanded="false"
+                aria-controls="flush-collapseOne"+$index>
+                <i ng-class="y.icon"></i> &nbsp;&nbsp;&nbsp;
+                {{y.name}}
+              </button>
+            </h2>
+
+             <div id="flush-collapseOne"+$index class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+               data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+
+                <ul class="list-group list-group-flush w-100" style="cursor: pointer;">
+                  <li class="list-group-item p-0" style="cursor: pointer;" ng-repeat="sub in y.content">
+
+                    <div ng-if="!sub.subContent" class="p-2" ng-click="stateGo(sub.path,sub.params)">
+                      <i ng-class="sub.icon"></i> &nbsp;&nbsp;&nbsp;
+                      {{sub.name}}
+                    </div>
+
+                    
+                    <div class="accordion accordion-flush p-0 w-100" id="accordionFlushExample-ii" ng-if="sub.subContent">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header bg-primary" id="flush-headingOne-ii{{b}}">
+                          <button class="accordion-button btn-primary collapsed p-3 py-2" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#flush-collapseOne-item'+b" aria-expanded="false"
+                            [attr.aria-controls]="'flush-collapseOne-item'+b">
+                            <i [class]="sub.icon"></i> &nbsp;&nbsp;&nbsp;
+                            {{sub.name}}
+                          </button>
+                        </h2>
+
+                        <div id="flush-collapseOne-item{{b}}" class="accordion-collapse collapse"
+                          aria-labelledby="flush-collapseOne-item" [attr.data-bs-parent]="'#accordionFlushExample-ii'">
+                          <div class="accordion-body">
+                            <ul class="list-group w-100">
+                              <li class="list-group-item" *ngFor="let v of sub.subContent | filter: entity.searchText"
+                                (click)="stateGo(v.path,v.params)">
+                                <i [class]="v.icon"></i>
+                                {{v.name}}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>  
+          </div>
+        </div>
+
+      </li>
+
+    </div>
+  </ul>

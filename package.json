@@ -1,0 +1,20 @@
+{
+  "name": "newtemplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "@uirouter/angularjs": "^1.0.30",
+    "angular": "^1.8.3",
+    "angular-ui-router": "^1.0.30",
+    "bootstrap": "^5.0.0",
+    "bootstrap-icons": "^1.10.3",
+    "jquery": "^3.6.3"
+  }
+}

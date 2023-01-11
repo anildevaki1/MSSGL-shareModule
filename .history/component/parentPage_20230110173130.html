@@ -1,0 +1,35 @@
+<nav class="navbar navbar-light bg-light border-bottom p-0">
+    <div class="container-fluid">
+        <div class="row w-100">
+            <div class="col col-sm-1">
+                <a class="navbar-brand" href="#">Navbar</a>
+            </div>
+            <div class="col-2">
+
+                <i class="bi bi-list fs-3 ms-5 navicon" style="width: 30px;font-size: large;" onclick="myfn()"></i>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid  p-0 m-0">
+
+    <div class="d-flex h-100 m-0" style="height:calc(100vh - 60px) !important;overflow-y: hidden;">
+
+        <!-- sidenavbar -->
+        <div id="sidenavbar" class="sidenavbar bg-light  p-0 Resume-title"
+            style="height:calc(100vh - 60px) !important;overflow-y: scroll;">
+            <div ng-include="'component/sidenavbar.html'"></div>
+        </div>
+
+        <!-- maincontant -->
+        <div style="height:calc(100vh - 60px) !important;overflow-y: scroll;width: 100%;">
+
+            <div ui-view></div>
+
+
+        </div>
+    </div>
+</div>
+ 

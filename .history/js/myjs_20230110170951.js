@@ -1,0 +1,6 @@
+
+
+
+    function myfn() {
+            $('#sidenavbar').slideToggle();
+    }

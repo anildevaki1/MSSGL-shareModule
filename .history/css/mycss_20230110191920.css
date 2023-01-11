@@ -1,0 +1,57 @@
+
+.Resume-titleshow {
+    display: inline-block;
+    -webkit-transition: color 200ms ease-in;
+    -moz-transition: color 200ms ease-in;
+    transition: color 200ms ease-in;
+    
+    -webkit-transition: left 500ms ease-in;
+    -moz-transition: left 500ms ease-in;
+    transition: left 500ms ease-in;
+    width: 20%;
+    position: relative;
+    left: 0% !important;
+  }
+  
+  
+.Resume-titlehide {
+    display: none;
+    -webkit-transition: color 200ms ease-in;
+    -moz-transition: color 200ms ease-in;
+    transition: color 200ms ease-in;
+     
+    -webkit-transition: left 500ms ease-in;
+    -moz-transition: left 500ms ease-in;
+    transition: left 500ms ease-in;
+    width: 20%;
+    position: relative;
+    left: -20% !important;
+  }
+
+
+
+   
+
+
+  
+@media only screen and (max-width: 576px) {
+   
+.Resume-titleshow {
+    
+    -webkit-transition: color 200ms ease-in;
+    -moz-transition: color 200ms ease-in;
+    transition: color 200ms ease-in;
+    display: absolute;
+    -webkit-transition: left 500ms ease-in;
+    -moz-transition: left 500ms ease-in;
+    transition: left 500ms ease-in;
+    width: 20%;
+    position: relative;
+    left: 0% !important;
+  }
+
+}
+
+ 
+  
+
