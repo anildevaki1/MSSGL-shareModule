@@ -1,0 +1,42 @@
+<div class="card" style="padding:0px;">
+    <div class="card-header">
+        <div style="display: inline-flex;width: 100%;" class=" p-1 bg-info text-black">
+
+            <div style="width:3%"></div>
+            <div class="col col-sm-9 p-2">
+                <i class="fa fa-edit m-1"></i><strong>गट</strong>
+            </div>
+
+            <div style="width:70%;text-align: right;">
+                <a style="font-weight:600;font-size:20px; padding-left: 10px; padding-right: 10px; padding-top: 6px; padding-bottom: 2px;"
+                    class="btn  btn-sm btn-info active" data-toggle="tooltip" data-placement="bottom"
+                    data-ng-click="getRecords()">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </a>
+                <a style="font-weight:600;font-size:20px; padding-left: 10px; padding-right: 10px;"
+                    class="btn  btn-sm btn-info active" data-toggle="tooltip" data-placement="bottom"
+                    ui-sref="parent.sub.area({action:'new',firm_code:''})">
+                    <i class="icon-plus icons h4"></i>
+                    New Entry
+                </a>
+
+            </div>
+
+            <div style="width:1%"></div>
+        </div>
+    </div>
+    <div class="card-body p-1">
+        <div id="serviceGrid" ui-grid-move-columns ui-grid-pagination ui-grid-selection ui-grid-resize-columns
+            ui-grid-pinning ui-grid-exporter ui-grid-auto-resize ui-grid-edit ui-grid-cellnav ui-grid="vm.serviceGrid"
+              class="my-grid" style="height: calc(100vh - 140px)">
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .seperator {
+        height: 70px;
+        border-left: 3px rgb(74, 143, 211) solid;
+    }
+</style>

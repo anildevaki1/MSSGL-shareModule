@@ -1,0 +1,234 @@
+<form class="form-horizontal" role="form" name="scheduldcastform">
+    <div class="form-body p-0">
+        <div>
+            <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
+        </div>
+    </div>
+
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+
+
+        <div class="form-group p-1">
+            <div class="card ">
+                <!-- style="background-color:#e4e4e4" -->
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-share-fill"></i>
+                    <strong>शेअर वाटप</strong>
+                </div>
+                <!-- #abc135offset-sm-2 -->
+                <div class="card-body">
+                    <div class="row m-2">
+                        <div class="col-sm-4 offset-sm-1">
+                            <div class="p-1">
+                                <div class="form-group col-sm-6 m-2">
+                                    <label for="number">नंबर</label>
+                                    <div>
+                                        <input type="text" id="number" name="number" class="form-control input-sm"
+                                            ng-model="vm.entity.number" numbers-only />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-6 m-2">
+                                    <label for="date">तारीख</label>
+
+                                    <div>
+                                        <input type="date" name="date" data-ng-model="vm.entity.date"
+                                            class="form-control input-sm" id="date" placeholder="Date"
+                                            autocomplete="off" title="Date"/>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group col-sm-6 m-2">
+                                    <label for="member_no">पूर्ण सभासद क्रमांक</label>
+                                    <div>
+                                        <input type="text" id="purnmember_id" name="purnmember_id" class="form-control input-sm"
+                                            ng-model="vm.entity.purnmember_id"/>
+                                    </div>
+                                </div> -->
+
+
+                                <!-- <div class="form-group col-sm-8 m-2">
+                                    <label for="member_name">पूर्ण सभासदाचे नाव</label>
+                                    <div>
+                                        <input type="text" id="purnmember_name" name="purnmember_name"
+                                            ng-model="vm.entity.purnmember_name" class="form-control input-sm" 
+                                            autocomplete="off"/>
+                                    </div>
+                                </div>  -->
+
+                                <!-- <div class="form-group col-sm-6 m-2">
+                                    <label for="purnmember_number">पूर्ण सभासदाचे नंबर </label>
+                                    <div>
+                                        <input type="text" id="purnmember_no" name="purnmember_no" class="form-control input-sm" numbers-only
+                                            ng-model="vm.entity.purnmember_no"/>
+                                    </div>
+                                </div> -->
+
+
+                                <!-- <div class="form-group col-sm-6 m-2">
+                                    <label for="member_no">अपूर्ण सभासद नंबर</label>
+                                    <div>
+                                        <input type="text" id="member_no" name="member_no" class="form-control input-sm"numbers-only
+                                            ng-model="vm.entity.member_no"/>
+                                    </div>
+                                </div> -->
+                                <!-- 
+                                <div class="form-group col-sm-8 m-2">
+                                    <label for="total_balance">शिल्लक रक्कम</label>
+                                    <div>
+                                        <input type="text" id="total_balance" name="total_balance" autocomplete="off" disabled
+                                            ng-model="vm.entity.total_balance" 
+                                            class="form-control input-sm text-end" data-format="currency" data-fraction="2"/>
+                                    </div>
+                                </div> -->
+                                <div class="form-group col-sm-8 m-2">
+                                
+                                    <label for="number">
+                                     ठराव क्र.
+                                    </label>
+                                    <div>
+                                        <input type="text" id="number" name="number" autocomplete="off"
+                                            ng-model="vm.entity.number" class="form-control input-sm" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-6 m-2">
+                                    <label for="address">तपशील</label>
+                                    <div>
+                                        <textarea id="Address" class="form-control" autocomplete="off"
+                                            ng-model="vm.entity.narration" style="height: 93px; width: 309px;">
+                                    </textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-8 m-2">
+                                    <label for="nominee">वारसदार</label>
+                                    <div>
+                                        <input type="text" id="nominee" name="nominee" autocomplete="off"
+                                            ng-model="vm.entity.nominee" class="form-control input-sm" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-8 m-2">
+                                    <label for="nominee">वारसदाराचा पत्ता</label>
+                                  
+                                    <div>
+                                        <textarea id="Address" class="form-control" autocomplete="off"
+                                            ng-model="vm.entity.nominee_address" style="height: 50px; width: 309px;">
+                                    </textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-8 m-2">
+                                    <label for="nominee_relation">
+                                        वारसदाराशी नाते
+                                    </label>
+                                    <div>
+                                        <input type="text" id="nominee_ralation" name="nominee_ralation"
+                                            autocomplete="off" ng-model="vm.entity.nominee_relation"
+                                            class="form-control input-sm"/>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-8 m-2">
+                                    <label for="cert_no">
+                                        प्रमाणपत्र क्रमांक
+
+                                    </label>
+                                    <div>
+                                        <input type="text" id="cert_no" name="cert_no"
+                                            autocomplete="off" ng-model="vm.entity.cert_no"
+                                            class="form-control input-sm" />
+                                    </div>
+                                </div>
+                                  </div>
+                        </div>
+
+                        <div class="col-sm-4 offset-sm-1 m-2">
+
+                            <div>
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="bankbranch">बँक(शाखा)</label>
+
+                                    <div>
+                                        <select class="form-control input-sm" id="bank_branch" name="bank_branch"
+                                            ng-model="vm.entity.bank_code"
+                                            ng-options="item.value as item.name for item in txn_type">
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="account_no">
+                                        खाते नंबर
+                                    </label>
+                                    <div>
+                                        <input type="text" id="account_no" name="account_no" autocomplete="off"
+                                            ng-model="vm.entity.bank_acc_no" class="form-control input-sm text-end" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="total_balance">शिल्लक रक्कम</label>
+                                    <div>
+                                        <input type="text" id="total_balance" name="total_balance" autocomplete="off"
+                                            disabled ng-model="vm.entity.total_balance"
+                                            class="form-control input-sm text-end" data-format="currency"
+                                            data-fraction="2" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="quantity">प्रति शेअर किंमत</label>
+                                    <div>
+                                        <input type="text" id="quantity" name="quantity"
+                                            class="form-control input-sm text-end" ng-model="vm.entity.share_qty"
+                                            data-format="currency" data-fraction="2"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="rate">एकूण किंमत</label>
+
+                                    <div>
+                                        <input type="text" id="rate" name="rate" class="form-control input-sm text-end"
+                                            ng-model="vm.entity.share_rate" data-format="currency" data-fraction="2" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="share_amount">शेअर रक्कम</label>
+
+                                    <div>
+                                        <input type="text" id="share_amt" name="share_amt"
+                                            class="form-control input-sm text-end" ng-model="vm.entity.share_amt"
+                                            data-format="currency" data-fraction="2" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="member_charge">
+                                        सभासद शुल्क
+                                    </label>
+                                    <div>
+                                        <input type="text" id="member_charge" name="member_charge"
+                                            class="form-control input-sm" ng-model="vm.entity.mbr_charges" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-10 m-2">
+                                    <label for="total_amt">एकूण रक्कम</label>
+                                    <div>
+                                        <input type="text" id="total_amount" name="total_amount"
+                                            class="form-control input-sm text-end" ng-model="vm.entity.total_amt"
+                                            data-format="currency" data-fraction="2" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                   
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

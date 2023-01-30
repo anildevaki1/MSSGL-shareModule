@@ -12,6 +12,7 @@
     "@popperjs/core": "^2.11.6",
     "@uirouter/angularjs": "^1.0.30",
     "angular": "^1.8.3",
+    "angular-ui-grid": "^4.11.1",
     "angular-ui-router": "^1.0.30",
     "bootstrap": "^5.0.0",
     "bootstrap-icons": "^1.10.3",

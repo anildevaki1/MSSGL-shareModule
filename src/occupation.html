@@ -1,0 +1,38 @@
+<form class="form-horizontal" role="form" name="scheduldcastform">
+    <div class="form-body p-0">
+        <div>
+            <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
+        </div>
+    </div>
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+        <div class="form-group p-1">
+            <div class="card">
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-buildings"></i>
+                    <strong>व्यवसाय </strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-2">
+                            <!-- <div class="form-group col-sm-4">
+                                <label for="title">व्यवसाय क्रमांक</label>
+                                <div>
+                                    <input type="text" id="occupation" name="occupation" class="form-control input-sm"
+                                        ng-model="vm.entity.occupation" />
+                                </div>
+                            </div> -->
+                            <div class="form-group col-sm-4">
+                                <label for="title">व्यवसायाचे नाव </label>
+                                <div>
+                                    <input type="text" id="occupation_name" name="occupation_name"
+                                        class="form-control input-sm" ng-model="vm.entity.ocp_name" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Add icon library 
+    <link href="../../../dss-style/icon-all.css" type="text/css" rel="stylesheet" />-->
+    <style>
+        .dss_nav_btn {
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 8px 6px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold !important;
+            font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+            display: inline-block;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+
+        }
+
+        /* Darker background on mouse-over */
+        .dss_nav_btn:hover {
+            background-color: lightskyblue;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="background-image: linear-gradient(0deg, DodgerBlue,lightskyblue); display: flex; flex-wrap: nowrap;width: 100%;">
+        <!-- <table style="background-image: linear-gradient( DodgerBlue,lightskyblue)"> -->
+        <div>
+            <button id="new" class=" dss_nav_btn" ng-click="check('new')">
+                <i class="bi bi-cloud-plus-fill" style="color:green !important;font-size: 23px;"></i>
+                &nbsp;&nbsp;New
+            </button>
+        </div>
+
+        <div>
+            <button id="edit" class=" dss_nav_btn" ng-click="check('edit')">
+                <i class="bi bi-pencil-square" aria-hidden="true"
+                    style="color:rgb(8, 8, 8) !important;font-size: 23px;"></i>
+                &nbsp;&nbsp;Edit
+            </button>
+        </div>
+
+        <div id="sep1" style="color: rgba(255, 255, 255, 0.336);font-size: 20px">|</div>
+
+        <div>
+            <button id="save" class=" dss_nav_btn" ng-click="check('save')">
+                <i class="bi bi-save2" style="color:indigo !important;font-size: 23px;"></i>
+                &nbsp;&nbsp;Save
+            </button>
+        </div>
+
+        <div>
+            <button id="undo" class=" dss_nav_btn" ng-click="check('undo')">
+                <i class="bi bi-arrow-counterclockwise"
+                style="color:chartreuse !important;font-size: 23px;"></i>
+                &nbsp;&nbsp;Undo
+            </button>
+        </div>
+
+        <div id="sep2" style="color: rgba(255, 255, 255, 0.336);font-size: 23px">|</div>
+
+        <div>
+            <button id="print" class=" dss_nav_btn" ng-click="check('print')">
+                <i class="bi bi-printer" style="color:red;font-size: 23px;"></i>
+                &nbsp;&nbsp;Print
+            </button>
+        </div>
+
+        <!-- <div>
+            <button id="mail" class=" dss_nav_btn" ng-click="check('mail')"><i class="fa fa-envelope fa-md"
+                    style="color:yellow;font-size: 18px;"></i>&nbsp;&nbsp;Mail</button>
+        </div> -->
+
+        <div>
+            <button id="export" class=" dss_nav_btn" ng-click="check('export')">
+                <i class="bi bi-truck-front-fill" aria-hidden="true" style="color:rgb(152, 131, 172);font-size: 23px;"></i>
+                &nbsp;&nbsp;E-Way Bill
+            </button>
+        </div>
+
+        <div id="sep3" style="color: rgba(255, 255, 255, 0.336);font-size: 20px">|</div>
+
+        <div>
+            <button id="attach" class=" dss_nav_btn" ng-click="check('attach')">
+                <i class="fa fa-file-text-o fa-md" style="color:indigo; font-size: 18px;"></i>
+                &nbsp;&nbsp;e-Invoice
+            </button>
+        </div>
+
+        <div id="sep4" style="color: rgba(255, 255, 255, 0.336);font-size: 20px">|</div>
+
+        <div>
+            <button id="upload" class=" dss_nav_btn" ng-click="check('upload')">
+             
+                <i class="bi bi-paperclip" style="color:yellowgreen; font-size: 23px;"></i>
+                &nbsp;&nbsp;Attachment
+            </button>
+        </div>
+
+        <div id="sep5" style="color: rgba(255, 255, 255, 0.336);font-size: 20px">|</div>
+        <div>
+            <button id="close" class=" dss_nav_btn" ng-click="check('close')">
+                <i class="bi bi-x-octagon" style="color:firebrick;font-size: 23px;"></i>
+                &nbsp;&nbsp;Close
+            </button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

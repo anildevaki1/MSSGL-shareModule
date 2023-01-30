@@ -1,0 +1,39 @@
+<form class="form-horizontal" role="form" name="scheduldcastform">
+    <div class="form-body p-1">
+        <div>
+            <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
+        </div>
+    </div>
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+        <div class="form-group p-1">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-edit"></i>
+                    <strong>शेअर्स प्रकार </strong>
+                </div>
+
+
+                <div class="card-body">
+                   <div class="row">
+                        <div class="col-sm-6 offset-sm-2">
+                            <!-- <div class="form-group col-sm-4">
+                                <label for="title">शेअरस अनुक्रमांक</label>
+                                <div>
+                                    <input type="text" id="shares_id" name="shares_id" ng-model="vm.entity.share_id"
+                                     class="form-control input-sm" disabled/>
+                                </div> 
+                            </div> -->
+                            <div class="form-group col-sm-6">
+                                <label for="title">शेअरचे नाव </label>
+                                <div>
+                                    <input type="text" id="shares_name" name="shares_name" ng-model="vm.entity.share_name"
+                                        class="form-control input-sm"/>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>

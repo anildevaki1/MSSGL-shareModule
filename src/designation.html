@@ -1,0 +1,50 @@
+<form class="form-horizontal" role="form" name="scheduldcastform">
+    <div class="form-body p-0">
+        <div>
+            <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
+        </div>
+    </div>
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+        <div class="form-group p-1">
+            <div class="card">
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="fa fa-edit"></i>
+                    <strong>हुद्दा </strong>
+                </div>
+
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-6 offset-sm-2">
+                            <!-- <div class="form-group col-sm-4">
+                                <label for="title">पदाचा क्रमांक</label>
+                                <div>
+                                    <input type="text" id="designation_code" name="designation_code" class="form-control input-sm"
+                                    ng-model="vm.entity.dsgn_code"
+                                        numbers-only />
+                                </div>
+                            </div> -->
+                            <div class="form-group col-sm-4">
+                                <label for="title">पदाचे प्रकार</label>
+                                <div>
+                                    <select class="form-control input-sm" id="designation_type" name="designation_type" ng-model="vm.entity.designation_type"
+                                        ng-options="item.value as item.name for item in sharetype">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="title">पदाचे नाव</label>
+                                <div>
+                                    <input type="text" id="designation_name" name="शाखेचे नाव" class="form-control input-sm"
+                                    ng-model="vm.entity.designation_name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
