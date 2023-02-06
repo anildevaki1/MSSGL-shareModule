@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="companyform">
    
 
     <fieldset ng-disabled="Master.formdisabled(vm.mode);">
@@ -14,8 +14,8 @@
                         </div>
                         <div class="col col-sm-2 offset-lg-7">
                             <div class="d-grid  d-md-flex justify-content-md-end">
-                                <button class="btn btn-outline-primary me-2" type="button">Save</button>
-                                <button class="btn btn-outline-danger" type="button">Close</button>
+                                <button class="btn btn-outline-primary me-2" ng-click="save()" type="button">Save</button>
+                                <button class="btn btn-outline-danger" type="button" ng-click="close()">Close</button>
                             </div>
                         </div>
                     </div>
@@ -25,65 +25,104 @@
 
                 <div class="card-body">
 
-                    <div class="col-sm-6 offset-sm-2">
-                        <div class="row">
+                    <div class="row">
+                    <div class="col-sm-4 offset-sm-1">
+                        <div class="row  p-1">
 
-                            <div class="form-group col-sm-6 m-1">
+                            <div class="form-group col-sm-9 m-1">
                                 <label for="title">कंपनीचे नाव</label>
                                 <div>
-                                    <input type="text" class="form-control input-sm" ng-model="vm.entity.comp_name"
-                                        autocomplete="off" />
+                                    <input type="text" class="form-control input-sm" ng-model="vm.entity.compName"
+                                        autocomplete="off"/>
                                 </div>
                             </div>
 
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">
-                                    पत्ता
+                                    पत्ता १ 
                                 </label>
                                 <div>
                                     <textarea id="mbrAddress" class="form-control" autocomplete="off"
-                                        ng-model="vm.entity.comp_address" style="width: 373px; height: 100px;">
+                                        ng-model="vm.entity.compAddrees1" style="width: 373px; height: 50px;">
                                     </textarea>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 m-1">
-                                <label for="title">गाव</label>
+                                <label for="title">
+                                    पत्ता २ 
+                                </label>
+                                <div>
+                                    <textarea id="mbrAddress" class="form-control" autocomplete="off"
+                                        ng-model="vm.entity.compAddrees2" style="width: 373px; height: 50px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">
+                                    पत्ता ३ 
+                                </label>
+                                <div>
+                                    <textarea id="mbrAddress" class="form-control" autocomplete="off"
+                                        ng-model="vm.entity.compAddrees3" style="width: 370px; height: 50px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="village">गाव</label>
+                                <div>
+                                    <select class="form-control input-sm" ng-model="vm.entity.cityCode"
+                                    ng-options="item.cityCode as item.cityName for item in vm.Places">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4  offset-sm-1">
+                            <div class="row">
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">एसीसी नंबर</label>
                                 <div>
                                     <input type="text" id="village" name="village" class="form-control input-sm"
-                                        autocomplete="off" ng-model="vm.entity.city" />
+                                        autocomplete="off" ng-model="vm.entity.compEccNo" />   
+
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">टेलिफोन नंबर</label>
                                 <div>
                                     <input type="text" class="form-control input-sm text-end" autocomplete="off"
-                                        ng-model="vm.entity.comp_tel_no"/>
+                                        ng-model="vm.entity.compTelNo"/>
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">फॅक्स नंबर</label>
                                 <div>
                                     <input type="no" class="form-control input-sm text-end"
-                                        ng-Model="vm.entity.comp_fax_no" autocomplete="off" />
+                                        ng-Model="vm.entity.compFaxNo" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">ईमेल आईडी</label>
                                 <div>
                                     <input type="text" id="email_id" name="email_id" class="form-control input-sm"
-                                        autocomplete="off" ng-model="vm.entity.comp_email_id" />
+                                        autocomplete="off" ng-model="vm.entity.compEmailId" />
                                 </div>
                             </div>
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">जीएसटी क्रमांक</label>
                                 <div>
                                     <input type="text" id="gstn" class="form-control input-sm"
-                                        ng-model="vm.entity.comp_gstn" autocomplete="off" />
+                                        ng-model="vm.entity.compGstn" autocomplete="off" />
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    </div> 
+                
+               
+               
                 </div>
+                </div>
+
             </div>
         </div>
     </fieldset>

@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="designationform">
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
@@ -21,23 +21,29 @@
                                 <label for="title">पदाचा क्रमांक</label>
                                 <div>
                                     <input type="text" id="designation_code" name="designation_code" class="form-control input-sm"
-                                    ng-model="vm.entity.dsgn_code"
+                                    ng-model="vm.entity.dsgnCode"
                                         numbers-only />
                                 </div>
                             </div> -->
                             <div class="form-group col-sm-4">
                                 <label for="title">पदाचे प्रकार</label>
+
                                 <div>
-                                    <select class="form-control input-sm" id="designation_type" name="designation_type" ng-model="vm.entity.designation_type"
+                                    <input type="text" id="designationType" name="ddesignationType" class="form-control input-sm"
+                                    ng-model="vm.entity.designationType"
+                                        numbers-only />
+                                </div>
+                                <!-- <div>
+                                    <select class="form-control input-sm" id="designation_type" name="designation_type" ng-model="vm.entity.designationType"
                                         ng-options="item.value as item.name for item in sharetype">
                                     </select>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="title">पदाचे नाव</label>
                                 <div>
                                     <input type="text" id="designation_name" name="शाखेचे नाव" class="form-control input-sm"
-                                    ng-model="vm.entity.designation_name" />
+                                    ng-model="vm.entity.designationName" />
                                 </div>
                             </div>
                         </div>

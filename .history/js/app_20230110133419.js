@@ -9,7 +9,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state("parent", {
             url: "/parent",
-            templateUrl: "component/parent.html"
+            templateUrl: "components/parent.html"
         })
         .state("PageTab.Page1", {
             url:"/Page1",

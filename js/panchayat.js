@@ -1,13 +1,11 @@
+
+
 var myApp = angular.module('myApp');
-myApp.controller('panchayatdashCtrl', ['$scope',  '$stateParams','$q',
-    function ($scope,  $stateParams ,$q) {
+myApp.controller('panchayatdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
+    function ($scope,$state,ajax, R1Util) {
 
         var vm = this;
-       // vm.entity = {};
-        vm.mode = 'new';
 
-        if ($stateParams.action)
-            vm.mode = $stateParams.action;
 
         vm.serviceGrid = {
             enableRowSelection: true,
@@ -17,14 +15,14 @@ myApp.controller('panchayatdashCtrl', ['$scope',  '$stateParams','$q',
             enableFiltering: true,
             enableGridMenu: true,
             paginationPageSizes: [30, 50, 100, 70],
-            paginationPageSize: 10
+
         };
 
 
         vm.serviceGrid.columnDefs = [
 
             {
-                field: ' ',
+                field: 'panchayatCode',
                 displayName: 'पंचायत',
                 enableSorting: true,
                 type: 'number',
@@ -33,7 +31,7 @@ myApp.controller('panchayatdashCtrl', ['$scope',  '$stateParams','$q',
                 width: "25%"
             },
             {
-                field: ' ',
+                field: 'panchayatName',
                 displayName: 'पंचायतीचे नाव',
                 enableSorting: true,
                 type: 'string',
@@ -44,7 +42,7 @@ myApp.controller('panchayatdashCtrl', ['$scope',  '$stateParams','$q',
             },
 
             {
-                field: ' ',
+                field: 'zp',
                 displayName: 'जिल्हा परिषद',
                 enableSorting: true,
                 type: 'string',
@@ -58,128 +56,75 @@ myApp.controller('panchayatdashCtrl', ['$scope',  '$stateParams','$q',
                 enableSorting: false,
                 enableCellEdit: false,
                 width: "25%",
-                cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="fa fa-eye fa-md"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="fa fa-trash fa-md"></i></a></center>'
+                cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="bi bi-eye"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="bi bi-trash3"></i></a></center>'
             }
         ];
 
+        vm.edit = function (grid, row) {
+            var param = {
+                action: 'view',
+                id: row.entity.panchayatCode
+            };
+            $state.go('parent.sub.panchayat', param);
+        };
+
+        vm.remove = function (grid, row) {
+            if (row.entity.panchayatCode) {
+                $scope.grid = grid;
+                $scope.param = { "id": row.entity.panchayatCode };
+                $scope.index = vm.serviceGrid.data.indexOf(row.entity);
+
+                R1Util.createAlert($scope, "Warning", "Do You Want Delete Row", $scope.iConfirmFn);
+
+            }
+        }
+
+        $scope.iConfirmFn = function () {
+            ajax.delete('Panchayat', null, $scope.param).then(function (res) {
+                $scope.grid.appScope.vm.serviceGrid.data.splice($scope.index, 1);
+            })
+
+        }
 
 
-        // vm.serviceGrid.onRegisterApi = function (gridApi) {
 
-        //     $scope.gridApi = gridApi;
-    
-        //     gridApi.cellNav.on.navigate($scope, function (newRowCol, oldRowCol) {
-        //         $scope.gridApi.selection.selectRow(newRowCol.row.entity);
-        //     });
-        // };
+        vm.getRecords = function () {
+            $(".loading").show();
+            ajax.get('Panchayat/list', null).then(function (res) {
+                if (res) {
+                    vm.serviceGrid.data = res;
+                }
+                else {
+                    var error = "Error";
+                    if (res.error)
+                        if (res.error.message)
+                            error = res.error.message;
+                    R1Util.createAlert($scope, "Error", error, null);
+                }
+                $(".loading").hide();
+            },)
+        }
 
-        // vm.action = function () {
-        //     var deffered = $q.defer();
-
-        //     vm.navaction(function (res) {
-        //         if (res == "OK")
-        //             deffered.resolve(res)
-        //         else
-        //             deffered.reject(res)
-        //     })
-        //     return deffered.promise;
-        // }
-
-        // vm.navaction = function (fn) {
-        //     switch (vm.mode) {
-        //         case 'new':
-
-        //             $scope.newrecord();
-        //             fn("OK")
-        //             break;
-        //         case 'edit':
-
-        //             if (vm.entity.vch_id != undefined) {
-        //                 if (NoViewing == true)
-        //                     callbackEdit();
-        //                 if (vm.entity.sh012.length != 0 || vm.entity.sh016.length != 0) {
-        //                     vm.mode = 'undo'
-        //                     R1Util.createAlert($scope, "WarningOk", "Can Not Edit a record Auto Generated by Share Issue ", null);
-        //                 }
-        //             }
-        //             fn("OK")
-        //             break;
-
-        //             case 'save':
-        //                 $scope.save(function (res) {
-        //                     fn(res)
-        //                 });
-        //             break;
-
-        //         // case 'save':
-        //         //     if (vm.pagefor == "APPROVAL")
-        //         //         $scope.approval();
-
-        //         //     else {
-        //         //         $scope.save(function (res) {
-        //         //             vm.params.postdatedchallan = null;
-        //         //             //     vm.params.rtgschallan = null;
-        //         //             fn(res)
-        //         //         });
-        //         //     }
-        //         //     break;
-        //         case 'undo':
-        //             vm.params.postdatedchallan = null;
-        //             //  vm.params.rtgschallan = null;
-        //             fn("OK")
-
-        //             break;
+        vm.getRecords();
 
 
-        //         case 'close':
-        //             fn("OK")
-        //             // $rootScope.back();
-        //            $window.history.back();
-        //             $state.go("parent.sub.cast");
-        //             break;
-
-        //         // case 'close':
-        //         //     fn("OK")
-        //         //     $rootScope.back();
-        //         //     break;
-
-        //         default:
-        //             fn("OK")
-        //             break;
-        //     }
-        // };
-
-        // $scope.myarray = [];
-        // $scope.save = function (fn) {
-
-        //     $scope.myarray.push(vm.entity);
-
-        //    // vm.serviceGrid.data = $scope.myarray;
-        //     vm.serviceGrid.data = res.data;
-
-        // };
-       
-
-        // $scope.close = function () {
-        //     $state.go('parent.sub.cast', { action: 'close' });
-        // }
 
     }
 
 
 ])
 
-myApp.controller('panchayatCtrl', ['$scope', '$stateParams','$q','$window',
-    function ($scope, $stateParams,$q,$window,) {
+myApp.controller('panchayatCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master) {
 
         var vm = this;
-       
+        $scope.Master = Master;
         vm.mode = 'new';
 
         if ($stateParams.action)
             vm.mode = $stateParams.action;
 
-     
+
 
 
         vm.action = function () {
@@ -214,59 +159,129 @@ myApp.controller('panchayatCtrl', ['$scope', '$stateParams','$q','$window',
                     fn("OK")
                     break;
 
-                    case 'save':
-                        $scope.save(function (res) {
-                            fn(res)
-                        });
+                case 'save':
+                    $scope.save(function (res) {
+                        fn(res)
+                    });
                     break;
 
-                // case 'save':
-                //     if (vm.pagefor == "APPROVAL")
-                //         $scope.approval();
-
-                //     else {
-                //         $scope.save(function (res) {
-                //             vm.params.postdatedchallan = null;
-                //             //     vm.params.rtgschallan = null;
-                //             fn(res)
-                //         });
-                //     }
-                //     break;
                 case 'undo':
-                    vm.params.postdatedchallan = null;
-                    //  vm.params.rtgschallan = null;
+                    if (pastEntity)
+                        vm.entity = angular.copy(pastEntity);
                     fn("OK")
 
                     break;
-
 
                 case 'close':
                     fn("OK")
-                  //  $rootScope.back();
-                  $window.history.back();
-                    // $state.go("parent.sub.cast");
+                    $rootScope.back();
                     break;
 
-                // case 'close':
-                //     fn("OK")
-                //     $rootScope.back();
-                //     break;
+
 
                 default:
                     fn("OK")
                     break;
             }
         };
-
-        $scope.myarray = [];
+      
         $scope.save = function (fn) {
+            if ($scope.panchayatform.$valid) {
+                $(".loading").show();
+                if (!vm.entity.panchayatCode)
+                    ajax.post('panchayat/insert', vm.entity).then(function (res) {
+                        if (res) {
+                            vm.entity.panchayatCode = res.panchayatCode;
+                            $(".loading").hide();
 
-            $scope.myarray.push(vm.entity);
-            vm.serviceGrid = $scope.myarray;
-            fn("OK")
-            
-        };
+                            $scope.message = "Record Saved Sucessfully";
+                            R1Util.createAlert($scope, "Success", $scope.message, null);
+                            pastEntity = angular.copy(vm.entity);
+                            fn("OK");
+
+                        } else {
+                            var error = "An Error has occured while saving record!";
+
+                            if (res.error)
+                                if (res.error.message)
+                                    error = res.error.message;
+
+                            vm.mode = 'edit';
+                            $(".loading").hide();
+                            R1Util.createAlert($scope, "Error", error, null);
+                            fn("CANCEL")
+                        }
+
+                    })
+                else {
+                    ajax.put('panchayat/update', vm.entity, { id: vm.entity.panchayatCode }).then(function (res) {
+                        if (res) {
+                            $(".loading").hide();
+                            $scope.message = "Record Saved Sucessfully";
+                            R1Util.createAlert($scope, "Success", $scope.message, null);
+                            pastEntity = angular.copy(vm.entity);
+                            fn("OK");
+                        } else {
+                            var error = "An Error has occured while saving record!";
+
+                            if (res.error)
+                                if (res.error.message)
+                                    error = res.error.message;
+
+                            vm.mode ='edit';
+                            $(".loading").hide();
+                            R1Util.createAlert($scope, "Error", error, null);
+                            fn("CANCEL")
+                        }
+
+                    })
+                }
+
+            }
+        }
+
+          
+        vm.newrecord = function () {
+            vm.entity = {};
+
+        }
+
+        getExistEntity = function () {
+
+            ajax.get('panchayat/get', null, { id: vm.entity.panchayatCode }).then(function (res) {
+                vm.entity = res;
+
+            }, function (err) {
+
+            })
+
+        }
 
      
+        $scope.init = function () {
+            vm.entity = {};
+            var q = $q.defer();
+ 
+                q.resolve();
+          
+            return q.promise;
+
+
+        }
+
+        $scope.init().then(function (res) {
+            vm.action();
+            if ($stateParams.id) {
+                vm.entity.panchayatCode = $stateParams.id;
+                getExistEntity();
+            }
+
+        });
+
+     
+
+    
+
+
     }
 ])

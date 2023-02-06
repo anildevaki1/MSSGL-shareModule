@@ -1,299 +1,145 @@
-var myApp = angular.module('myApp');
-myApp.controller('companydashCtrl', ['$scope','$stateParams','$q',
-    function ($scope,  $stateParams ,$q) {
-
-        var vm = this;
-       // vm.entity = {};
-        vm.mode = 'new';
-
-        if ($stateParams.action)
-            vm.mode = $stateParams.action;
-
-        vm.serviceGrid = {
-            enableRowSelection: true,
-            enableRowHeaderSelection: false,
-            multiSelect: false,
-            enableSorting: true,
-            enableFiltering: true,
-            enableGridMenu: true,
-            paginationPageSizes: [30, 50, 100, 70],
-            paginationPageSize: 10
-        };
 
 
-        vm.serviceGrid.columnDefs = [
+myApp.controller('companyCtrl', ['$scope', '$stateParams', '$q', 'R1Util', 'ajax', 'Master', 
+function ($scope, $stateParams, $q, R1Util, ajax, Master )
+   {
 
-            {
-                field: ' ',
-                displayName: 'कंपनीचे नाव',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "13%"
-            },
-            {
-                field: ' ',
-                displayName: ' पत्ता',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "13%"
+    var vm = this;
+    $scope.Master = Master;
+    vm.mode = 'new';
 
-            },
-            {
-                field: ' ',
-                displayName: 'गाव',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "13%"
-
-            },
-            {
-                field: ' ',
-                displayName: 'टेलिफोन नंबर',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "13%"
-
-            },
-            {
-                field: ' ',
-                displayName: 'फॅक्स नंबर',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "13%"
-
-            },
-            {
-                field: ' ',
-                displayName: 'ईमेल आईडी',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "13%"
-
-            },
-            {
-                field: ' ',
-                displayName: 'जीएसटी क्रमांक',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "12%"
-
-            },
-            {
-                name: 'Action ',
-                enableSorting: false,
-                enableCellEdit: false,
-                width: "10%",
-                cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="fa fa-eye fa-md"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="fa fa-trash fa-md"></i></a></center>'
-            }
-        ];
+    if ($stateParams.action)
+    vm.mode = $stateParams.action;
 
 
-
-        // vm.serviceGrid.onRegisterApi = function (gridApi) {
-
-        //     $scope.gridApi = gridApi;
     
-        //     gridApi.cellNav.on.navigate($scope, function (newRowCol, oldRowCol) {
-        //         $scope.gridApi.selection.selectRow(newRowCol.row.entity);
-        //     });
-        // };
+    vm.getRecords = function () {
+           
+        $(".loading").show();
+        ajax.get('Company/get').then(function (res) {
+            if (res) {
+               vm.entity=res;
+            }
+            else {
+                var error = "Error";
+                if (res.error)
+                    if (res.error.message)
+                        error = res.error.message;
+                R1Util.createAlert($scope, "Error", error, null);
+            }
+            $(".loading").hide();
+        },)
+    }
 
-        // vm.action = function () {
-        //     var deffered = $q.defer();
+    vm.getRecords()
 
-        //     vm.navaction(function (res) {
-        //         if (res == "OK")
-        //             deffered.resolve(res)
-        //         else
-        //             deffered.reject(res)
-        //     })
-        //     return deffered.promise;
-        // }
+    $scope.save = function (fn) {
+        if ($scope.companyform.$valid) {
+            $(".loading").show();
+            if (!vm.entity.compCode)
+                ajax.post('Company/insert', vm.entity).then(function (res) {
+                    if (res) {
+                        vm.entity.compCode = res.compCode;
+                        $(".loading").hide();
 
-        // vm.navaction = function (fn) {
-        //     switch (vm.mode) {
-        //         case 'new':
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
 
-        //             $scope.newrecord();
-        //             fn("OK")
-        //             break;
-        //         case 'edit':
+                    } else {
+                        var error = "An Error has occured while saving record!";
 
-        //             if (vm.entity.vch_id != undefined) {
-        //                 if (NoViewing == true)
-        //                     callbackEdit();
-        //                 if (vm.entity.sh012.length != 0 || vm.entity.sh016.length != 0) {
-        //                     vm.mode = 'undo'
-        //                     R1Util.createAlert($scope, "WarningOk", "Can Not Edit a record Auto Generated by Share Issue ", null);
-        //                 }
-        //             }
-        //             fn("OK")
-        //             break;
+                        if (res.error)
+                            if (res.error.message)
+                                error = res.error.message;
 
-        //             case 'save':
-        //                 $scope.save(function (res) {
-        //                     fn(res)
-        //                 });
-        //             break;
+                        vm.mode = 'edit';
+                        $(".loading").hide();
+                        R1Util.createAlert($scope, "Error", error, null);
+                        fn("CANCEL")
+                    }
 
-        //         // case 'save':
-        //         //     if (vm.pagefor == "APPROVAL")
-        //         //         $scope.approval();
+                })
+            else {
+                ajax.put('Company/update', vm.entity, { id: vm.entity.compCode }).then(function (res) {
+                    if (res) {
+                        $(".loading").hide();
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
+                    } else {
+                        var error = "An Error has occured while saving record!";
 
-        //         //     else {
-        //         //         $scope.save(function (res) {
-        //         //             vm.params.postdatedchallan = null;
-        //         //             //     vm.params.rtgschallan = null;
-        //         //             fn(res)
-        //         //         });
-        //         //     }
-        //         //     break;
-        //         case 'undo':
-        //             vm.params.postdatedchallan = null;
-        //             //  vm.params.rtgschallan = null;
-        //             fn("OK")
+                        if (res.error)
+                            if (res.error.message)
+                                error = res.error.message;
 
-        //             break;
+                        vm.mode = 'edit';
+                        $(".loading").hide();
+                        R1Util.createAlert($scope, "Error", error, null);
+                        fn("CANCEL")
+                    }
 
+                })
+            }
 
-        //         case 'close':
-        //             fn("OK")
-        //             // $rootScope.back();
-        //            $window.history.back();
-        //             $state.go("parent.sub.cast");
-        //             break;
+        }
+    }
 
-        //         // case 'close':
-        //         //     fn("OK")
-        //         //     $rootScope.back();
-        //         //     break;
+    var getPlaces = function () {
+        ajax.get("Place/list").then(function (res) {
+            vm.Places = res;
+        }, function (err) {
+            var e = err;
+        })
+    }
 
-        //         default:
-        //             fn("OK")
-        //             break;
-        //     }
-        // };
+    getExistEntity = function () {
 
-        // $scope.myarray = [];
-        // $scope.save = function (fn) {
+        ajax.get('company/Get', null, { id: $stateParams.id }).then(function (res) {
+            vm.entity = res;
 
-        //     $scope.myarray.push(vm.entity);
+        }, function (err) {
 
-        //    // vm.serviceGrid.data = $scope.myarray;
-        //     vm.serviceGrid.data = res.data;
-
-        // };
-       
-
-        // $scope.close = function () {
-        //     $state.go('parent.sub.cast', { action: 'close' });
-        // }
+        })
 
     }
 
+    $scope.init = function () {
+        vm.entity = {};
+        var q = $q.defer();
 
-])
+     
+        var r = getPlaces();
+      
+        var t = getExistEntity();
+        $q.all([r, t]).then(function (res) {
 
-myApp.controller('companyCtrl', ['$scope','$stateParams','$q',function ($scope, $stateParams,$q)
-   {
+            q.resolve();
+        }, function (err) {
 
-        var vm = this;
-       
-        vm.mode = 'new';
+            q.reject();
 
-        if ($stateParams.action)
-            vm.mode = $stateParams.action;
+        })
 
-    
-        vm.action = function () {
-            var deffered = $q.defer();
+        return q.promise;
 
-            vm.navaction(function (res) {
-                if (res == "OK")
-                    deffered.resolve(res)
-                else
-                    deffered.reject(res)
-            })
-            return deffered.promise;
+
+    }
+
+    $scope.init().then(function (res) {
+        vm.action();
+        if ($stateParams.id) {
+            vm.entity.compCode = $stateParams.id;
+            getExistEntity();
         }
 
-        vm.navaction = function (fn) {
-            switch (vm.mode) {
-                case 'new':
-
-                    $scope.newrecord();
-                 fn("OK")
-                    break;
-                case 'edit':
-
-                    if (vm.entity.vch_id != undefined) {
-                        if (NoViewing == true)
-                            callbackEdit();
-                        if (vm.entity.sh012.length != 0 || vm.entity.sh016.length != 0) {
-                            vm.mode = 'undo'
-                            R1Util.createAlert($scope, "WarningOk", "Can Not Edit a record Auto Generated by Share Issue ", null);
-                        }
-                    }
-                    fn("OK")
-                    break;
-
-                    case 'save':
-                        $scope.save(function (res) {
-                            fn(res)
-                        });
-                    break;
-
-                // case 'save':
-                //     if (vm.pagefor == "APPROVAL")
-                //         $scope.approval();
-
-                //     else {
-                //         $scope.save(function (res) {
-                //             vm.params.postdatedchallan = null;
-                //             //     vm.params.rtgschallan = null;
-                //             fn(res)
-                //         });
-                //     }
-                //     break;
-                case 'undo':
-                    vm.params.postdatedchallan = null;
-                    //  vm.params.rtgschallan = null;
-                    fn("OK")
-
-                    break;
+    });
 
 
-                case 'close':
-                    fn("OK")
-                  //  $rootScope.back();
-                  $window.history.back();
-                    // $state.go("parent.sub.cast");
-                    break;
 
-                // case 'close':
-                //     fn("OK")
-                //     $rootScope.back();
-                //     break;
-
-                default:
-                    fn("OK")
-                    break;
-            }
-        };
 
         
     

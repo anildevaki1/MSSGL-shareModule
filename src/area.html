@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="areaform">
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
@@ -15,39 +15,35 @@
                     <i class="bi bi-people-fill"></i>
                     <strong>गट </strong>
                 </div>
-             <div class="card-body">
-                  <div class="col-sm-6 offset-sm-2 ">
-                    <div class="row">
-                       
-                             <div class="form-group col-sm-6 m-1">
-                                    <label for="title">गाव क्रमांक</label>
-                                    <div>
-                                        <input type="text" name="गाव" data-ng-model="vm.entity.area_code" class="form-control input-sm" 
-                                            autocomplete="off" title="गाव"/>
-                                    </div>
-                                </div>
+                <div class="card-body">
+                    <div class="col-sm-6 offset-sm-2 ">
+                        <div class="row">
 
-                                <div class="form-group col-sm-6 m-1">
-                                    <label for="title">गावाचे नाव</label>
-                                    <div>
-                                        <input type="text" name="गावाचे नाव" data-ng-model="vm.entity.area_name" class="form-control input-sm" 
-                                             autocomplete="off" title="गावाचे नाव"/>
-                                    </div>
+
+
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">गटाचे नाव</label>
+                                <div>
+                                    <input type="text" name="गावाचे नाव" data-ng-model="vm.entity.areaName"
+                                        class="form-control input-sm" autocomplete="off" title="गावाचे नाव" />
                                 </div>
-                                <div class="form-group col-sm-6 m-1">
-                                    <label for="title">पंचायत </label>
-                                    <div>
-                                        <select class="form-control input-sm" 
-                                        ng-model="vm.entity.panchayat_code"
-                                        ng-options="item.value as item.name for item in txn_type"
-                                       >
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">पंचायत </label>
+                                <div>
+                                    <select class="form-control input-sm" ng-model="vm.entity.panchayatCode"
+                                        ng-options="item.panchayatCode as item.panchayatName for item in vm.panchayats">
                                     </select>
                                 </div>
-                                </div>
-                           </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </fieldset>
+
+
+
+
+    </fieldset>
 </form>

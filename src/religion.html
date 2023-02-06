@@ -1,10 +1,10 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="religionform">
     <div class="form-body p-1">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
         </div>
     </div>
-    <fieldset>
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
         <div class="form-group p-1">
             <div class="card">
                 <div class="card-header" style="background-color:#caf0f8">
@@ -20,27 +20,27 @@
                                     <div>
                                         <input type="text" id="cast_id" name="cast_id"  disabled
                                            class="form-control input-sm"
-                                            ng-model="vm.entity.cast_code" autocomplete="off" />
+                                            ng-model="vm.entity.castCode"religionName autocomplete="off" />
                                     </div>
                                 </div> -->
                                 <div class="form-group col-sm-6 m-1">
                                     <label for="religion">धर्म </label>
                                     <div>
-                                        <input type="text" id="religion" name="religion" class="form-control input-sm" ng-model="vm.entity.religion_name">
+                                        <input type="text" id="religion" name="religion" class="form-control input-sm" ng-model="vm.entity.religionName">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6 m-1">
                                     <label for="cast">जात </label>
                                     <div>
-                                        <input type="text" id="cast" name="cast" class="form-control input-sm" ng-model="vm.entity.cast_name">
+                                        <input type="text" id="cast" name="cast" class="form-control input-sm" ng-model="vm.entity.castName">
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-6 m-1">
-                                    <label for="title">वर्ग </label>
+                                    <label for="title">वर्ग</label>
                                     <div>
-                                        <select class="form-control input-sm" id="scheduldcast" name="scheduldcast" ng-model="vm.entity.sc_code"
-                                        ng-options="item.value as item.name for item in txn_type"
+                                        <select class="form-select input-sm" id="scheduldcast" name="scheduldcast" ng-model="vm.entity.scCode"
+                                        ng-options="item.scCode as item.scName for item in  vm.ScheduldCasts"
                                         >
                                         </select>
                                     </div>

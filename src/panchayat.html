@@ -1,10 +1,10 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="panchayatform">
     <div class="form-body p-1">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
         </div>
     </div>
-    <fieldset>
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
         <div class="form-group p-1">
             <div class="card">
                 <div class="card-header"style="background-color:#caf0f8">
@@ -27,9 +27,9 @@
                                 <div class="form-group col-sm-6 m-1 ">
                                     <label for="title">पंचायतीचे नाव </label>
                                     <div>
-                                        <input type="text" id="panchayat_name" name="panchayat_name" 
+                                        <input type="text" id="panchayatName" name="panchayatName" 
                                             class="form-control input-sm"
-                                            ng-model="vm.entity.panchayat_name" autocomplete="off"
+                                            ng-model="vm.entity.panchayatName" autocomplete="off"
                                             />
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                     <div>
                                         <input type="text" id="zp" name="zp" 
                                             class="form-control input-sm"
-                                            ng-model="vm.entity.ZP" autocomplete="off"
+                                            ng-model="vm.entity.zp" autocomplete="off"
                                             />
                                     </div>
                                 </div>
