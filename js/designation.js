@@ -18,23 +18,15 @@ myApp.controller('designationdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
         vm.serviceGrid.columnDefs = [
 
-            {
-                field: 'dsgnCode',
-                displayName: 'नंबर',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "25%"
-            },
+             
             {
                 field: 'designationType',
-                displayName: 'पदाचे प्रकार',
+                displayName: 'क्रमवारीता',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "25%"
+                width: "10%"
 
             },
             {
@@ -44,7 +36,7 @@ myApp.controller('designationdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "25%"
+                width: "65%"
 
             },
            

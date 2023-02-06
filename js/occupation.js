@@ -18,15 +18,7 @@ myApp.controller('occupationdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
         vm.serviceGrid.columnDefs = [
 
-            {
-                field: 'ocpCode',
-                displayName: 'नंबर',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "35%"
-            },
+            
             {
                 field: 'ocpName',
                 displayName: 'व्यवसायाचे नाव',
@@ -34,7 +26,7 @@ myApp.controller('occupationdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "35%"
+                width: "70%"
 
             },
             {

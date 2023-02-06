@@ -18,15 +18,18 @@ myApp.controller('religiondashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
         vm.serviceGrid.columnDefs = [
 
+            
             {
-                field: 'castCode',
+                field: 'castName',
                 displayName: 'जात',
                 enableSorting: true,
-                type: 'number',
+                type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "20%"
+                width: "30%"
+
             },
+ 
             {
                 field: 'religionName',
                 displayName: 'धर्म',
@@ -38,24 +41,13 @@ myApp.controller('religiondashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
             },
             {
-                field: 'castName',
-                displayName: 'जात',
+                field: 'scCodeNavigation.scName',
+                displayName: 'अनुसूचित जाती/जमाती',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "20%"
-
-            },
-
-            {
-                field: 'scCode',
-                displayName: '',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "20%"
+                width: "30%"
 
             },
            

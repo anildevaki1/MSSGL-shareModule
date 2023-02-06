@@ -24,62 +24,73 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 
             {
-                field: 'vchId',
-                displayName: 'नंबर',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "20%"
-            },
-
-            {
-                field: 'shareQty',
-                displayName: 'प्रति शेअर किंमत',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "20%"
-
-            },
-            {
-                field: 'shareRate',
-                displayName: 'एकूण किंमत',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "20%"
-
-            },
-            {
-                field: 'shareAmt',
-                displayName: 'शेअर रक्कम',
+                field: 'certNo',
+                displayName: 'सर्टिफिकेट नंबर',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "10%"
+                width: "12%"
+            },
+            {
+                field: 'memberId',
+                displayName: 'सभासद नंबर',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "12  %"
+            },
+            {
+                field: 'member.shName',
+                displayName: 'संभासदाचे नांव',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "20%"
+            },
+            {
+                field: 'shareQty',
+                displayName: 'शेअर संख्या',
+                enableSorting: true,
+                type: 'number',
+                enableCellEdit: false,
+                cellClass: 'alignRgrid',
+                width: "10 %"
 
             },
             {
                 field: 'mbrCharges',
                 displayName: 'सभासद शुल्क',
                 enableSorting: true,
-                type: 'string',
+                type: 'number',
                 enableCellEdit: false,
-                cellClass: 'alignLgrid',
+                cellFilter: 'number:2',
+                cellClass: 'alignRgrid',
+                width: "12 %"
+
+            },
+            {
+                field: 'shareAmt',
+                displayName: 'शेअर रक्कम ',
+                enableSorting: true,
+                type: 'number',
+                cellFilter: 'number:2',
+                enableCellEdit: false,
+                cellClass: 'alignRgrid',
                 width: "10%"
 
             },
+            
+           
             {
                 field: 'totalAmt',
                 displayName: 'एकूण रक्कम',
                 enableSorting: true,
-                type: 'string',
+                type: 'number',
                 enableCellEdit: false,
-                cellClass: 'alignLgrid',
+                cellClass: 'alignRgrid',
                 width: "10%"
 
             },

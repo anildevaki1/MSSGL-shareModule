@@ -1,0 +1,123 @@
+.alignRgrid {
+    text-align: Right;
+}
+
+.alignLgrid {
+    text-align: left;
+}
+
+.alignCgrid {
+    text-align: center;
+}
+
+.blue {
+    color: blue;
+}
+
+.semi-red {
+    background-color: #DC143C !important;
+}
+
+.currency {
+    text-align: right;
+}
+
+.currency .ui-grid-cell-contents:before {
+    content: '₹';
+    text-align: center;
+}
+
+.ui-grid {
+    color: rgb(0, 63, 89);
+}
+
+
+.cell-red .ui-grid-cell-contents {
+    color: red;
+    background-color: #f8cb0075 !important;
+}
+
+.grey .ui-grid-cell-contents {
+    background-color: #e6e7debb !important;
+
+}
+
+.yellow .ui-grid-cell-contents {
+    background-color: #dff800bb !important;
+
+}
+/* .ui-grid-pager-panel{
+    background-color: darkturquoise;
+}
+.ui-grid-top-panel{
+    background-color: darkturquoise;
+} */
+
+.dss_nav_btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 8px 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold !important;
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+}
+
+/* Darker background on mouse-over */
+.dss_nav_btn:hover {
+    background-color: lightskyblue;
+    color: black;
+}
+
+/*go to top button */
+.goToTop {
+    position: fixed;
+    width: 40px;
+    border-radius: 99em;
+    height: 47px;
+    bottom: 0;
+    right: 0;
+    outline: none;
+    z-index: 10000;
+    cursor: pointer;
+    margin: 10px;
+    scroll-behavior: smooth;
+
+
+}
+
+.ui-grid {
+    font-size: .8vw;
+}
+
+@media screen and (min-width:1365px) {
+
+    .ui-grid {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width:1366px) {
+
+    .ui-grid {
+        font-size: .8rem;
+    }
+}

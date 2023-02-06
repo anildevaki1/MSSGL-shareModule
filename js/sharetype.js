@@ -18,23 +18,15 @@ myApp.controller('sharetypedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
         vm.serviceGrid.columnDefs = [
 
-            {
-                field: 'shTypeCode',
-                displayName: 'नंबर',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "35%"
-            },
+             
             {
                 field: 'shTypeName',
-                displayName: 'शेअरचे नाव',
+                displayName: 'शेअरचे प्रकार',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "35%"
+                width: "70%"
 
             },
           {
