@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="shareissueform">
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
@@ -24,63 +24,32 @@
                                     <label for="number">नंबर</label>
                                     <div>
                                         <input type="text" id="number" name="number" class="form-control input-sm"
-                                            ng-model="vm.entity.number" numbers-only />
+                                            ng-model="vm.entity.vchId" numbers-only disabled />
                                     </div>
                                 </div>
+
+                                <div class="form-group col-sm-6 m-1">
+                                    <label for="title"> सभासद नाव</label>
+                                    <div>
+                                        <select class="form-control input-sm" ng-model="vm.entity.memberId"
+                                        ng-options="item.regCode as item.shName for item in vm.Members">
+                                        </select>
+                                    </div>
+                                   
+                                </div>
+
 
                                 <div class="form-group col-sm-6 m-2">
                                     <label for="date">तारीख</label>
 
                                     <div>
-                                        <input type="date" name="date" data-ng-model="vm.entity.date"
+                                        <input type="date" name="date" ng-model="vm.entity.vchDate"
                                             class="form-control input-sm" id="date" placeholder="Date"
                                             autocomplete="off" title="Date"/>
                                     </div>
                                 </div>
 
-                                <!-- <div class="form-group col-sm-6 m-2">
-                                    <label for="member_no">पूर्ण सभासद क्रमांक</label>
-                                    <div>
-                                        <input type="text" id="purnmember_id" name="purnmember_id" class="form-control input-sm"
-                                            ng-model="vm.entity.purnmember_id"/>
-                                    </div>
-                                </div> -->
-
-
-                                <!-- <div class="form-group col-sm-8 m-2">
-                                    <label for="member_name">पूर्ण सभासदाचे नाव</label>
-                                    <div>
-                                        <input type="text" id="purnmember_name" name="purnmember_name"
-                                            ng-model="vm.entity.purnmember_name" class="form-control input-sm" 
-                                            autocomplete="off"/>
-                                    </div>
-                                </div>  -->
-
-                                <!-- <div class="form-group col-sm-6 m-2">
-                                    <label for="purnmember_number">पूर्ण सभासदाचे नंबर </label>
-                                    <div>
-                                        <input type="text" id="purnmember_no" name="purnmember_no" class="form-control input-sm" numbers-only
-                                            ng-model="vm.entity.purnmember_no"/>
-                                    </div>
-                                </div> -->
-
-
-                                <!-- <div class="form-group col-sm-6 m-2">
-                                    <label for="member_no">अपूर्ण सभासद नंबर</label>
-                                    <div>
-                                        <input type="text" id="member_no" name="member_no" class="form-control input-sm"numbers-only
-                                            ng-model="vm.entity.member_no"/>
-                                    </div>
-                                </div> -->
-                                <!-- 
-                                <div class="form-group col-sm-8 m-2">
-                                    <label for="total_balance">शिल्लक रक्कम</label>
-                                    <div>
-                                        <input type="text" id="total_balance" name="total_balance" autocomplete="off" disabled
-                                            ng-model="vm.entity.total_balance" 
-                                            class="form-control input-sm text-end" data-format="currency" data-fraction="2"/>
-                                    </div>
-                                </div> -->
+                              
                                 <div class="form-group col-sm-8 m-2">
                                 
                                     <label for="number">
@@ -88,24 +57,26 @@
                                     </label>
                                     <div>
                                         <input type="text" id="number" name="number" autocomplete="off"
-                                            ng-model="vm.entity.number" class="form-control input-sm" />
+                                            ng-model="vm.entity.meetingRefNo" class="form-control input-sm" />
                                     </div>
                                 </div>
 
-                                <div class="form-group col-sm-6 m-2">
-                                    <label for="address">तपशील</label>
+                                <div class="form-group col-sm-12">
+                                    <label for="mbrAddress">
+                                        पत्ता
+                                    </label>
                                     <div>
-                                        <textarea id="Address" class="form-control" autocomplete="off"
-                                            ng-model="vm.entity.narration" style="height: 93px; width: 309px;">
-                                    </textarea>
+                                        <textarea id="mbrAddress" class="form-control" autocomplete="off"
+                                            ng-model="vm.entity.narration" style="width: 373px; height: 100px;">
+                                        </textarea>
                                     </div>
                                 </div>
 
-                                <div class="form-group col-sm-8 m-2">
+                                <div class="form-group col-sm-12">
                                     <label for="nominee">वारसदार</label>
                                     <div>
                                         <input type="text" id="nominee" name="nominee" autocomplete="off"
-                                            ng-model="vm.entity.nominee" class="form-control input-sm" />
+                                            ng-model="vm.entity.nomineeName" class="form-control input-sm" />
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-8 m-2">
@@ -113,7 +84,7 @@
                                   
                                     <div>
                                         <textarea id="Address" class="form-control" autocomplete="off"
-                                            ng-model="vm.entity.nominee_address" style="height: 50px; width: 309px;">
+                                            ng-model="vm.entity.nomeeneAddress" style="height: 50px; width: 309px;">
                                     </textarea>
                                     </div>
                                 </div>
@@ -123,7 +94,7 @@
                                     </label>
                                     <div>
                                         <input type="text" id="nominee_ralation" name="nominee_ralation"
-                                            autocomplete="off" ng-model="vm.entity.nominee_relation"
+                                            autocomplete="off" ng-model="vm.entity.nomineeRelation"
                                             class="form-control input-sm"/>
                                     </div>
                                 </div>
@@ -134,7 +105,7 @@
                                     </label>
                                     <div>
                                         <input type="text" id="cert_no" name="cert_no"
-                                            autocomplete="off" ng-model="vm.entity.cert_no"
+                                            autocomplete="off" ng-model="vm.entity.certNo"
                                             class="form-control input-sm" />
                                     </div>
                                 </div>
@@ -144,16 +115,19 @@
                         <div class="col-sm-4 offset-sm-1 m-2">
 
                             <div>
-                                <div class="form-group col-sm-10 m-2">
+                                <div class="form-group col-sm-10">
                                     <label for="bankbranch">बँक(शाखा)</label>
 
                                     <div>
-                                        <select class="form-control input-sm" id="bank_branch" name="bank_branch"
-                                            ng-model="vm.entity.bank_code"
-                                            ng-options="item.value as item.name for item in txn_type">
+                                        <select class="form-control input-sm" id="bankName" name="bankName"
+                                            ng-model="vm.entity.bankCode"
+                                            ng-options="item.bankCode as item.branchName for item in vm.BankBranches"
+                                            >
                                         </select>
                                     </div>
                                 </div>
+
+                           
 
                                 <div class="form-group col-sm-10 m-2">
                                     <label for="account_no">
@@ -161,11 +135,11 @@
                                     </label>
                                     <div>
                                         <input type="text" id="account_no" name="account_no" autocomplete="off"
-                                            ng-model="vm.entity.bank_acc_no" class="form-control input-sm text-end" />
+                                            ng-model="vm.entity.bankAccNo" class="form-control input-sm text-end" />
                                     </div>
                                 </div>
 
-                                <div class="form-group col-sm-10 m-2">
+                                <!-- <div class="form-group col-sm-10 m-2">
                                     <label for="total_balance">शिल्लक रक्कम</label>
                                     <div>
                                         <input type="text" id="total_balance" name="total_balance" autocomplete="off"
@@ -173,49 +147,50 @@
                                             class="form-control input-sm text-end" data-format="currency"
                                             data-fraction="2" />
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group col-sm-10 m-2">
-                                    <label for="quantity">प्रति शेअर किंमत</label>
+                                    <label for="shareQty">प्रति शेअर किंमत</label>
                                     <div>
                                         <input type="text" id="quantity" name="quantity"
-                                            class="form-control input-sm text-end" ng-model="vm.entity.share_qty"
-                                            data-format="currency" data-fraction="2"/>
+                                            class="form-control input-sm text-end" ng-model="vm.entity.shareQty"ng-change="amount()"
+                                            numbers-only/>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-10 m-2">
-                                    <label for="rate">एकूण किंमत</label>
+                                    <label for="shareRate">एकूण किंमत</label>
 
                                     <div>
                                         <input type="text" id="rate" name="rate" class="form-control input-sm text-end"
-                                            ng-model="vm.entity.share_rate" data-format="currency" data-fraction="2" />
+                                        ng-change="amount()" ng-model="vm.entity.shareRate" data-format="currency" data-fraction="2" />
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-10 m-2">
-                                    <label for="share_amount">शेअर रक्कम</label>
+                                    <label for="shareAmt">शेअर रक्कम</label>
 
                                     <div>
-                                        <input type="text" id="share_amt" name="share_amt"
-                                            class="form-control input-sm text-end" ng-model="vm.entity.share_amt"
-                                            data-format="currency" data-fraction="2" />
+                                        <input type="text" id="share_amt" name="share_amt"ng-change="totalamount()"
+                                            class="form-control input-sm text-end" ng-model="vm.entity.shareAmt"
+                                            data-format="currency" data-fraction="2"
+                                            />
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-10 m-2">
-                                    <label for="member_charge">
+                                    <label for="mbrCharges">
                                         सभासद शुल्क
                                     </label>
                                     <div>
                                         <input type="text" id="member_charge" name="member_charge"
-                                            class="form-control input-sm" ng-model="vm.entity.mbr_charges" />
+                                            class="form-control input-sm text-end" ng-change="totalamount()" ng-model="vm.entity.mbrCharges" />
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-10 m-2">
-                                    <label for="total_amt">एकूण रक्कम</label>
+                                    <label for="totalAmt">एकूण रक्कम</label>
                                     <div>
                                         <input type="text" id="total_amount" name="total_amount"
-                                            class="form-control input-sm text-end" ng-model="vm.entity.total_amt"
+                                            class="form-control input-sm text-end" ng-model="vm.entity.totalAmt"
                                             data-format="currency" data-fraction="2" />
                                     </div>
                                 </div>

@@ -7,7 +7,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state("parent", {
             url: "/parent",
-            templateUrl: "component/parentPage.html"
+            templateUrl: "components/parentPage.html"
         })
         .state("parent.home", {
             url:"/home",

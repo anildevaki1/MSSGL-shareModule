@@ -10,12 +10,12 @@
             <div style="width:70%;text-align: right;">
                 <a style="font-weight:600;font-size:20px; padding-left: 10px; padding-right: 10px; padding-top: 6px; padding-bottom: 2px;"
                     class="btn  btn-sm btn-info active" data-toggle="tooltip" data-placement="bottom"
-                    data-ng-click="getRecords()">
+                    data-ng-click="vm.getRecords()">
                     <i class="bi bi-arrow-clockwise"></i>
                 </a>
                 <a style="font-weight:600;font-size:20px; padding-left: 10px; padding-right: 10px;"
                     class="btn  btn-sm btn-info active" data-toggle="tooltip" data-placement="bottom"
-                    ui-sref="parent.sub.area({action:'new',firm_code:''})">
+                    ui-sref="parent.sub.area({action:'new'})">
                     <i class="icon-plus icons h4"></i>
                     New Entry
                 </a>
@@ -34,6 +34,8 @@
 
 </div>
 
+
+<!-- {{  $scope.gridApi.data | json}} -->
 <style>
     .seperator {
         height: 70px;

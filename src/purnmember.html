@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="memberform">
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
@@ -15,58 +15,50 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-4  offset-sm-1">
-
-                            <div class="form-group col-sm-8">
-                                <label for="member_no">अपूर्ण सभासद नंबर</label>
-                                <div>
-                                    <input type="text" id="member_number" name="member_number"
-                                        class="form-control input-sm" ng-Model="vm.entity.member_no" numbers-only />
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label for="member_no">अपूर्ण सभासद नंबर</label>
+                                    <div>
+                                        <input type="text" id="member_number" name="member_number"
+                                            ng-change="getMemberRequestdetail()" class="form-control input-sm"
+                                            ng-Model="vm.entity.regCode" numbers-only />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-sm-8">
-                                <label for="member_no">सभासद नंबर</label>
-                                <div>
-                                    <input type="text" id="member_no" name="menber_no" class="form-control input-sm"
-                                        ng-Model="vm.entity.member_no" numbers-only />
+                                <div class="form-group col-sm-6">
+                                    <label for="member_no">सभासद नंबर</label>
+                                    <div>
+                                        <input type="text" id="member_no" name="menber_no" class="form-control input-sm" disabled
+                                            ng-Model="vm.entity.reqCode" numbers-only />
+                                    </div>
                                 </div>
+
                             </div>
 
                             <div class="form-group col-sm-12">
                                 <label for="member_name">सभासदाचे नाव</label>
                                 <div>
                                     <input type="text" id="member_name" name="member_name" class="form-control input-sm"
-                                        ng-model="vm.entity.member_name" />
+                                        ng-model="vm.entity.shName" />
                                 </div>
                             </div>
 
-
-                            <!-- <div class="form-group border-bottom col-sm-12">
-                                    <label for="alias">टोपण नाव</label>
-                                    <div>
-                                        <input type="text" id="alias" name="alias" ng-model="vm.entity.alias"
-                                            class="form-control input-sm" autocomplete="off" />
-                                    </div>
-                                </div> -->
-
-
                             <div class="form-group col-sm-12">
-                                <label for="sharetype">शेअर्स प्रकार</label>
+                                <label for="sharetype">शेअरस प्रकार </label>
                                 <div>
-                                    <select class="form-control input-sm" id="share_type" name="share_type"
-                                        ng-model="vm.entity.sharetype" ng-options="">
+                                    <select class="form-control input-sm" ng-model="vm.entity.shType"
+                                        ng-options="item.shTypeCode as item.shTypeName for item in vm.ShareTypes">
                                     </select>
                                 </div>
                             </div>
 
-
                             <div class="form-group col-sm-12">
-                                <label for="Address">
+                                <label for="mbrAddress">
                                     पत्ता
                                 </label>
                                 <div>
                                     <textarea id="mbrAddress" class="form-control" autocomplete="off"
-                                        ng-model="vm.entity.address" style="width: 373px; height: 100px;">
+                                        ng-model="vm.entity.shAddress" style="width: 373px; height: 100px;">
                                     </textarea>
                                 </div>
                             </div>
@@ -74,27 +66,27 @@
                             <div class="form-group col-sm-12">
                                 <label for="village">गाव</label>
                                 <div>
-                                    <select class="form-control input-sm" id="txn_type" name="txn_type"
-                                        ng-model="vm.entity.village" ng-options="">
+                                    <select class="form-control input-sm" ng-model="vm.entity.cityCode"
+                                        ng-options="item.cityCode as item.cityName for item in vm.Places">
                                     </select>
                                 </div>
                             </div>
+
 
                             <div class="form-group col-sm-12">
                                 <label for="nominee">वारसदार</label>
                                 <div>
                                     <input type="text" id="nominee" name="nominee" autocomplete="off"
-                                        ng-model="vm.entity.nominee" class="form-control input-sm" />
+                                        ng-model="vm.entity.shNominee" class="form-control input-sm" />
                                 </div>
                             </div>
-
                             <div class="form-group col-sm-12">
                                 <label for="nominee_relation">
                                     वारसदाराशी नाते
                                 </label>
                                 <div>
                                     <input type="text" id="nominee_ralation" name="nominee_ralation" autocomplete="off"
-                                        ng-model="vm.entity.nominee_relation" class="form-control input-sm" />
+                                        ng-model="vm.entity.shNomineeRelation" class="form-control input-sm" />
                                 </div>
                             </div>
 
@@ -103,62 +95,59 @@
                             <div class="row m-3">
 
                                 <div class="form-group col-sm-12">
-                                    <label for="designation">हुद्दा</label>
+                                    <label for="designation">हुद्दा </label>
                                     <div>
-                                        <select class="form-control input-sm" id="designation" name="designation"
-                                            ng-model="vm.entity.designation" ng-options="">
+                                        <select class="form-control input-sm" ng-model="vm.entity.dsgnCode"
+                                            ng-options="item.dsgnCode as item.designationName for item in   vm.Designations">
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-12">
                                     <label for="occupation">व्यवसाय</label>
-
                                     <div>
-                                        <select class="form-control input-sm" id="occupation" name="occupation"
-                                            ng-model="vm.entity.occupation" ng-options="">
+                                        <select class="form-control input-sm" ng-model="vm.entity.ocpName"
+                                            ng-options="item.ocpCode as item.ocpName for item in vm.Occupations">
                                         </select>
-
                                     </div>
                                 </div>
-
                                 <div class="form-group col-sm-12">
                                     <label for="cast">जात</label>
                                     <div>
-                                        <select class="form-control input-sm" id="cast" name="cast"
-                                            ng-model="vm.entity.cast" ng-options="">
+                                        <select class="form-control input-sm" ng-model="vm.entity.castCode"
+                                            ng-options="item.castCode as item.castName for item in vm.Religions">
                                         </select>
                                     </div>
                                 </div>
+
 
 
                                 <div class="form-group col-sm-6">
                                     <label for="gender">
                                         पु./स्त्री
+
                                     </label>
                                     <div>
-                                        <select class="form-control input-sm" id="gender" name="gender"
-                                            ng-model="vm.entity.gender" ng-options="">
+                                        <select class="form-control input-sm" id="txn_type" name="txn_type"
+                                            ng-model="vm.entity.gender"
+                                            ng-options="item.value as item.name for item in Gender">
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
-
                                     <label for="age">
                                         वय
                                     </label>
                                     <div>
-                                        <input type="text" id="age" name="age" ng-Model="vm.entity.age"
-                                            class="form-control input-sm text-end" />
+                                        <input type="text" id="age" name="age" class="form-control input-sm text-end"
+                                            ng-model="vm.entity.age" />
                                     </div>
                                 </div>
-
-
                                 <div class="form-group col-sm-10">
                                     <label for="date">मंजूरी तारीख</label>
                                     <div>
-                                        <input type="date" name="date" data-ng-model="vm.entity.date"
+                                        <input type="date" name="date" data-ng-model="vm.entity.regDt"
                                             class="form-control input-sm" id="date" autocomplete="off" title="" />
                                     </div>
                                 </div>
@@ -169,28 +158,18 @@
                                     </label>
                                     <div>
                                         <input type="text" id="no" name="no" autocomplete="off"
-                                            ng-model="vm.entity.meeting_ref_no"
-                                            class="form-control input-sm text-end" />
+                                            ng-model="vm.entity.meetingRefNo" class="form-control input-sm text-end" />
                                     </div>
                                 </div>
 
-                                <!-- 
-                                <div class="form-group col-sm-10">
-                                    <label for="amount">
-                                        रक्कम
-                                    </label>
-                                    <div>
-                                        <input type="text" id="amount" name="amount" autocomplete="off"
-                                            ng-model="vm.entity.amount" class="form-control input-sm text-end" data-format="currency" data-fraction="2" />
-                                    </div>
-                                </div> -->
+
                                 <div class="form-group col-sm-10">
                                     <label for="bankbranch">बँक(शाखा)</label>
 
                                     <div>
-                                        <select class="form-control input-sm" id="bank_branch" name="bank_branch"
-                                            ng-model="vm.entity.bank_code"
-                                            ng-options="item.value as item.name for item in txn_type">
+                                        <select class="form-control input-sm" id="bankName" name="bankName"
+                                            ng-model="vm.entity.bankCode"
+                                            ng-options="item.bankCode as item.branchName for item in vm.BankBranches">
                                         </select>
                                     </div>
                                 </div>
@@ -201,10 +180,10 @@
                                     </label>
                                     <div>
                                         <input type="text" id="account_no" name="account_no" autocomplete="off"
-                                            ng-model="vm.entity.bank_acc_no" class="form-control input-sm text-end" />
+                                            ng-model="vm.entity.bankAccNo" class="form-control input-sm text-end"
+                                            numbers-only />
                                     </div>
                                 </div>
-
                             </div>
 
                         </div>

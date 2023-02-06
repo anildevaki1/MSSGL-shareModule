@@ -8,7 +8,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
         .state("parent", {
             url: "/parent",
             abstract: true,
-            templateUrl: "component/parentPage.html",
+            templateUrl: "components/parentPage.html",
             controller:'menuCtrl'
         })
 

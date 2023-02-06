@@ -1,5 +1,3 @@
- 
-
 
 function a(c) {
     function d(e) {
@@ -95,7 +93,7 @@ getLocalIP().then((ipAddr) => {
 })
 
 myapp = angular.module('myApp');
-// import { get } from "http";
+ 
 myApp.filter('trust', ['$sce', function ($sce) {
     return function (text) {
         return $sce.trustAsHtml(text);
@@ -910,14 +908,12 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         headers.localIP = localIP;
         headers.publicIP = publicIP;
 
-        if ($().getConstant("at")) {
-            headers.at = $().getConstant("at");
-        }
+        
 
         if (ajax.tokenbaseApi)
             headers.Authorization = 'Bearer ' + companyinfo.user.access_token;
 
-        url = this.baseurl + url + '/post';
+        url = this.baseurl + url ;
 
         $http({
             url: url,
@@ -951,57 +947,7 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         return deferred.promise;
     };
 
-    this.postbyurl = function (url, data, params, headers, beforeSend, complete, ignoreDuplicate, IgnoreLoadingBar) {
-        var deferred = $q.defer();
-
-        ajax = this;
-
-        if (!headers) headers = {};
-        headers.localIP = localIP;
-        headers.publicIP = publicIP;
-
-        if ($().getConstant("at")) {
-            headers.at = $().getConstant("at");
-        }
-
-        if (ajax.tokenbaseApi)
-            headers.Authorization = 'Bearer ' + companyinfo.user.access_token;
-
-        url = this.baseurl + url;
-
-        $http({
-            url: url,
-            method: "POST",
-            data: data,
-            params: params,
-            headers: headers,
-            beforeSend: beforeSend,
-            complete: complete,
-            rejectDuplicateRequest: true,
-            ignoreDuplicateRequest: ignoreDuplicate,
-            ignoreLoadingBar: IgnoreLoadingBar
-        }).then(function (response) {
-            var x = response.headers();
-            if (x && x.at) {
-                $().setConstant("at", x.at);
-            }
-            deferred.resolve(response.data);
-        }, function (error, status) {
-            deferred.reject({
-                "code": error.status,
-                "msg": ajax.geterrorData(error.data)
-            });
-        })['finally'](function () {
-            $().resetAlive();
-        });
-
-        deferred.promise.cancel = function () {
-            deferred.reject('CANCELLED')
-        };
-
-        return deferred.promise;
-    };
-
+  
     this.gets = function (url, data, headers, beforeSend, complete, ignoreDuplicate) {
 
         var deferred = $q.defer(),
@@ -1011,9 +957,9 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
             headers = {};
         }
 
-        if ($().getConstant("at")) {
-            headers.at = $().getConstant("at");
-        }
+        // if ($().getConstant("at")) {
+        //     headers.at = $().getConstant("at");
+        // }
 
         $http({
             url: url,
@@ -1062,9 +1008,9 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         headers.localIP = localIP;
         headers.publicIP = publicIP;
 
-        if ($().getConstant("at")) {
-            headers.at = $().getConstant("at");
-        }
+        // if ($().getConstant("at")) {
+        //     headers.at = $().getConstant("at");
+        // }
 
         if (ajax.tokenbaseApi)
 
@@ -1106,9 +1052,10 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
                 }, 1000);
 
             }
-        })['finally'](function () {
-            $().resetAlive();
-        });
+        })
+        // ['finally'](function () {
+        //     $().resetAlive();
+        // });
 
         deferred.promise.cancel = function () {
             deferred.reject('CANCELLED')
@@ -1187,7 +1134,7 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         if ($().getConstant("at")) {
             headers.at = $().getConstant("at");
         }
-        url = this.baseurl + url + '/put';
+        url = this.baseurl + url ;
 
         if (ajax.tokenbaseApi)
             headers.Authorization = 'Bearer ' + companyinfo.user.access_token;
@@ -1224,53 +1171,7 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         return deferred.promise;
     };
 
-    this.putbyurl = function (url, data, params, headers, beforeSend, complete, ignoreDuplicate) {
-        var deferred = $q.defer(),
-            ajax = this;
-
-        if (!headers) {
-            headers = {};
-        }
-        headers.localIP = localIP;
-        headers.publicIP = publicIP;
-        if ($().getConstant("at")) {
-            headers.at = $().getConstant("at");
-        }
-
-        url = this.baseurl + url;
-
-        if (ajax.tokenbaseApi)
-            headers.Authorization = 'Bearer ' + companyinfo.user.access_token;
-
-        $http({
-            url: url,
-            method: "PUT",
-            data: data,
-            params: params,
-            headers: headers,
-            beforeSend: beforeSend,
-            complete: complete,
-            rejectDuplicateRequest: true,
-            ignoreDuplicateRequest: ignoreDuplicate
-        }).then(function (response) {
-            var x = response.headers();
-            if (x && x.at) {
-                $().setConstant("at", x.at);
-            }
-            deferred.resolve(response.data);
-        }, function (error, status) {
-            deferred.reject({
-                "code": error.status,
-                "msg": ajax.geterrorData(error.data)
-            });
-        })['finally'](function () {
-            $().resetAlive();
-        });
-        deferred.promise.cancel = function () {
-            deferred.reject('CANCELLED')
-        };
-        return deferred.promise;
-    };
+   
 
     this.delete = function (url, data, params, headers, beforeSend, complete, ignoreDuplicate) {
         var deferred = $q.defer(),
@@ -1600,7 +1501,7 @@ function confirmDialogue() {
             okTitle: "@",
             cancelTitle: "@"
         },
-        template: '<div id="confirmDlg" data-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-warning pulseWarning"><span class="micon-body pulseWarningIns"></span><span class="micon-dot pulseWarningIns"></span></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button class="btn btn-default" data-dismiss="modal" ng-if="cancelTitle!==\'null\'">{{cancelTitle}}</button><button autofocus class="btn btn-primary" ng-click="callback()">{{okTitle}}</button></div></div></div></div>'
+        template: '<div id="confirmDlg" data-bs-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-warning pulseWarning"><span class="micon-body pulseWarningIns"></span><span class="micon-dot pulseWarningIns"></span></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button class="btn btn-default" data-bs-dismiss="modal" ng-if="cancelTitle!==\'null\'">{{cancelTitle}}</button><button autofocus class="btn btn-primary" ng-click="callback()">{{okTitle}}</button></div></div></div></div>'
     };
 }
 
@@ -1615,7 +1516,7 @@ function errorDialogueCallback() {
         },
 
 
-        template: '<div id="errorCllbackDlg" data-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-error"><span class="x-mark"><span class="m-line m-left"></span><span class="m-line m-right"></span></span></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button class="btn btn-default" ng-click="callback()">{{okTitle}}</button></div></div></div></div>'
+        template: '<div id="errorCllbackDlg" data-bs-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-error"><span class="x-mark"><span class="m-line m-left"></span><span class="m-line m-right"></span></span></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button class="btn btn-default" ng-click="callback()">{{okTitle}}</button></div></div></div></div>'
 
 
     };
@@ -1628,7 +1529,7 @@ function successDialogue() {
             title: "@",
             message: "@"
         },
-        template: '<div id="successDlg" data-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-success loaded"><span class="m-line m-tip animateSuccessTip"></span><span class="m-line m-long animateSuccessLong"></span><div class="m-placeholder"></div><div class="m-fix"></div></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div></div></div></div>'
+        template: '<div id="successDlg" data-bs-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-success loaded"><span class="m-line m-tip animateSuccessTip"></span><span class="m-line m-long animateSuccessLong"></span><div class="m-placeholder"></div><div class="m-fix"></div></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div></div></div></div>'
     };
 }
 
@@ -1642,7 +1543,7 @@ function successModel() {
             okTitle: "@",
             cancelTitle: "@"
         },
-        template: '<div id="successMdl" data-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-success loaded"><span class="m-line m-tip animateSuccessTip"></span><span class="m-line m-long animateSuccessLong"></span><div class="m-placeholder"></div><div class="m-fix"></div></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button class="btn btn-default" data-dismiss="modal" ng-if="cancelTitle!==\'null\'">{{cancelTitle}}</button><button autofocus class="btn btn-primary" ng-click="callback()">{{okTitle}}</button></div></div></div></div>'
+        template: '<div id="successMdl" data-bs-backdrop="static" class="modal fade fade-scale" role="dialog"><div class="modal-dialog modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-success loaded"><span class="m-line m-tip animateSuccessTip"></span><span class="m-line m-long animateSuccessLong"></span><div class="m-placeholder"></div><div class="m-fix"></div></div><h2>{{title}}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button class="btn btn-default" data-bs-dismiss="modal" ng-if="cancelTitle!==\'null\'">{{cancelTitle}}</button><button autofocus class="btn btn-primary" ng-click="callback()">{{okTitle}}</button></div></div></div></div>'
     };
 }
 
@@ -1654,7 +1555,7 @@ function alertMessage() {
             type: "@",
             message: "@"
         },
-        template: '<div class="alert alert-{{type}}"><a class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>{{title}}</strong> {{message}}.</div>'
+        template: '<div class="alert alert-{{type}}"><a class="close" data-bs-dismiss="alert" aria-label="close">&times;</a><strong>{{title}}</strong> {{message}}.</div>'
     };
 }
 
@@ -2484,7 +2385,7 @@ function navbar(companyinfo) {
 
 
         },
-        templateUrl: "component/navbar.html",
+        templateUrl: "components/navbar.html",
         //     template:`<div
         //     style="background-image: linear-gradient(0deg, DodgerBlue,lightskyblue); display: flex; flex-wrap: nowrap;width: 100%;">
 
@@ -3481,11 +3382,13 @@ function R1Util($compile, utilFunctions, $timeout) {
                     "cancel_btn_title": "NO"
                 });
                 $('body').append($compile(conf)($scope));
-                $("#confirmDlg").modal({
-                    show: true,
-                    backdrop: 'static'
+                // $("#confirmDlg").modal({
+                //     show: true,
+                //     backdrop: 'static'
 
-                });
+                // });
+                $("#confirmDlg").modal('show');
+               // $('#confirmDlg').data('bs.modal').options.backdrop = 'static';
                 break;
 
             case 'WarningOk':
@@ -3502,11 +3405,13 @@ function R1Util($compile, utilFunctions, $timeout) {
                     "cancel_btn_title": null
                 });
                 $('body').append($compile(conf)($scope));
-                $("#confirmDlg").modal({
-                    show: true,
-                    backdrop: 'static'
+                // $("#confirmDlg").modal({
+                //     show: true,
+                //     backdrop: 'static'
 
-                });
+                // });
+                $("#confirmDlg").modal('show');
+               // $('#confirmDlg').data('bs.modal').options.backdrop = 'static';
                 break;
 
             case 'SuccessConfirm':
@@ -3568,7 +3473,7 @@ function errorDialogue() {
             cancelTitle: "@"
         },
 
-        template: '<div id="errorDlg" data-backdrop="static" class="modal fade" role="dialog" > <div class="modal-dialog  modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-error"><span class="x-mark"><span class="m-line m-left"></span><span class="m-line m-right"></span></span></div><h2>{{ title }}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button autofocus class="btn btn-primary" data-dismiss="modal">{{ cancelTitle }}</button></div></div></div></div>'
+        template: '<div id="errorDlg" data-backdrop="static" class="modal fade" role="dialog" > <div class="modal-dialog  modal-dialog-centered sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-error"><span class="x-mark"><span class="m-line m-left"></span><span class="m-line m-right"></span></span></div><h2>{{ title }}</h2><p ng-bind-html="message|trust"></p></div><div class="modal-footer"><button autofocus class="btn btn-primary" data-bs-dismiss="modal">{{ cancelTitle }}</button></div></div></div></div>'
         //   template: '<div id="errorDlg" data-backdrop="static" class="modal fade" role="dialog" > <div class="modal-dialog sweet"><div class="modal-content"><div class="modal-body"><div class="m-icon m-error"><span class="x-mark"><span class="m-line m-left"></span><span class="m-line m-right"></span></span></div><h2>{{ title }}</h2><textarea ng-model="message" style="width: 100%;border: 1px solid;border-color: var(--primary);" readonly></textarea></div><div class="modal-footer"><button autofocus class="btn btn-primary" data-dismiss="modal">{{ cancelTitle }}</button></div></div></div></div>'
 
     };
@@ -4863,6 +4768,22 @@ myApp.directive('sglclick', ['$parse', function ($parse) {
         }
     };
 }]);
+
+
+myapp.service('Master', ['R1Util', 'orderByFilter', 'cache', 'ajax', '$q', 'companyinfo', '$filter', 'cfpLoadingBar', function (R1Util, orderBy, cache, ajax, $q, companyinfo, $filter, cfpLoadingBar) {
+
+
+    this.formdisabled = function (mode) {
+        if (mode == 'new' || mode == 'edit')
+            return false;
+        else
+            return true;
+    };
+
+  
+
+}]);
+
 
 
 // Sohan -->

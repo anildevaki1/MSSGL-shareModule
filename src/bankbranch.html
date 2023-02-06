@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="scheduldcastform">
+<form class="form-horizontal" role="form" name="bankbranchform">
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
@@ -20,7 +20,7 @@
                                 <label for="title">शाखा क्रमांक</label>
                                 <div>
                                     <input type="text" id="id" name="id" class="form-control input-sm"
-                                        ng-model="vm.entity.branch_id"/>
+                                        ng-model="vm.entity.branchCode"/>
                                 </div>
                             </div> -->
 
@@ -29,7 +29,7 @@
 
                                 <div>
                                     <input type="text" id="bankbranch" name="bankbranch" class="form-control input-sm"
-                                        ng-model="vm.entity.Branch_name" />
+                                        ng-model="vm.entity.branchName" />
                                 </div>
                             </div>
                             <div class="form-group col-sm-4">
@@ -37,7 +37,7 @@
 
                                 <div>
                                     <input type="text" id="code" name="code" class="form-control input-sm"
-                                        ng-model="vm.entity.Branch_ifsc_code"/>
+                                        ng-model="vm.entity.branchIfscCode"/>
                                 </div>
                             </div>
                         </div>
