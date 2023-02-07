@@ -25,7 +25,7 @@
 
                 <div class="card-body">
 
-                    <div class="row">
+                    <!-- <div class="row">
                     <div class="col-sm-4 offset-sm-1">
                         <div class="row  p-1">
 
@@ -76,8 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4  offset-sm-1">
-                            <div class="row">
+                        
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">एसीसी नंबर</label>
                                 <div>
@@ -115,15 +114,116 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div> 
-                
+                 -->
                
                
+
+
+                 <div class="row">
+                    <div class="col-sm-4 offset-sm-1">
+                        <div class="row">
+
+                            <div class="form-group col-sm-12 m-1">
+                                <label for="title">कंपनीचे नाव</label>
+                                <div>
+                                    <input type="text" class="form-control input-sm" ng-model="vm.entity.compName"
+                                        autocomplete="off"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">
+                                    पत्ता १ 
+                                </label>
+                                <div>
+                                    <textarea id="mbrAddress" class="form-control" autocomplete="off"
+                                        ng-model="vm.entity.compAddrees1" style="width: 373px; height: 50px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">
+                                    पत्ता २ 
+                                </label>
+                                <div>
+                                    <textarea id="mbrAddress" class="form-control" autocomplete="off"
+                                        ng-model="vm.entity.compAddrees2" style="width: 373px; height: 50px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">
+                                    पत्ता ३ 
+                                </label>
+                                <div>
+                                    <textarea id="mbrAddress" class="form-control" autocomplete="off"
+                                        ng-model="vm.entity.compAddrees3" style="width: 370px; height: 50px;">
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-8 m-1">
+                                <label for="village">गाव</label>
+                                <div>
+                                    <select class="form-control input-sm" ng-model="vm.entity.cityCode"
+                                    ng-options="item.cityCode as item.cityName for item in vm.Places">
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4  offset-sm-1">
+                        <div class="row">
+
+                            <div class="form-group col-sm-8 m-1">
+                                <label for="title">एसीसी नंबर</label>
+                                <div>
+                                    <input type="text" id="village" name="village" class="form-control input-sm"
+                                        autocomplete="off" ng-model="vm.entity.compEccNo" />   
+
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-8 m-1">
+                                <label for="title">टेलिफोन नंबर</label>
+                                <div>
+                                    <input type="text" class="form-control input-sm text-end" autocomplete="off"
+                                        ng-model="vm.entity.compTelNo"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-8 m-1">
+                                <label for="title">फॅक्स नंबर</label>
+                                <div>
+                                    <input type="no" class="form-control input-sm text-end"
+                                        ng-Model="vm.entity.compFaxNo" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-8 m-1">
+                                <label for="title">ईमेल आईडी</label>
+                                <div>
+                                    <input type="text" id="email_id" name="email_id" class="form-control input-sm"
+                                        autocomplete="off" ng-model="vm.entity.compEmailId" />
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-8 m-1">
+                                <label for="title">जीएसटी क्रमांक</label>
+                                <div>
+                                    <input type="text" id="gstn" class="form-control input-sm"
+                                        ng-model="vm.entity.compGstn" autocomplete="off" />
+                                </div>
+                            </div>
+
+                         
+                        </div>
+                    </div>
+
+                   
+                </div>
+
                 </div>
                 </div>
 
             </div>
-        </div>
+       
     </fieldset>
 </form>
