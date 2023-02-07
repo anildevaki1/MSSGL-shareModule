@@ -4653,17 +4653,38 @@ myApp.directive("helper", function () {
         template: function (element, attrs) {
 
 
-            var htmltext = "\<div id=\"" + attrs.helperid + "\" class=\"helpnav\">" +
+            // var htmltext = "\<div id=\"" + attrs.helperid + "\" class=\"helpnav\">" +
+            //     "<div  class=\"bg-primary p-1\" style=\"display: flex;justify-content:space-between;line-height:0px;\"><input style=\"padding:0px !important;line-height:0px;\" type=\"text\" ng-model=\"searchtext\" placeholder=\"Search\"/>" +
+            //     "<a href=\"javascript:void(0)\" class=\"closebtn\"  ng-click=\"closeNav()\">&times;</a> </div>" +
+
+            //     "<table class=\"table table-hover table-bordered mb-0 hidden-sm-down\" cellspacing=\"0\" style=\"color:black;z-index:1;\">" +
+            //     "<thead class=\"thead-light\">" +
+            //     "<tr class=\"bg-primary\">" +
+            //     "<th ng-repeat=\"header in columnDefs\" ng-style=\"header.style\" class=\"text-center\">{{header.displayName}}</th>" +
+            //     "</tr>" +
+            //     "</thead>" +
+            //     "<tbody  style=\"width:100%;height: calc(100vh - 232px);overflow-y:scroll;overflow-x:scroll;display:block;\">" +
+            //     "<tr dir-paginate=\"item in Items| orderBy:sortBy|filter: searchtext| itemsPerPage: 50\" ng-click=\"closeNav(item)\">" +
+            //     "<td style=\"max-width: 100px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;\" ng-repeat=\"row in columnDefs\" ng-style=\"row.style\">{{field(item,row.field)}}</td></tr>" +
+            //     "</tbody></table>" +
+            //     "<dir-pagination-controls  max-size=\"5\" direction-links=\"true\" boundary-links=\"true\"></dir-pagination-controls></div>" +
+            //     "<span style=\"font-size:10px;cursor:pointer ;padding:10px\" ng-click=\"openNav()\">&#9776;</span>"
+
+            // return htmltext;
+
+
+
+             var htmltext = "\<div id=\"" + attrs.helperid + "\" class=\"helpnav\">" +
                 "<div  class=\"bg-primary p-1\" style=\"display: flex;justify-content:space-between;line-height:0px;\"><input style=\"padding:0px !important;line-height:0px;\" type=\"text\" ng-model=\"searchtext\" placeholder=\"Search\"/>" +
                 "<a href=\"javascript:void(0)\" class=\"closebtn\"  ng-click=\"closeNav()\">&times;</a> </div>" +
 
-                "<table class=\"table table-hover table-bordered mb-0 hidden-sm-down\" cellspacing=\"0\" style=\"color:black;z-index:1;\">" +
-                "<thead class=\"thead-light\">" +
+                "<table class=\"table table-hover table-bordered mb-0\" cellspacing=\"0\" style=\"color:black;z-index:1;\">" +
+                "<thead>" +
                 "<tr class=\"bg-primary\">" +
                 "<th ng-repeat=\"header in columnDefs\" ng-style=\"header.style\" class=\"text-center\">{{header.displayName}}</th>" +
                 "</tr>" +
                 "</thead>" +
-                "<tbody  style=\"width:100%;height: calc(100vh - 232px);overflow-y:scroll;overflow-x:scroll;display:block;\">" +
+                "<tbody  style=\"height: calc(100vh - 232px);\">" +
                 "<tr dir-paginate=\"item in Items| orderBy:sortBy|filter: searchtext| itemsPerPage: 50\" ng-click=\"closeNav(item)\">" +
                 "<td style=\"max-width: 100px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;\" ng-repeat=\"row in columnDefs\" ng-style=\"row.style\">{{field(item,row.field)}}</td></tr>" +
                 "</tbody></table>" +

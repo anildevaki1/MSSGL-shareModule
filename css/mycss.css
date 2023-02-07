@@ -47,6 +47,29 @@
 
 }
 
+
+
+tbody {
+  display: block;
+  overflow: auto;
+}
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* even columns width , fix width of table too*/
+}
+thead {
+  width: calc(100% - 17px); /* scrollbar is average 1em/16px width, remove it from thead width */
+}
+
+tfoot {
+  width: calc(100% - 17px);
+  display: table;
+  table-layout: fixed;
+  font-weight: bold;
+}
+
  
   
 

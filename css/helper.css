@@ -1,0 +1,46 @@
+.helpnav {
+    height: 81%;
+    overflow-y: hidden;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 28px;
+    right: 20px;
+    background-color: ghostwhite;
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* padding-top: 50px; */
+    margin-top: 65px;
+}
+
+
+.helpnav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.helpnav a:hover {
+    color: darkturquoise;
+}
+
+.helpnav .closebtn {
+    top: 30px;
+    right: 5px;
+    font-size: 30px;
+    margin-left: 20px;
+    color: white;
+}
+
+@media screen and (max-height: 450px) {
+    .helpnav {
+        padding-top: 15px;
+    }
+
+    .helpnav a {
+        font-size: 18px;
+    }
+}
