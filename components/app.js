@@ -553,4 +553,21 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     })
 
 
+
+    .state("parent.sub.payment", {
+      url: "/payment",
+      templateUrl: "src/payment.html",
+      controller: 'paymentCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.paymentdash", {
+      url: "/paymentdash",
+      templateUrl: "src/paymentdash.html",
+      controller: 'paymentdashCtrl as vm',
+
+    })
+
+
 })

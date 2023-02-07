@@ -179,6 +179,13 @@ myApp.controller('menuCtrl', ['$scope', '$state', function ($scope, $state) {
     params: { action: '', mode: true },
 },
 
+{
+    icon: "bi bi-receipt",
+    name: 'पगार',
+    path: 'parent.sub.paymentdash',
+    params: { action: '', mode: true },
+},
+
 ]
     
 },
