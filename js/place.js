@@ -18,25 +18,8 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
         vm.serviceGrid.columnDefs = [
 
-            {
-                field: 'cityCode',
-                displayName: 'नंबर',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "15%"
-            },
-            {
-                field: 'areaCode',
-                displayName: 'नंबर',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "15%"
-
-            },
+            
+           
             {
                 field: 'cityName',
                 displayName: 'गावाचे नाव',
@@ -44,7 +27,7 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "15%"
+                width: "20%"
 
             },
             {
@@ -74,7 +57,16 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 cellClass: 'alignLgrid',
                 width: "15%"
             },
-          
+            {
+                field: 'area.areaName',
+                displayName: 'गटाचे नाव ',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "20%"
+
+            },
             {
                 name: 'Action ',
                 enableSorting: false,

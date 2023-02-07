@@ -24,10 +24,10 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 field: 'vchId',
                 displayName: 'नंबर',
                 enableSorting: true,
-                type: 'date',
+                type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                cellFilter: 'date:\'dd-MM-yyyy\'',
+               
                 width: "10%"
             },
            
@@ -35,8 +35,9 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 field: 'vchDate',
                 displayName: 'तारीख',
                 enableSorting: true,
-                type: 'string',
+                type: 'date',
                 enableCellEdit: false,
+                cellFilter: 'date:\'dd/MM/yyyy\'',
                 cellClass: 'alignLgrid',
                 width: "15%"
 
@@ -52,20 +53,22 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
             },
             {
+                field: 'memberRequest.shName',
+                displayName: 'अ. स. नांव',
+                enableSorting: true,
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "25%"
+
+            },
+            {
                 field: 'enteranceFee',
                 displayName: 'प्रवेश शुल्क',
                 enableSorting: true,
                 enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "15%"
-
-            },
-            {
-                field: 'shareQty',
-                displayName: 'प्रति शेअर किंमत',
-                enableSorting: true,
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
+                type: 'number',
+                cellFilter: 'number:2',
+                cellClass: 'alignRgrid',
                 width: "10%"
             },
             {
@@ -73,16 +76,20 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 displayName: 'शेअर रक्कम',
                 enableSorting: true,
                 enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "15%"
+                type: 'number',
+                cellFilter: 'number:2',
+                cellClass: 'alignRgrid',
+                width: "10%"
             },
             {
                 field: 'totalAmt',
                 displayName: 'एकूण रक्कम',
                 enableSorting: true,
                 enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "15%"
+                type: 'number',
+                cellFilter: 'number:2',
+                cellClass: 'alignRgrid',
+                width: "10%"
             },
 
             {

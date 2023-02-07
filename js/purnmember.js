@@ -34,7 +34,7 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "40%"
+                width: "20%"
 
             },
             {
@@ -44,7 +44,7 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "10%"
+                width: "5%"
 
             },
             {
@@ -54,7 +54,7 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "10%"
+                width: "5%"
 
             },
             {
@@ -64,7 +64,48 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "20%"
+                width: "15%"
+
+            },
+            {
+                field: 'regDt',
+                displayName: 'रजि.तारीख',
+                enableSorting: true,
+                type: 'date',
+                cellFilter: 'date:\'dd/MM/yyyy\'',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "10%"
+
+            },
+            {
+                field: 'branchName',
+                displayName: 'बँक',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "12%"
+
+            },
+            {
+                field: 'bankAccNo',
+                displayName: 'बँक खाते न.',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "8%"
+
+            },
+            {
+                field: 'reqCode',
+                displayName: ' अ.स. खाते न.',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "7%"
 
             },
 
@@ -72,7 +113,7 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 name: 'Action ',
                 enableSorting: false,
                 enableCellEdit: false,
-                width: "10%",
+                width: "8%",
                 cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="bi bi-eye"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="bi bi-trash3"></i></a></center>'
             }
         ];

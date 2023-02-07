@@ -21,15 +21,7 @@ myApp.controller('panchayatdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
         vm.serviceGrid.columnDefs = [
 
-            {
-                field: 'panchayatCode',
-                displayName: 'पंचायत',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "25%"
-            },
+            
             {
                 field: 'panchayatName',
                 displayName: 'पंचायतीचे नाव',
@@ -37,7 +29,7 @@ myApp.controller('panchayatdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "25%"
+                width: "40%"
 
             },
 
@@ -48,14 +40,14 @@ myApp.controller('panchayatdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "25%"
+                width: "40%"
 
             },
             {
                 name: 'Action ',
                 enableSorting: false,
                 enableCellEdit: false,
-                width: "25%",
+                width: "20%",
                 cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="bi bi-eye"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="bi bi-trash3"></i></a></center>'
             }
         ];

@@ -34,7 +34,7 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "40%"
+                width: "20%"
 
             },
             {
@@ -44,7 +44,7 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "10%"
+                width: "5%"
 
             },
             {
@@ -54,7 +54,7 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "10%"
+                width: "5%"
 
             },
             {
@@ -64,9 +64,42 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "20%"
+                width: "15%"
 
             },
+
+            {
+                field: 'reqDt',
+                displayName: 'रजि.तारीख',
+                enableSorting: true,
+                type: 'date',
+                cellFilter: 'date:\'dd/MM/yyyy\'',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "10%"
+
+            },
+            {
+                field: 'branchName',
+                displayName: 'बँक',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "15%"
+
+            },
+            {
+                field: 'bankAccNo',
+                displayName: 'बँक खाते न.',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "10%"
+
+            },
+
 
             {
                 name: 'Action ',
@@ -86,7 +119,7 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
             $state.go('parent.sub.member', param);
         };
 
-     
+
         vm.remove = function (grid, row) {
 
             if (row.entity.regCode) {
@@ -120,7 +153,7 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                     R1Util.createAlert($scope, "Error", error, null);
                 }
                 $(".loading").hide();
-            },)
+            })
         }
 
         vm.getRecords()
@@ -235,9 +268,9 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
                         }
 
                     },
-                    function (err) {
-                        alert(err);
-                    })
+                        function (err) {
+                            alert(err);
+                        })
                 else {
                     ajax.put('MemberRequest/update', vm.entity, { id: vm.entity.regCode }).then(function (res) {
                         if (res) {
@@ -283,7 +316,7 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
         }
 
 
-      
+
 
         var getOccupations = function () {
             ajax.get("Occupation/list").then(function (res) {
@@ -294,7 +327,7 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
         }
 
 
-      
+
 
 
 
@@ -365,7 +398,7 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
             })
         }
 
-        
+
 
 
         var getBankBranches = function () {
@@ -392,13 +425,13 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
             var q = $q.defer();
 
             var p = getBankBranches();
-             var y = getDesignations();
+            var y = getDesignations();
             var a = getOccupations();
             var g = getReligions();
             var r = getPlaces();
             var x = getShareTypes();
             var t = getExistEntity();
-            $q.all([p,y, a, g,r,x, t]).then(function (res) {
+            $q.all([p, y, a, g, r, x, t]).then(function (res) {
 
                 q.resolve();
             }, function (err) {
@@ -421,18 +454,18 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         });
 
-      
-        
-    $scope.Gender = [
-        {
-            "value": 1,
-            "name": "पुरुष"
-        },
-        {
-            "value": 2,
-            "name": "स्त्री"
-        },
-      
-    ]
+
+
+        $scope.Gender = [
+            {
+                "value": 1,
+                "name": "पुरुष"
+            },
+            {
+                "value": 2,
+                "name": "स्त्री"
+            },
+
+        ]
     }
 ])
