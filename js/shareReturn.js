@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
+myApp.controller('sharereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
     function ($scope, $state, ajax, R1Util,) {
 
         var vm = this;
@@ -28,7 +28,7 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
 
-                width: "10%"
+                width: "15%"
             },
 
             {
@@ -42,51 +42,54 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 width: "15%"
 
             },
+
             {
                 field: 'regCode',
                 displayName: 'नंबर',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "10%"
+                width: "15%"
 
             },
             {
                 field: 'regCodeNavigation.shName',
-                displayName: 'अ. स. नांव',
+                displayName: 'सभासदाचे नांव',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "25%"
+                width: "30%"
 
             },
+
             {
-                field: 'amt',
-                displayName: 'रक्कम',
+                field: 'shareAmt',
+                displayName: 'एकूण ',
                 enableSorting: true,
                 enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "20%"
-
+                type: 'number',
+                cellFilter: 'number:2',
+                cellClass: 'alignRgrid',
+                width: "15%"
             },
 
             {
                 name: 'Action ',
                 enableSorting: false,
                 enableCellEdit: false,
-                width: "20%",
+                width: "10%",
                 cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="bi bi-eye"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="bi bi-trash3"></i></a></center>'
             }
         ];
-
 
         vm.edit = function (grid, row) {
             var param = {
                 action: 'view',
                 id: row.entity.vchId
             };
-            $state.go('parent.sub.payment', param);
+            $state.go('parent.sub.sharereturn', param);
         };
+
 
         vm.remove = function (grid, row) {
             if (row.entity.vchId) {
@@ -100,7 +103,7 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
         }
 
         $scope.iConfirmFn = function () {
-            ajax.delete('payment', null, $scope.param).then(function (res) {
+            ajax.delete('ShareReturn', null, $scope.param).then(function (res) {
                 $scope.grid.appScope.vm.serviceGrid.data.splice($scope.index, 1);
             })
 
@@ -108,7 +111,7 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
         vm.getRecords = function () {
 
-            ajax.get('Payment/list', null).then(function (res) {
+            ajax.get('ShareReturn/list').then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
                 }
@@ -131,16 +134,18 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 ])
 
-myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
+myApp.controller('sharereturnCtrl', ['$filter', '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
+    function ($filter, $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
 
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
         var pastEntity = {};
 
+
         if ($stateParams.action)
             vm.mode = $stateParams.action;
+
 
         vm.action = function () {
             var deffered = $q.defer();
@@ -200,13 +205,11 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
         };
 
 
-
-
         $scope.save = function (fn) {
-            if ($scope.paymentform.$valid) {
+            if ($scope.sharereturnform.$valid) {
                 $(".loading").show();
                 if (!vm.entity.vchId)
-                    ajax.post('payment/insert', vm.entity).then(function (res) {
+                    ajax.post('ShareReturn/insert', vm.entity).then(function (res) {
                         if (res) {
 
                             vm.entity.vchId = res.vchId;
@@ -234,7 +237,7 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
                             console.log(err);
                         })
                 else {
-                    ajax.put('payment/update', vm.entity, { id: vm.entity.vchId }).then(function (res) {
+                    ajax.put('ShareReturn/update', vm.entity, { id: vm.entity.vchId }).then(function (res) {
                         if (res) {
                             $(".loading").hide();
 
@@ -269,20 +272,15 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
 
         }
 
-
         vm.newrecord = function () {
             pastEntity = vm.entity;
             vm.entity = {};
+            // vm.entity.member = {};
+            vm.entity.regCodeNavigation = {};
             vm.entity.vchDate = new Date();
 
 
         }
-
-
-
-     
-
-
 
 
 
@@ -305,10 +303,9 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
 
         }
 
-
         getExistEntity = function () {
 
-            ajax.get('payment/get', null, { id: vm.entity.vchId }).then(function (res) {
+            ajax.get('ShareReturn/get', null, { id: vm.entity.vchId }).then(function (res) {
                 vm.entity = res;
                 vm.entity.vchDate = new Date(vm.entity.vchDate);
 
@@ -328,19 +325,17 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
 
         });
 
-       
-
-        $scope.getMemberRequestdetail = function () {
+        $scope.getMemberdetail = function () {
             if (vm.entity.regCode) {
                 var param = {
                     id: vm.entity.regCode
-                 
+
                 }
                 $(".loading").show();
-                ajax.get('MemberRequest/get', null, param).then(function (res) {
+                ajax.get('member/get', null, param).then(function (res) {
                     if (res) {
                         vm.entity.regCodeNavigation = res;
-                        if( regCodeNavigation.cityName){
+                        if ( vm.entity.regCodeNavigation.cityName) {
                             vm.entity.regCodeNavigation.cityCodeNavigation = {};
                             vm.entity.regCodeNavigation.cityCodeNavigation.cityName = vm.entity.regCodeNavigation.cityName;
                         }
@@ -355,20 +350,32 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
                     $(".loading").hide();
                 },)
             }
-           
+
 
         }
 
-        $scope.getMemberRequests = function () {
-            vm.MemberRequests = [];
-            if (!vm.memberRequest)
-                ajax.get("MemberRequest/list").then(function (res) {
-                    vm.MemberRequests = res;
+
+        $scope.getMembers = function () {
+            vm.Members = [];
+            if (!vm.member)
+                ajax.get("Member/list").then(function (res) {
+                    vm.Members = res;
                 }, function (err) {
                     var e = err;
                 })
         }
-           
+
+        $scope.getCert=function(){
+            ajax.get('shareissue/getbyCert', null, {'certno':vm.entity.shareCertNo}).then(function (res) {
+                
+                    vm.entity.regCode=res.memberId;
+                    vm.entity.regCodeNavigation=res.member;
+                    vm.entity.shareQty=res.shareQty;
+                    vm.entity.shareAmt=res.shareAmt;
+                   
+                });
+        }
+
         $scope.memberReq_coldef = [
             {
                 field: "regCode",
@@ -378,7 +385,7 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
             },
             {
                 field: "shName",
-                displayName: "अ. स. नांव ",
+                displayName: "पु. स. नांव ",
                 style: { "width": "60%", "overflow": "hidden", "text-align": "left" },
 
             },
@@ -389,8 +396,6 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
 
             },
         ];
-
-
 
 
     }

@@ -287,71 +287,39 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
         vm.newrecord = function () {
             pastEntity = vm.entity;
             vm.entity = {};
-            vm.entity.vchDate = new Date();//, $filter('date')( 'yyyy/MM/dd');
+            vm.entity.vchDate = new Date();
 
-            // vm.entity.vchDate=$filter('date')(new Date(vm.entity.vchDate), 'yyyy/MM/dd');
+           
         }
 
 
-        // $scope.amount = function () {
-
-        //     vm.entity.totalAmt = (vm.entity.shareQty * vm.entity.shareAmt);
-        //     Master.RoundN(vm.entity.totalAmt,2);
-        // }
-
+      
         $scope.amount = function () {
             vm.entity.totalAmt = parseFloat(vm.entity.enteranceFee) + parseFloat(vm.entity.shareAmt);
         }
 
-        $scope.member_coldef = [
-            {
-                field: "regCode",
-                displayName: "अ. स. नंबर",
-                style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+     
 
-            },
-            {
-                field: "shName",
-                displayName: "अ. स. नांव ",
-                style: { "width": "60%", "overflow": "hidden", "text-align": "left" },
+        // $scope.$watch("vm.entity.memberRequest", function (newValue, oldValue) {
 
-            },
-            {
-                field: "cityName",
-                displayName: "गांव",
-                style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
-
-            },
-        ]
+        //     if (vm.entity.memberRequest) {
+        //         if (newValue != oldValue) {
+        //             if (vm.entity.memberRequest.cityName) {
+        //                 vm.entity.memberRequest.cityCodeNavigation = {};
+        //                 vm.entity.memberRequest.cityCodeNavigation.cityName = vm.entity.memberRequest.cityName;
+        //             }
+        //             vm.entity.regCode = vm.entity.memberRequest.regCode;
 
 
-        $scope.$watch("vm.entity.memberRequest", function (newValue, oldValue) {
+        //         }
 
-            if (vm.entity.memberRequest) {
-                if (newValue != oldValue) {
-                    if (vm.entity.memberRequest.cityName) {
-                        vm.entity.memberRequest.cityCodeNavigation = {};
-                        vm.entity.memberRequest.cityCodeNavigation.cityName = vm.entity.memberRequest.cityName;
-                    }
-                    vm.entity.regCode = vm.entity.memberRequest.regCode;
+        //     }
 
+        // })
 
-                }
+    
 
-            }
-
-        })
-
-        vm.MemberRequests = [];
-        var getMemberRequests = function () {
-            ajax.get("MemberRequest/list").then(function (res) {
-                vm.MemberRequests = res;
-            }, function (err) {
-                var e = err;
-            })
-        }
-
-        getMemberRequests();
+        // getMemberRequests();
 
         $scope.init = function () {
             vm.entity = {};
@@ -406,17 +374,22 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
         });
 
 
-
+    
 
         $scope.getMemberRequestdetail = function () {
-            if (vm.entity.regCode != null) {
+            if (vm.entity.regCode) {
                 var param = {
-                    id: vm.entity.regCode
+                    id:  vm.entity.regCode
+                    
                 }
                 $(".loading").show();
                 ajax.get('MemberRequest/get', null, param).then(function (res) {
                     if (res) {
                         vm.entity.memberRequest = res;
+                        if(memberRequest.cityName){
+                            vm.entity.memberRequest.cityCodeNavigation = {};
+                            vm.entity.memberRequest.cityCodeNavigation.cityName = vm.entity.memberRequest.cityName;
+                        }
                     }
                     else {
                         var error = "Error";
@@ -428,12 +401,42 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
                     $(".loading").hide();
                 },)
             }
-            else {
-                vm.entity = {}
-
-            }
+           
 
         }
+
+        $scope.getMemberRequests = function () {
+            vm.MemberRequests = [];
+            if (!vm.memberRequest)
+                ajax.get("MemberRequest/list").then(function (res) {
+                    vm.MemberRequests = res;
+                }, function (err) {
+                    var e = err;
+                })
+        }
+
+
+        $scope.memberReq_coldef = [
+            {
+                field: "regCode",
+                displayName: "अ. स. नंबर",
+                style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+            },
+            {
+                field: "shName",
+                displayName: "अ. स. नांव ",
+                style: { "width": "60%", "overflow": "hidden", "text-align": "left" },
+
+            },
+            {
+                field: "cityName",
+                displayName: "गांव",
+                style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+            },
+        ];
+
 
     }
 ])

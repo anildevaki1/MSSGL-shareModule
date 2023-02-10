@@ -82,8 +82,8 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 width: "10%"
 
             },
-            
-           
+
+
             {
                 field: 'totalAmt',
                 displayName: 'एकूण रक्कम',
@@ -130,7 +130,7 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
         }
 
         vm.getRecords = function () {
-            $(".loading").show();
+
             ajax.get('ShareIssue/list', null).then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
@@ -163,6 +163,8 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
+        var pastEntity = {};
+
 
         if ($stateParams.action)
             vm.mode = $stateParams.action;
@@ -185,7 +187,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             switch (vm.mode) {
                 case 'new':
 
-                   vm.newrecord();
+                    vm.newrecord();
                     fn("OK")
                     break;
                 case 'edit':
@@ -226,7 +228,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                     break;
             }
         };
-      
+
 
         $scope.save = function (fn) {
             if ($scope.shareissueform.$valid) {
@@ -289,27 +291,23 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
 
         vm.newrecord = function () {
+            pastEntity = vm.entity;
             vm.entity = {};
-           vm.entity.vchDate = new Date();
+            vm.entity.member = {};
+            vm.entity.vchDate = new Date();
         }
 
 
 
         $scope.amount = function () {
-
-
-            vm.entity.shareAmt = parseFloat(vm.entity.shareQty * vm.entity.shareRate)
+            vm.entity.shareAmt = parseFloat(vm.entity.shareQty) * parseFloat(vm.entity.shareRate);
+            vm.entity.totalAmt = vm.entity.shareAmt + parseFloat(vm.entity.mbrCharges);
         }
 
 
-        $scope.totalamount = function () {
-
-            vm.entity.totalAmt = parseFloat(vm.entity.shareAmt) + parseFloat(vm.entity.mbrCharges);
-
-        }
 
 
-        var getMembers = function () {
+        $scope.getMembers = function () {
             ajax.get("Member/list").then(function (res) {
                 vm.Members = res;
             }, function (err) {
@@ -317,36 +315,16 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             })
         }
 
-        // $scope.init = function () {
-        //     vm.entity = {};
-        //     var q = $q.defer();
-
-         
-        //     var r = getMembers();
-
-        //     // var t = getExistEntity();
-        //     $q.all([p,]).then(function (res) {
-
-        //         q.resolve();
-        //     }, function (err) {
-
-        //         q.reject();
-
-        //     })
-
-        //     return q.promise;
-
-
-        // }
 
 
 
-        var getBankBranches = function () {
-            ajax.get("BankBranch/list").then(function (res) {
-                vm.BankBranches = res;
-            }, function (err) {
-                var e = err;
-            })
+        $scope.getBankBranches = function () {
+            if (!vm.BankBranches)
+                ajax.get("BankBranch/list").then(function (res) {
+                    vm.BankBranches = res;
+                }, function (err) {
+                    var e = err;
+                })
         }
 
 
@@ -355,7 +333,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
             ajax.get('ShareIssue/get', null, { id: vm.entity.vchId }).then(function (res) {
                 vm.entity = res;
-                vm.entity.vchDate=new Date(res.vchDate);
+                vm.entity.vchDate = new Date(res.vchDate);
             }, function (err) {
 
             })
@@ -366,18 +344,9 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             vm.entity = {};
             var q = $q.defer();
 
-            var p = getBankBranches();
-            var r = getMembers();
 
-             var t = getExistEntity();
-            $q.all([p,r,t]).then(function (res) {
+            q.resolve();
 
-                q.resolve();
-            }, function (err) {
-
-                q.reject();
-
-            })
 
             return q.promise;
 
@@ -394,6 +363,123 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         });
 
+        $scope.getMemberdetail = function () {
+            if (vm.entity.memberId != null) {
+                var param = {
+                    id: vm.entity.memberId
+                }
+                $(".loading").show();
+                ajax.get('member/get', null, param).then(function (res) {
+                    if (res) {
+
+                        vm.entity.member = res;
+                        if (vm.entity.member.cityName) {
+                            vm.entity.member.cityCodeNavigation = {};
+                            vm.entity.member.cityCodeNavigation.cityName = vm.entity.member.cityName;
+                        }
+                        setOtherinfo(res);
+
+                    }
+                    else {
+
+                        var error = "Error";
+                        if (res.error)
+                            if (res.error.message)
+                                error = res.error.message;
+                        R1Util.createAlert($scope, "Error", error, null);
+                    }
+                    $(".loading").hide();
+                },)
+            }
+
+
+        }
+
+        setOtherinfo = (res) => {
+            vm.entity.nomineeName = res.shNominee;
+            vm.entity.nomeeneAddress = res.shAddress;
+            vm.entity.nomineeRelation = res.shNomineeRelation;
+            vm.entity.bankCode = res.bankCode;
+            vm.entity.bankAccNo = res.bankAccNo;
+            vm.entity.bankCodeNavigation = res.bankCodeNavigation;
+        }
+
+        $scope.getMemberRequestdetail = function () {
+            if (vm.entity.reqId) {
+                var param = {
+                    id: $scope.datasource || vm.entity.reqId
+                }
+
+                ajax.get('MemberRequest/getbalance', null, param).then(function (res) {
+
+                    vm.entity.req = Object.assign({}, res);
+                    if (vm.entity.req ) {
+                        vm.entity.member = vm.entity.req.member;
+                        vm.entity.memberId=vm.entity.req.member.regCode;
+                        setOtherinfo(vm.entity.req.member);
+
+                    }
+                    if (vm.mode == 'new') {
+                        vm.entity.balance = res.balance;
+                    }
+                }, function (err) {
+                    vm.entity.req = undefined;
+                    var error = "Error";
+                    if (err.error)
+                        if (err.error.message)
+                            error = err.error.message;
+                    R1Util.createAlert($scope, "Error", error, null);
+                }
+                )
+            }
+
+        }
+
+        $scope.getMemberRequests = function () {
+            vm.MemberRequests = [];
+            if (!vm.memberRequest)
+                ajax.get("MemberRequest/list").then(function (res) {
+                    vm.MemberRequests = res;
+                }, function (err) {
+                    var e = err;
+                })
+        }
+
+        $scope.memberReq_coldef = [
+            {
+                field: "regCode",
+                displayName: "अ. स. नंबर",
+                style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+            },
+            {
+                field: "shName",
+                displayName: "अ. स. नांव ",
+                style: { "width": "60%", "overflow": "hidden", "text-align": "left" },
+
+            },
+            {
+                field: "cityName",
+                displayName: "गांव",
+                style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+            },
+        ];
+
+        $scope.bank_coldef = [{
+
+            field: "branchName",
+            displayName: "बँक",
+            style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
+
+        },
+        {
+
+            field: "banchIfscCode",
+            displayName: "बँक(IFSC)",
+            style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+        }]
 
     }
 ])

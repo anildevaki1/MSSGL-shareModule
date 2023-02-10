@@ -133,8 +133,32 @@ myApp.controller('menuCtrl', ['$scope', '$state', function ($scope, $state) {
 
                 {
                     icon: "bi bi-receipt",
-                    name: 'पगार',
+                    name: 'पेमेंट',
                     path: 'parent.sub.paymentdash',
+                    params: { action: '', mode: true },
+                },
+                {
+                    icon: "bi bi-share-fill",
+                    name: 'शेअर रिटर्न',
+                    path: 'parent.sub.sharereturndash',
+                    params: { action: '', mode: true },
+                },
+                {
+                    icon: "bi bi-share-fill",
+                    name: 'चेक इश्यू',
+                    path: 'parent.sub.chequeissuedash',
+                    params: { action: '', mode: true },
+                },
+                {
+                    icon: "bi bi-share-fill",
+                    name: 'चेक रिटर्न',
+                    path: 'parent.sub.Chequereturndash',
+                    params: { action: '', mode: true },
+                },
+                {
+                    icon: "bi bi-share-fill",
+                    name: 'हिस्सा',
+                    path: 'parent.sub.Dividentdash',
                     params: { action: '', mode: true },
                 },
 

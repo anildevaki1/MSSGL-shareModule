@@ -569,5 +569,66 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
     })
 
+    .state("parent.sub.sharereturn", {
+      url: "/sharereturn",
+      templateUrl: "src/sharereturn.html",
+      controller: 'sharereturnCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.sharereturndash", {
+      url: "/sharereturndash",
+      templateUrl: "src/sharereturndash.html",
+      controller: 'sharereturndashCtrl as vm',
+
+    })
+
+
+    .state("parent.sub.chequeissue", {
+      url: "/chequeissue",
+      templateUrl: "src/chequeissue.html",
+      controller: 'chequeissueCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.chequeissuedash", {
+      url: "/chequeissuedash",
+      templateUrl: "src/chequeissuedash.html",
+      controller: 'chequeissuedashCtrl as vm',
+
+    })
+
+    .state("parent.sub.Chequereturn", {
+      url: "/Chequereturn",
+      templateUrl: "src/Chequereturn.html",
+      controller: 'chequereturnCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.Chequereturndash", {
+      url: "/Chequereturndash",
+      templateUrl: "src/Chequereturndash.html",
+      controller: 'chequereturndashCtrl as vm',
+
+    })
+
+    
+    .state("parent.sub.Divident", {
+      url: "/Divident",
+      templateUrl: "src/Divident.html",
+      controller: 'DividentCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.Dividentdash", {
+      url: "/Dividentdash",
+      templateUrl: "src/Dividentdash.html",
+      controller: 'DividentdashCtrl as vm',
+
+    })
 
 })
