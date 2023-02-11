@@ -24,7 +24,7 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
 
-                width: "11%"
+                width: "10%"
             },
 
             {
@@ -35,7 +35,7 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellFilter: 'date:\'dd/MM/yyyy\'',
                 cellClass: 'alignLgrid',
-                width: "11%"
+                width: "15%"
 
             },
 
@@ -45,7 +45,7 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "11%"
+                width: "15%"
 
             },
             {
@@ -66,31 +66,25 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
 
-                width: "11%"
+                width: "15%"
             },
 
+ 
 
-            {
-                field: 'chAmt',
-                displayName: 'चेक इश्यू रक्कम ',
-                enableSorting: true,
-                enableCellEdit: false,
-                type: 'number',
-                cellFilter: 'number:2',
-                cellClass: 'alignRgrid',
-                width: "16%"
-            },
 
-            {
+             {
                 name: 'Action ',
                 enableSorting: false,
                 enableCellEdit: false,
-                width: "10%",
+                width: "15%",
                 cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="bi bi-eye"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="bi bi-trash3"></i></a></center>'
             }
         ];
 
-        vm.edit = function (grid, row) {
+
+
+
+vm.edit = function (grid, row) {
             var param = {
                 action: 'view',
                 id: row.entity.vchId
@@ -110,7 +104,7 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
         }
 
         $scope.iConfirmFn = function () {
-            ajax.delete('ChequeIssue', null, $scope.param).then(function (res) {
+            ajax.delete('ChequeReturn', null, $scope.param).then(function (res) {
                 $scope.grid.appScope.vm.serviceGrid.data.splice($scope.index, 1);
             })
 
@@ -118,7 +112,7 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
         vm.getRecords = function () {
 
-            ajax.get('ChequeIssue/list').then(function (res) {
+            ajax.get('ChequeReturn/list').then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
                 }
@@ -139,8 +133,8 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
     }])
 
-myApp.controller('chequereturnCtrl', ['$filter', '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($filter, $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
+myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
+    function ( $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
@@ -208,11 +202,11 @@ myApp.controller('chequereturnCtrl', ['$filter', '$scope', '$stateParams', '$q',
         };
 
         $scope.save = function (fn) {
-            if ($scope.chequeissueform.$valid) {
+            if ($scope.chequereturnform.$valid) {
                 $(".loading").show();
                 if (!vm.entity.vchId) {
                    
-                    ajax.post('ChequeIssue/insert', vm.entity).then(function (res) {
+                    ajax.post('ChequeReturn/insert', vm.entity).then(function (res) {
                         if (res) {
 
                             vm.entity.vchId = res.vchId;
@@ -240,7 +234,7 @@ myApp.controller('chequereturnCtrl', ['$filter', '$scope', '$stateParams', '$q',
                             console.log(err);
                         })
                 } else {
-                    ajax.put('ChequeIssue/update', vm.entity, { id: vm.entity.vchId }).then(function (res) {
+                    ajax.put('ChequeReturn/update', vm.entity, { id: vm.entity.vchId }).then(function (res) {
                         if (res) {
                             $(".loading").hide();
 
@@ -280,23 +274,16 @@ myApp.controller('chequereturnCtrl', ['$filter', '$scope', '$stateParams', '$q',
             vm.entity = {};
             vm.entity.regCodeNavigation = {};
             vm.entity.vchDate = new Date();
-        }
-
-        var getBankBranches = function () {
-            ajax.get("BankBranch/list").then(function (res) {
-                vm.BankBranches = res;
-            }, function (err) {
-                var e = err;
-            })
+            vm.entity.chDt = new Date();
         }
 
 
         $scope.init = function () {
             vm.entity = {};
             var q = $q.defer();
-            var p = getBankBranches();
+           
             var t = getExistEntity();
-            $q.all([p, t]).then(function (res) {
+            $q.all([t]).then(function (res) {
 
                 q.resolve();
             }, function (err) {
@@ -309,10 +296,9 @@ myApp.controller('chequereturnCtrl', ['$filter', '$scope', '$stateParams', '$q',
 
 
         }
-
         getExistEntity = function () {
 
-            ajax.get('ChequeIssue/get', null, { id: vm.entity.vchId }).then(function (res) {
+            ajax.get('ChequeReturn/get', null, { id: vm.entity.vchId }).then(function (res) {
                 vm.entity = res;
                 vm.entity.vchDate = new Date(vm.entity.vchDate);
 
@@ -392,20 +378,21 @@ myApp.controller('chequereturnCtrl', ['$filter', '$scope', '$stateParams', '$q',
             },
         ];
 
-        $scope.bank_coldef = [{
 
-            field: "branchName",
-            displayName: "बँक",
-            style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
+        // $scope.bank_coldef = [{
 
-        },
-        {
+        //     field: "branchName",
+        //     displayName: "बँक",
+        //     style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
 
-            field: "banchIfscCode",
-            displayName: "बँक(IFSC)",
-            style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+        // },
+        // {
 
-        }]
+        //     field: "banchIfscCode",
+        //     displayName: "बँक(IFSC)",
+        //     style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+        // }]
 
 
 

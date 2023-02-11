@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="chequeissueform">
+<form class="form-horizontal" role="form" name="chequereturnform">
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="M" actionfn="vm.action()"></navbar>
@@ -9,12 +9,12 @@
             <div class="card">
                 <div class="card-header" style="background-color:#caf0f8">
                     <i class="bi bi-share-fill"></i>
-                    <strong>चेक रिटर्न</strong>
+                    <strong>चेक परत </strong>
                 </div>
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-2  offset-sm-1">
+                        <div class="col-sm-3  offset-sm-1">
                             <div class="form-group">
                                 <label for="title">
                                     नंबर
@@ -63,35 +63,19 @@
 
                             </div>
                         </div>
-                        <div class="col-sm-2 offset-sm-1">
-                            <div class="form-group ">
-                                <label for="bankbranch">बँक(शाखा)</label>
-
-
-                                <!-- <select class="form-control input-sm" id="bankName" name="bankName"
-                                        ng-model="vm.entity.bankCode"
-                                        ng-options="item as item.branchName for item in vm.BankBranches" >
-                                    </select> -->
-
-
-                                    <div class="input-group">
-                                        <input type="text" class="form-control input-sm"
-                                            ng-model="vm.entity.bankCodeNavigation.branchName" disabled />
-
-                                        <span class="input-group-text p-0">
-                                            <helper helperid="bank1" id="name" list="vm.BankBranches" width="30%"
-                                                hclick="getBankBranches()" row="vm.entity.bankCodeNavigation"
-                                                selectedvalue="branchName" columns="bank_coldef" filter="branchName"
-                                                ng-model="vm.entity.bankName">
-                                            </helper>
-                                        </span>
-                                    </div>
-
-                            
+                        <div class="col-sm-5  offset-sm-1">
+                            <div class="form-group col-sm-6">
+                                <label for="title">बँक(शाखा)</label>
+    
+                                <div>
+                                    <input type="text" id="bankbranch" name="bankbranch" class="form-control input-sm"
+                                        ng-model="vm.entity.bankName" />
+                                </div>
+                            </div>
                 
 
 
-                        <div class="form-group">
+                        <div class="form-group col-sm-4">
                             <label for="title">
                                 नंबर
                             </label>
@@ -103,7 +87,7 @@
 
                    
                            
-                            <div class="form-group">
+                            <div class="form-group col-sm-4">
                                 <label for="title">
                                     तारीख
                                 </label>
@@ -114,10 +98,10 @@
                             </div>
 
                             <div class="form-group col-sm-6 m-1">
-                                <label for="address">कारण</label>
+                                <label for="address">पुरावा</label>
                                 <div>
                                     <textarea id="Address" class="form-control" autocomplete="off"
-                                        ng-model="vm.entity.narration" style="width: 400px;height: 97px;">
+                                        ng-model="vm.entity.reason" style="width: 400px;height: 97px;">
                                                          </textarea>
                                 </div>
                             </div>

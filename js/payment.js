@@ -28,7 +28,7 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
 
-                width: "10%"
+                width: "15%"
             },
 
             {
@@ -57,7 +57,7 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "25%"
+                width: "20%"
 
             },
             {
@@ -137,7 +137,7 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
-        var pastEntity = {};
+        // var pastEntity = {};
 
         if ($stateParams.action)
             vm.mode = $stateParams.action;

@@ -45,6 +45,7 @@
   "dependencies": {
     "@babel/core": "^7.15.5",
     "@pdftron/pdfjs-express": "^8.7.0",
+    "@popperjs/core": "^2.11.6",
     "@uirouter/angularjs": "^1.0.24",
     "alasql": "^1.7.3",
     "angular": "^1.7.9",

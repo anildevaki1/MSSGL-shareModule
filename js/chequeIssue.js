@@ -139,8 +139,8 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
     }])
 
-myApp.controller('chequeissueCtrl', ['$filter', '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($filter, $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
+myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
@@ -280,23 +280,18 @@ myApp.controller('chequeissueCtrl', ['$filter', '$scope', '$stateParams', '$q', 
             vm.entity = {};
             vm.entity.regCodeNavigation = {};
             vm.entity.vchDate = new Date();
+            vm.entity.chDt = new Date();
         }
 
-        var getBankBranches = function () {
-            ajax.get("BankBranch/list").then(function (res) {
-                vm.BankBranches = res;
-            }, function (err) {
-                var e = err;
-            })
-        }
+     
 
 
         $scope.init = function () {
             vm.entity = {};
             var q = $q.defer();
-            var p = getBankBranches();
+           
             var t = getExistEntity();
-            $q.all([p, t]).then(function (res) {
+            $q.all([t]).then(function (res) {
 
                 q.resolve();
             }, function (err) {
@@ -392,20 +387,20 @@ myApp.controller('chequeissueCtrl', ['$filter', '$scope', '$stateParams', '$q', 
             },
         ];
 
-        $scope.bank_coldef = [{
+        // $scope.bank_coldef = [{
 
-            field: "branchName",
-            displayName: "बँक",
-            style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
+        //     field: "branchName",
+        //     displayName: "बँक",
+        //     style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
 
-        },
-        {
+        // },
+        // {
 
-            field: "banchIfscCode",
-            displayName: "बँक(IFSC)",
-            style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+        //     field: "banchIfscCode",
+        //     displayName: "बँक(IFSC)",
+        //     style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
 
-        }]
+        // }]
 
 
 

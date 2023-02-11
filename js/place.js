@@ -55,7 +55,7 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "15%"
+                width: "20%"
             },
             {
                 field: 'area.areaName',

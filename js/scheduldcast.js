@@ -107,7 +107,7 @@ myApp.controller('scheduldcastCtrl', ['$scope', '$stateParams', '$q', '$rootScop
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
-
+        var pastEntity = {};
         if ($stateParams.action)
             vm.mode = $stateParams.action;
 
@@ -131,7 +131,7 @@ myApp.controller('scheduldcastCtrl', ['$scope', '$stateParams', '$q', '$rootScop
                 switch (vm.mode) {
                     case 'new':
     
-                        $scope.newrecord();
+                       vm.newrecord();
                         fn("OK")
                         break;
                     case 'edit':
@@ -228,6 +228,7 @@ myApp.controller('scheduldcastCtrl', ['$scope', '$stateParams', '$q', '$rootScop
                 }
             }
             vm.newrecord = function () {
+                pastEntity = vm.entity;
                 vm.entity = {};
     
             }
