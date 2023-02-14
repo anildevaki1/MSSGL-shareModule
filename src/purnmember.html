@@ -19,17 +19,20 @@
                                 <div class="form-group col-sm-6">
                                     <label for="member_no">अपूर्ण सभासद नंबर</label>
                                     <div>
-                                        <input type="text" id="member_number" name="member_number"
-                                            ng-change="getMemberRequestdetail()" class="form-control input-sm"
-                                            ng-Model="vm.entity.regCode" numbers-only />
+                                        <input type="text" id="amember_number" name="amember_number"
+                                        
+                                            ng-blur="getMemberRequestdetail()" class="form-control input-sm"
+                                            ng-Model="vm.entity.reqCode" numbers-only />
                                     </div>
                                 </div>
 
                                 <div class="form-group col-sm-6">
                                     <label for="member_no">सभासद नंबर</label>
                                     <div>
-                                        <input type="text" id="member_no" name="menber_no" class="form-control input-sm" disabled
-                                            ng-Model="vm.entity.reqCode" numbers-only />
+                                        <input type="text" id="member_no" name="menber_no" 
+                                        class="form-control input-sm" 
+                                        placeholder="स्वयं क्रमांक"
+                                            ng-Model="vm.entity.regCode" numbers-only />
                                     </div>
                                 </div>
 
@@ -141,7 +144,7 @@
                                     </label>
                                     <div>
                                         <input type="text" id="age" name="age" class="form-control input-sm text-end"
-                                            ng-model="vm.entity.age" />
+                                            ng-model="vm.entity.age" numbers-only />
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-10">

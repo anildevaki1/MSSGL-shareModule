@@ -144,7 +144,7 @@ myApp.controller('bankbranchCtrl', ['$scope', '$stateParams', '$q', 'ShareData',
             switch (vm.mode) {
                 case 'new':
 
-                    $scope.newrecord();
+                    vm.newrecord();
                     fn("OK")
                     break;
                 case 'edit':

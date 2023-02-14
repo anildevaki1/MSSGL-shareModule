@@ -1,7 +1,8 @@
 
 
-myApp.controller('companyCtrl', ['$scope', '$stateParams', '$q', 'R1Util', 'ajax', 'Master', "$state",
-    function ($scope, $stateParams, $q, R1Util, ajax, Master, $state) {
+myApp.controller('companyCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
+
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
 
         var vm = this;
         $scope.Master = Master;
@@ -32,10 +33,15 @@ myApp.controller('companyCtrl', ['$scope', '$stateParams', '$q', 'R1Util', 'ajax
 
         vm.getRecords()
 
+        $scope.close = function () {
+            $rootScope.back();
+        }
+
         $scope.save = function (fn) {
             if ($scope.companyform.$valid) {
                 $(".loading").show();
-                if (!vm.entity.compCode)
+                // vm.entity.compCode = 2;
+                if (!vm.entity.compCode) {
                     ajax.post('Company/insert', vm.entity).then(function (res) {
                         if (res) {
                             vm.entity.compCode = res.compCode;
@@ -60,7 +66,7 @@ myApp.controller('companyCtrl', ['$scope', '$stateParams', '$q', 'R1Util', 'ajax
                         }
 
                     })
-                else {
+                } else {
                     ajax.put('Company/update', vm.entity, { id: vm.entity.compCode }).then(function (res) {
                         if (res) {
                             $(".loading").hide();

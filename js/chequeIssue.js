@@ -140,7 +140,7 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
     }])
 
 myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
@@ -327,6 +327,83 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
 
         });
 
+        // $scope.getMemberdetail = function () {
+        //     if (vm.entity.regCode != null) {
+        //         var param = {
+        //             id: vm.entity.regCode
+        //         }
+        //         $(".loading").show();
+        //         ajax.get('member/get', null, param).then(function (res) {
+        //             if (res) {
+        //                 vm.entity.RegCodeNavigation = res;
+        //                 if (vm.entity.RegCodeNavigation.cityName) {
+        //                     vm.entity.RegCodeNavigation.cityCodeNavigation = {};
+        //                     vm.entity.RegCodeNavigation.cityCodeNavigation.cityName = vm.entity.RegCodeNavigation.cityName;
+        //                 }
+        //             }
+        //             else {
+
+        //                 var error = "Error";
+        //                 if (res.error)
+        //                     if (res.error.message)
+        //                         error = res.error.message;
+        //                 R1Util.createAlert($scope, "Error", error, null);
+        //             }
+        //             $(".loading").hide();
+        //         },)
+        //     }
+
+
+        // }
+
+ 
+        // $scope.getMembers = function () {
+        //     ajax.get("Member/list").then(function (res) {
+        //         vm.Members = res;
+        //     }, function (err) {
+        //         var e = err;
+        //     })
+        // }
+
+
+        // $scope.members_coldef = [
+        //     {
+        //         field: "regCode",
+        //         displayName: "स. नंबर",
+        //         style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+        //     },
+        //     {
+        //         field: "shName",
+        //         displayName: "स. नांव ",
+        //         style: { "width": "60%", "overflow": "hidden", "text-align": "left" },
+
+        //     },
+        //     {
+        //         field: "cityName",
+        //         displayName: "गांव",
+        //         style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+        //     },
+        // ];
+
+
+        // $scope.bank_coldef = [{
+
+        //     field: "branchName",
+        //     displayName: "बँक",
+        //     style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
+
+        // },
+        // {
+
+        //     field: "banchIfscCode",
+        //     displayName: "बँक(IFSC)",
+        //     style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
+
+        // }]
+
+
         $scope.getMemberdetail = function () {
             if (vm.entity.regCode) {
                 var param = {
@@ -337,7 +414,7 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
                 ajax.get('member/get', null, param).then(function (res) {
                     if (res) {
                         vm.entity.regCodeNavigation = res;
-                        if (vm.entity.regCodeNavigation.cityName) {
+                        if ( vm.entity.regCodeNavigation.cityName) {
                             vm.entity.regCodeNavigation.cityCodeNavigation = {};
                             vm.entity.regCodeNavigation.cityCodeNavigation.cityName = vm.entity.regCodeNavigation.cityName;
                         }
@@ -356,6 +433,7 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
 
         }
 
+
         $scope.getMembers = function () {
             vm.Members = [];
             if (!vm.member)
@@ -366,10 +444,12 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
                 })
         }
 
+
+    
         $scope.memberReq_coldef = [
             {
                 field: "regCode",
-                displayName: "अ. स. नंबर",
+                displayName: " स. नंबर",
                 style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
 
             },
@@ -387,20 +467,7 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
             },
         ];
 
-        // $scope.bank_coldef = [{
 
-        //     field: "branchName",
-        //     displayName: "बँक",
-        //     style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
-
-        // },
-        // {
-
-        //     field: "banchIfscCode",
-        //     displayName: "बँक(IFSC)",
-        //     style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
-
-        // }]
 
 
 

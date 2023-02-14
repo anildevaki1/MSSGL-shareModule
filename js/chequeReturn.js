@@ -60,7 +60,7 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
             {
                 field: 'chNo',
-                displayName: 'नंबर',
+                displayName: ' नंबर',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
@@ -317,7 +317,6 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
             }
 
         });
-
         $scope.getMemberdetail = function () {
             if (vm.entity.regCode) {
                 var param = {
@@ -328,7 +327,7 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
                 ajax.get('member/get', null, param).then(function (res) {
                     if (res) {
                         vm.entity.regCodeNavigation = res;
-                        if (vm.entity.regCodeNavigation.cityName) {
+                        if ( vm.entity.regCodeNavigation.cityName) {
                             vm.entity.regCodeNavigation.cityCodeNavigation = {};
                             vm.entity.regCodeNavigation.cityCodeNavigation.cityName = vm.entity.regCodeNavigation.cityName;
                         }
@@ -347,6 +346,7 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
 
         }
 
+
         $scope.getMembers = function () {
             vm.Members = [];
             if (!vm.member)
@@ -357,10 +357,12 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
                 })
         }
 
+
+    
         $scope.memberReq_coldef = [
             {
                 field: "regCode",
-                displayName: "अ. स. नंबर",
+                displayName: " स. नंबर",
                 style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
 
             },
@@ -379,6 +381,7 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
         ];
 
 
+      
         // $scope.bank_coldef = [{
 
         //     field: "branchName",

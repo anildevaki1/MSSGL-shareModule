@@ -125,7 +125,7 @@ myApp.controller('occupationCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 switch (vm.mode) {
                     case 'new':
     
-                        $scope.newrecord();
+                        vm.newrecord();
                         fn("OK")
                         break;
                     case 'edit':

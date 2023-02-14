@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3  offset-sm-1">
-                            <div class="form-group">
+                            <div class="form-group  col-sm-7">
                                 <label for="title">
                                     नंबर
                                 </label>
@@ -25,7 +25,7 @@
                                         autocomplete="off" />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-sm-7">
                                 <label for="title">
                                     तारीख
                                 </label>
@@ -36,31 +36,32 @@
                             </div>
 
 
-                            <div class="form-group ">
-                                <label for="title"> पूर्ण सभासद नंबर </label>
+                            <div class="form-group col-sm-8  m-1">
+                                <label for="title">सभासद नंबर </label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control input-sm" ng-blur="getMemberdetail()"
+                                    <input type="text" id="member_number" name="member_number"
+                                        ng-blur="getMemberdetail()" class="form-control input-sm"
                                         ng-Model="vm.entity.regCode" numbers-only />
-                                    <span class="input-group-text p-0">
-                                        <helper helperid="member" list="vm.Members" width="30%" hclick="getMembers()"
-                                            row="vm.entity.regCodeNavigation" columns="memberReq_coldef" filter="shName"
-                                            selectedvalue="regCode" ng-model="vm.entity.regCode"
-                                            ng-change="getMemberdetail()">
-                                        </helper>
-                                    </span>
+    
+                                        <span class="input-group-text p-0">
+                                            <helper helperid="member" list="vm.Members" width="30%"
+                                                hclick="getMembers()" row="vm.entity.regCodeNavigation" columns="memberReq_coldef"
+                                                filter="shName" selectedvalue="regCode" 
+                                                ng-model="vm.entity.regCode" ng-change="getMemberdetail()">
+                                            </helper>
+                                        </span>
                                 </div>
                             </div>
-
-
-                            <div class="form-group ">
-                                <label for="title"> पूर्ण सभासद नाव</label>
+    
+                            <div class="form-group col-sm-10 m-1">
+                                <label for="title">सभासद नाव</label>
                                 <div>
                                     <input type="text" class="form-control input-sm"
                                         ng-value="vm.entity.regCodeNavigation.shName" disabled />
                                     <input type="text" class="form-control input-sm"
                                         ng-value="vm.entity.regCodeNavigation.cityCodeNavigation.cityName" disabled />
                                 </div>
-
+    
                             </div>
                         </div>
                         <div class="col-sm-5  offset-sm-1">
@@ -77,11 +78,22 @@
 
                         <div class="form-group col-sm-4">
                             <label for="title">
-                                नंबर
+                                चेक नंबर 
                             </label>
-                            <div>
+                          
+                            <div class=" form-group">
                                 <input type="text" name="vchid" data-ng-model="vm.entity.chNo"
-                                    class="form-control input-sm" autocomplete="off" />
+                                class="form-control input-sm" autocomplete="off" />
+                                  
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6  mb-2">
+                            <label for="shareAmt">चेक रक्कम</label>
+
+                            <div>
+                                <input type="text" id="share_amt" name="share_amt"
+                                    class="form-control input-sm text-end fw-bold" ng-model="vm.entity.chAmt"
+                                    data-format="currency" data-fraction="2" />
                             </div>
                         </div>
 
@@ -98,7 +110,7 @@
                             </div>
 
                             <div class="form-group col-sm-6 m-1">
-                                <label for="address">पुरावा</label>
+                                <label for="address">टिप्पणी</label>
                                 <div>
                                     <textarea id="Address" class="form-control" autocomplete="off"
                                         ng-model="vm.entity.reason" style="width: 400px;height: 97px;">

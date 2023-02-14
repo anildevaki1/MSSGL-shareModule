@@ -287,6 +287,46 @@ function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master)
                 }
     
             });
+
+
+            // getExistEntity = function () {
+
+            //     ajax.get('area/get', null, { id: vm.entity.areaCode }).then(function (res) {
+            //         vm.entity = res;
+    
+            //     }, function (err) {
+    
+            //     })
+    
+            // }
+    
+            // $scope.init = function () {
+            //     vm.entity = {};
+            //     var q = $q.defer();
+    
+            //     var p = getareas();
+            //     $q.all([p]).then(function (res) {
+    
+            //         q.resolve();
+            //     }, function (err) {
+    
+            //         q.reject();
+    
+            //     })
+    
+            //     return q.promise;
+    
+    
+            // }
+
+            // var getareas = function () {
+            //     ajax.get("Area/list").then(function (res) {
+            //         vm.areas= res;
+            //     }, function (err) {
+            //         var e = err;
+            //     })
+            // }
+    
     
 
     

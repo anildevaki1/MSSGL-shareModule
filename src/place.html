@@ -137,7 +137,8 @@
                                     <label for="title">गट</label>
                                     <div>
                                         <select class="form-control input-sm" id="area_id" name="area_id" ng-model="vm.entity.area_id"
-                                        ng-options="item.value as item.name for item in txn_type"
+                                        ng-options="item.areaCode as item.areaName for item in areaName"
+                               
                                         >
                                         </select>
                                     </div>
