@@ -290,9 +290,16 @@ myApp.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state,
 
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.when("", "/parent/sub/home");
+  $urlRouterProvider.when("", "login");
 
   $stateProvider
+
+    .state("login",{
+      url:'/login',
+      templateUrl:"components/assets/login.html",
+      controller:'loginCtrl'
+    })
+
     .state("parent", {
       url: "/parent",
       abstract: true,

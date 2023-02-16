@@ -46,7 +46,7 @@
                                 <div class="form-group col-sm-12">
                                     <label for="sharetype">शेअरस प्रकार </label>
                                     <div>
-                                        <select class="form-control input-sm" ng-model="vm.entity.shType"
+                                        <select class="form-select input-sm" ng-model="vm.entity.shType"
                                             ng-options="item.shTypeCode as item.shTypeName for item in vm.ShareTypes">
                                         </select>
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="form-group col-sm-12">
                                     <label for="village">गाव</label>
                                     <div>
-                                        <select class="form-control input-sm" ng-model="vm.entity.cityCode"
+                                        <select class="form-select input-sm" ng-model="vm.entity.cityCode"
                                             ng-options="item.cityCode as item.cityName for item in vm.Places">
                                         </select>
                                     </div>
@@ -99,7 +99,7 @@
                                 <div class="form-group col-sm-12">
                                     <label for="designation">हुद्दा </label>
                                     <div>
-                                        <select class="form-control input-sm" ng-model="vm.entity.dsgnCode"
+                                        <select class="form-select input-sm" ng-model="vm.entity.dsgnCode"
                                             ng-options="item.dsgnCode as item.designationName for item in   vm.Designations">
                                         </select>
                                     </div>
@@ -108,7 +108,7 @@
                                 <div class="form-group col-sm-12">
                                     <label for="occupation">व्यवसाय</label>
                                     <div>
-                                        <select class="form-control input-sm" ng-model="vm.entity.ocpName"
+                                        <select class="form-select input-sm" ng-model="vm.entity.ocpName" 
                                             ng-options="item.ocpCode as item.ocpName for item in vm.Occupations">
                                         </select>
                                     </div>
@@ -117,7 +117,7 @@
                                 <div class="form-group col-sm-12">
                                     <label for="cast">जात</label>
                                     <div>
-                                        <select class="form-control input-sm" ng-model="vm.entity.castCode"
+                                        <select class="form-select input-sm" id="cast" name="cast" ng-model="vm.entity.castCode"
                                             ng-options="item.castCode as item.castName for item in vm.Religions">
                                         </select>
                                     </div>
@@ -130,7 +130,7 @@
 
                                     </label>
                                     <div>
-                                        <select class="form-control input-sm" id="txn_type" name="txn_type"
+                                        <select class="form-select input-sm" id="Gender" name="Gender"
                                             ng-model="vm.entity.gender"
                                             ng-options="item.value as item.name for item in Gender">
                                         </select>
@@ -151,7 +151,7 @@
                                     <label for="bankbranch">बँक(शाखा)</label>
 
                                     <div>
-                                        <select class="form-control input-sm" id="bankName" name="bankName"
+                                        <select class="form-select input-sm" id="bankName" name="bankName"
                                             ng-model="vm.entity.bankCode"
                                             ng-options="item.bankCode as item.branchName for item in vm.BankBranches">
                                         </select>
