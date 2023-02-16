@@ -88,72 +88,7 @@ myApp.controller('menuCtrl', ['$scope', '$state', function ($scope, $state) {
                     params: { action: '', mode: true },
                 },
 
-                // {
-                //     icon: "bi bi-person-circle",
-                //     name: 'अपूर्ण सभासद',
-                //     path: 'parent.sub.memberdash',
-                //     params: { action: '', mode: true },
-
-                // },
-                // {
-                //     icon: "bi bi-person-circle",
-                //     name: 'पूर्ण सभासद',
-                //     path: 'parent.sub.purnmemberdash',
-                //     params: { action: '', mode: true },
-
-                // },
-
-                // {
-                //     icon: "bi bi-building-fill",
-                //     name: 'कंपनी',
-                //     path: 'parent.sub.company',
-                //     params: { action: '', mode: true },
-
-                // },
-                // {
-                //     icon: "bi bi-receipt",
-                //     name: 'पावती',
-                //     path: 'parent.sub.receiptdash',
-                //     params: { action: '', mode: true },
-
-                // },
-                // {
-                //     icon: "bi bi-share-fill",
-                //     name: 'शेअर वाटप',
-                //     path: 'parent.sub.shareissuedash',
-                //     params: { action: '', mode: true },
-                // },
-
-                // {
-                //     icon: "bi bi-receipt",
-                //     name: 'पेमेंट',
-                //     path: 'parent.sub.paymentdash',
-                //     params: { action: '', mode: true },
-                // },
-                // {
-                //     icon: "bi bi-share-fill",
-                //     name: 'शेअर रिटर्न',
-                //     path: 'parent.sub.sharereturndash',
-                //     params: { action: '', mode: true },
-                // },
-                // {
-                //     icon: "bi bi-share-fill",
-                //     name: 'चेक वाटप',
-                //     path: 'parent.sub.chequeissuedash',
-                //     params: { action: '', mode: true },
-                // },
-                // {
-                //     icon: "bi bi-share-fill",
-                //     name: 'चेक रिटर्न',
-                //     path: 'parent.sub.Chequereturndash',
-                //     params: { action: '', mode: true },
-                // },
-                // {
-                //     icon: "bi bi-share-fill",
-                //     name: 'हिस्सा',
-                //     path: 'parent.sub.Dividentdash',
-                //     params: { action: '', mode: true },
-                // },
+             
 
 
             ]
@@ -163,31 +98,10 @@ myApp.controller('menuCtrl', ['$scope', '$state', function ($scope, $state) {
 
       
         {
-            icon: 'bi bi-person-circle', name: "जमा पावती(अ.सभासद)", path: 'parent.sub.receiptdash',
+            icon: 'bi bi-receipt', name: "जमा पावती(अ.सभासद)", path: 'parent.sub.receiptdash',
         },
 
-        // {
-        //     icon: 'bi bi-receipt-cutoff', name: "जमा पावती(अ.सभासद)", path: 'receiptchild',
-
-        //     content: [
-        //         {
-        //             icon: "bi bi-receipt",
-        //             name: 'पावती',
-        //             path: 'parent.sub.receiptdash',
-        //             params: { action: '', mode: true },
-
-        //         },
-
-               
-        //         // {
-        //         //     icon: "bi bi-share-fill",
-        //         //     name: 'लाभांश',
-        //         //     path: 'parent.sub.Dividentdash',
-        //         //     params: { action: '', mode: true },
-        //         // },
-
-        //     ]
-        // },
+      
         {
             icon: 'bi bi-receipt-cutoff', name: "पेमेंट (अ. सभासद)", path: 'parent.sub.paymentdash',
 
@@ -206,13 +120,13 @@ myApp.controller('menuCtrl', ['$scope', '$state', function ($scope, $state) {
             params: { action: '', mode: true },
         },
         {
-            icon: "bi bi-share-fill",
+            icon: "bi bi-envelope-check",
             name: 'चेक काढणे',
             path: 'parent.sub.chequeissuedash',
             params: { action: '', mode: true },
         },
         {
-            icon: "bi bi-share-fill",
+            icon: "bi bi-check",
             name: 'चेक परत',
             path: 'parent.sub.Chequereturndash',
             params: { action: '', mode: true },

@@ -1,0 +1,268 @@
+<!-- <div class="app flex-row align-items-center " >
+    <div class="container">
+      style="background-color:#9EECFF;height: 600px;" -->
+<!-- <div class="loading" style="display: none;">
+            <div id="dimmer"></div> 
+        </div>
+        <div class="row justify-content-center  mt-5">
+            <div class="col-md-8">
+                <div class="card-group">
+                    <div class="card p-4">
+                        <form id="form1" class="validate-form" ng-submit="login();">
+                            <div class="card-body">
+                                <h1>Login</h1>
+                                <p class="text-muted">Sign In to your account</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+                                    </div>
+                                    <div>
+                                    <input type="text" class="form-control " ng-model="username" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="bi bi-lock"></i>
+                                        </span>
+                                    </div>
+                                    <div >
+                                        <input type="password" class="form-control" ng-model="psw" placeholder="Password">
+                                    </div>
+                                   
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit" value="Login" class="btn btn-primary px-4">Login</button>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button type="button" class="btn btn-link px-0" ui-sref="fogotpass({username:username})">Forgot password?</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card bg-success text-white" style="width:50%;">
+                        <div class="card-body text-center">
+                            <div>
+                                <img src="css/img/dss-logo.png" style="height:100px; width:160px;" alt="" >
+
+                                <h3>Dynamic Super Software</h3><br />
+                                <p> 
+                                    <a href="mailto:support@dsserp.com?Subject=Hello" tabindex="-1" target="_top" style="color:white; ">support@dsserp.com</a>
+                                </p>
+                               <p></p>
+                            </div>
+
+                            <div class="footer">
+                                <h6>
+                                    <a href="http://www.dsserp.com/" tabindex="-1" style="color:blue;text-decoration: underline"
+                                        target="_blank">
+                                        www.dsserp.com
+                                    </a>
+                                </h6>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  -->
+
+
+
+
+
+
+
+
+
+
+
+<section class="gradient-custom p-0" style="height: calc(100vh - 0px);">
+   
+        <div class="row m-0 d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-7 col-lg-5 col-xl-4">
+
+                <div class="card bg-white" style="border-radius: 1rem;">
+                    <div class="card-body p-3 text-center">
+
+                        <div class="mb-md-2 mt-md-1 pb-2">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                            <p class="text-white-40 mb-5">Please enter your Username and Password!</p>
+
+                       
+                            <div class="form-floating mb-3" >
+                                <input type="username" class="form-control rounded-pill" style="padding-left: 3em;" id="floatingInput" placeholder="name@example.com">
+                                <label class="form-label" style="padding-left: 3em;"  for="typeEmailX">Username</label>
+                              </div>
+                              <div class="form-floating mb-3" style="border-radius: 20px;">
+                                <input type="password" class="form-control rounded-pill" style="padding-left: 3em;" id="floatingPassword" placeholder="Password">
+                                <label class="form-label" style="padding-left: 3em;"  for="typePasswordX">Password</label>
+                              </div>
+
+
+
+                            <div><button type="submit" value="Login" style="border-radius: 1.5rem;" ng-click="login();"
+                                    class=" btn  btn-outline-primary ">Login</button></div>
+
+
+                        </div>
+
+                        <div> <button type="button" class="btn btn-link px-0"
+                                ui-sref="fogotpass({username:username})">Forgot password?</button>
+                        </div>
+
+                        <div>
+                            <button type="button" class="btn btn-link px-0"
+                            ui-sref="singup">Sign Up</button>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+</section>
+
+
+<style>
+    .gradient-custom {
+
+        background: -webkit-linear-gradient(left, rgba(0, 168, 255, 0.5), rgba(185, 0, 255, 0.5));
+
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <section class="vh-100 gradient-custom">
+    <div id="main-wrapper" class="container gradient-custom">
+
+        <div style="height:calc(150vh - 350px)" class="d-flex align-items-center">
+
+
+            <div class="row w-100">
+                <div class="col-lg-6 pl-5 d-flex align-items-center justify-content-center"
+                    style="border-right:1px  solid  #c8ced3">
+
+                    <img src="css/img/dss-logo.png" alt="" style="height: 250px; width: 300px;">
+
+                </div>
+                <div class="col-lg-5">
+
+                    <div class="mt-4">
+                        <h1 class="display-3 text-center" style="font-size:4em">Login</h1>
+                    </div>
+                    <form #loginform="ngForm" class="mt-5 px-3" (ngSubmit)="Submit()">
+
+                        <!-- <div class="px-3">
+                            <label>Username</label>
+                            <div class="input-group input-group-rounded">
+
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <div class="form-group col-sm-8 m-1 offset-sm-2">
+                                    <input type="text" name="username"
+                                        class="form-control rounded-end ng-dirty ng-valid ng-touched input-group-field-forspan"
+                                        placeholder="Username" autocomplete="off" [(ngModel)]="entity.username"
+                                        required>
+                                </div>
+
+                            </div><br>
+
+                            <label>Password</label>
+                            <div class="input-group input-group-rounded">
+
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+
+                                <div class="form-group col-sm-8 m-1">
+                                    <input type="password" name="password" minlength="4" maxlength="20"
+                                        class="form-control form-control ng-dirty ng-valid ng-touched input-group-field-forspan"
+                                        [(ngModel)]="entity.password" placeholder="Password"
+                                        autocomplete="current-password" required>
+
+                                </div>
+
+                            </div>
+
+                            <div class="text-center w-100 mt-4">
+                                <button type="submit" class="btn btn-success mt-2">Login</button>
+                            </div>
+                            <div class="text-center w-100 mt-4">
+                                <button class="btn text-primary" type="button" (click)="setforgotpassword()">Forgot
+                                    password?</button>
+
+
+                            </div>
+                        </div> -->
+
+
+<!-- <div class="input-group col-sm-8 mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                            </div>
+                            <div class="form-group col-sm-9 m-1">
+                                
+                            <input type="text" class="form-control " ng-model="username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                            </div>
+                            <div class="form-group col-sm-9 m-1">
+                                <input type="password" class="form-control" ng-model="psw" placeholder="Password">
+                            </div>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" value="Login" class="btn btn-primary px-4">Login</button>
+                            </div>
+                            <div class="col-6 text-right">
+                                <button type="button" class="btn btn-link px-0" ui-sref="fogotpass({username:username})">Forgot password?</button>
+                            </div>
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- <style>
+        .gradient-custom {
+
+ background:-webkit-linear-gradient(left,rgba(0,168,255,0.5),rgba(185,0,255,0.5));
+
+}
+    </style>  -->
