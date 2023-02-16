@@ -25,8 +25,9 @@
                                 <div class="form-group col-sm-8 ">
                                     <label for="title">सभासद नंबर</label>
                                     <div>
-                                        <input type="text" id="member_no"  name="member_no" class="form-control input-sm" disabled
-                                            ng-model="vm.entity.regCode" numbers-only />
+                                        <input type="text" id="amember_no" name="amember_no" 
+                                        class="form-control input-sm"
+                                            placeholder="स्वयं क्रमांक" ng-model="vm.entity.regCode" numbers-only />
                                     </div>
                                 </div>
 
@@ -46,9 +47,7 @@
                                     <label for="sharetype">शेअरस प्रकार </label>
                                     <div>
                                         <select class="form-control input-sm" ng-model="vm.entity.shType"
-                                        ng-options="item.shTypeCode as item.shTypeName for item in vm.ShareTypes"
-
-                                           >
+                                            ng-options="item.shTypeCode as item.shTypeName for item in vm.ShareTypes">
                                         </select>
                                     </div>
                                 </div>
@@ -68,7 +67,7 @@
                                     <label for="village">गाव</label>
                                     <div>
                                         <select class="form-control input-sm" ng-model="vm.entity.cityCode"
-                                        ng-options="item.cityCode as item.cityName for item in vm.Places">
+                                            ng-options="item.cityCode as item.cityName for item in vm.Places">
                                         </select>
                                     </div>
                                 </div>
@@ -101,7 +100,7 @@
                                     <label for="designation">हुद्दा </label>
                                     <div>
                                         <select class="form-control input-sm" ng-model="vm.entity.dsgnCode"
-                                        ng-options="item.dsgnCode as item.designationName for item in   vm.Designations">
+                                            ng-options="item.dsgnCode as item.designationName for item in   vm.Designations">
                                         </select>
                                     </div>
                                 </div>
@@ -119,7 +118,7 @@
                                     <label for="cast">जात</label>
                                     <div>
                                         <select class="form-control input-sm" ng-model="vm.entity.castCode"
-                                        ng-options="item.castCode as item.castName for item in vm.Religions">
+                                            ng-options="item.castCode as item.castName for item in vm.Religions">
                                         </select>
                                     </div>
                                 </div>
@@ -154,8 +153,7 @@
                                     <div>
                                         <select class="form-control input-sm" id="bankName" name="bankName"
                                             ng-model="vm.entity.bankCode"
-                                            ng-options="item.bankCode as item.branchName for item in vm.BankBranches"
-                                            >
+                                            ng-options="item.bankCode as item.branchName for item in vm.BankBranches">
                                         </select>
                                     </div>
                                 </div>
@@ -179,6 +177,6 @@
                 </div>
             </div>
         </div>
-       
+
     </fieldset>
 </form>

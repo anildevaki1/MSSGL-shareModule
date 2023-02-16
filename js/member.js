@@ -243,59 +243,31 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
         $scope.save = function (fn) {
             if ($scope.memberrequestform.$valid) {
                 $(".loading").show();
-                if (!vm.entity.regCode)
-                    ajax.post('MemberRequest/insert', vm.entity).then(function (res) {
-                        if (res) {
-                            vm.entity.regCode = res.regCode;
-                            $(".loading").hide();
 
-                            $scope.message = "Record Saved Sucessfully";
-                            R1Util.createAlert($scope, "Success", $scope.message, null);
-                            pastEntity = angular.copy(vm.entity);
-                            fn("OK");
+                ajax.put('MemberRequest/update', vm.entity).then(function (res) {
+                    if (res) {
+                        $(".loading").hide();
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
+                    } else {
+                        var error = "An Error has occured while saving record!";
 
-                        } else {
-                            var error = "An Error has occured while saving record!";
+                        if (res.error)
+                            if (res.error.message)
+                                error = res.error.message;
 
-                            if (res.error)
-                                if (res.error.message)
-                                    error = res.error.message;
+                        vm.mode = 'edit';
+                        $(".loading").hide();
+                        R1Util.createAlert($scope, "Error", error, null);
+                        fn("CANCEL")
+                    }
 
-                            vm.mode = 'edit';
-                            $(".loading").hide();
-                            R1Util.createAlert($scope, "Error", error, null);
-                            fn("CANCEL")
-                        }
-
-                    },
-                        function (err) {
-                            alert(err);
-                        })
-                else {
-                    ajax.put('MemberRequest/update', vm.entity, { id: vm.entity.regCode }).then(function (res) {
-                        if (res) {
-                            $(".loading").hide();
-                            $scope.message = "Record Saved Sucessfully";
-                            R1Util.createAlert($scope, "Success", $scope.message, null);
-                            pastEntity = angular.copy(vm.entity);
-                            fn("OK");
-                        } else {
-                            var error = "An Error has occured while saving record!";
-
-                            if (res.error)
-                                if (res.error.message)
-                                    error = res.error.message;
-
-                            vm.mode = 'edit';
-                            $(".loading").hide();
-                            R1Util.createAlert($scope, "Error", error, null);
-                            fn("CANCEL")
-                        }
-
-                    })
-                }
-
+                })
             }
+
+
         }
 
 

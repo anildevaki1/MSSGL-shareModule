@@ -1,0 +1,135 @@
+<form class="form-horizontal" role="form" name="chequeissueform">
+    <div class="form-body p-0">
+        <div>
+            <navbar ng-model="vm.mode" navtype="M" actionfn="vm.action()"></navbar>
+        </div>
+    </div>
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+        <div class="form-group p-1">
+            <div class="card">
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-share-fill"></i>
+                    <strong>चेक काढणे </strong>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                     
+
+                   
+                    <div class="col-sm-3">
+                        <div class="form-group col-sm-9 mb-2">
+                            <label for="title">
+                                नंबर
+                            </label>
+                            <div>
+                                <input type="text" name="vchid" data-ng-model="vm.entity.vchId"
+                                    class="form-control input-sm" placeholder="स्वयंम  क्रमांक"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-9  mb-2">
+                            <label for="title">
+                                तारीख
+                            </label>
+                            <div>
+                                <input type="date" name="vchdate" data-ng-model="vm.entity.vchDate"
+                                    class="form-control input-sm" autocomplete="off" title="vchdate" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8  m-1">
+                            <label for="title">सभासद नंबर </label>
+                            <div class="input-group">
+                                <input type="text" id="member_number" name="member_number"
+                                    ng-blur="getMemberdetail()" class="form-control input-sm"
+                                    ng-Model="vm.entity.regCode" numbers-only />
+
+                                <!-- <span class="input-group-text p-0">
+                                    <helper helperid="memberid"id="name" list="vm.Members" width="30%" 
+                                    hclick="getMembers()"  row="vm.entity.RegCodeNavigation"  columns="members_coldef" filter="shName"
+                                    selectedvalue="regCode"  ng-Model="vm.entity.regCode"
+                                    ng-change="getMemberdetail()" >
+                                    </helper>
+                                </span> -->
+                                <span class="input-group-text p-0">
+                                    <helper helperid="member" list="vm.Members" width="30%"
+                                        hclick="getMembers()" row="vm.entity.regCodeNavigation" columns="memberReq_coldef"
+                                        filter="shName" selectedvalue="regCode" 
+                                        ng-model="vm.entity.regCode" ng-change="getMemberdetail()">
+                                    </helper>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-10 m-1">
+                            <label for="title">सभासद नाव</label>
+                            <!-- <div>
+                                <input type="text" class="form-control input-sm"
+                                    ng-value="vm.entity.RegCodeNavigation.shName" disabled />
+                                <input type="text" class="form-control input-sm"
+                                    ng-value="vm.entity.RegCodeNavigation.cityCodeNavigation.cityName" disabled />
+                            </div> -->
+                            <div>
+                                <input type="text" class="form-control input-sm"
+                                    ng-value="vm.entity.regCodeNavigation.shName" disabled />
+                                <input type="text" class="form-control input-sm"
+                                    ng-value="vm.entity.regCodeNavigation.cityCodeNavigation.cityName" disabled />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-5 offset-sm-1">
+
+                        <div class="form-group col-sm-6">
+                            <label for="title">बँक(शाखा)</label>
+
+                            <div>
+                                <input type="text" id="bankbranch" name="bankbranch" class="form-control input-sm"
+                                    ng-model="vm.entity.bankName" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4  mb-2">
+                            <label for="title">
+                                चेक इश्यू नंबर
+                             </label>
+                             <div>
+                                 <input type="text" name="vchid" data-ng-model="vm.entity.chNo"
+                                     class="form-control input-sm" autocomplete="off" />
+                             </div>
+                        </div>
+
+                       
+                        <div class="form-group col-sm-4  mb-2">
+                            <label for="title">
+                                तारीख
+                            </label>
+                            <div>
+                                <input type="date" name="vchdate" data-ng-model="vm.entity.chDt"
+                                    class="form-control input-sm" autocomplete="off" title="vchdate" />
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6  mb-2">
+                            <label for="shareAmt">चेक इश्यू रक्कम</label>
+
+                            <div>
+                                <input type="text" id="share_amt" name="share_amt"
+                                    class="form-control input-sm text-end fw-bold" ng-model="vm.entity.chAmt"
+                                    data-format="currency" data-fraction="2" />
+                            </div>
+                        </div>
+                      
+
+                    </div>
+
+                
+                
+                
+                
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </fieldset>
+</form>

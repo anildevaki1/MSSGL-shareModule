@@ -1,11 +1,7 @@
-
 var myApp = angular.module('myApp');
-myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
+myApp.controller('DividentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
     function ($scope, $state, ajax, R1Util) {
-
         var vm = this;
-
-
         vm.serviceGrid = {
             enableRowSelection: true,
             enableRowHeaderSelection: false,
@@ -17,83 +13,71 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
         };
 
-
         vm.serviceGrid.columnDefs = [
 
-
-
-
             {
-                field: 'certNo',
-                displayName: 'सर्टिफिकेट नंबर',
+                field: 'vchId',
+                displayName: 'नंबर',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "12%"
+
+                width: "10%"
             },
+
             {
-                field: 'memberId',
-                displayName: 'सभासद नंबर',
+                field: 'vchName',
+                displayName: 'नांव',
                 enableSorting: true,
-                type: 'string',
+                type: 'date',
+                enableCellEdit: false,
+                cellFilter: 'date:\'dd/MM/yyyy\'',
+                cellClass: 'alignLgrid',
+                width: "15%"
+
+            },
+
+            {
+                field: 'regCode',
+                displayName: 'नंबर',
+                enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "12  %"
-            },
-            {
-                field: 'member.shName',
-                displayName: 'संभासदाचे नांव',
-                enableSorting: true,
-                type: 'string',
-                enableCellEdit: false,
-                cellClass: 'alignLgrid',
-                width: "20%"
-            },
-            {
-                field: 'shareQty',
-                displayName: 'शेअर संख्या',
-                enableSorting: true,
-                type: 'number',
-                enableCellEdit: false,
-                cellClass: 'alignRgrid',
-                width: "10 %"
+                width: "10%"
 
             },
             {
-                field: 'mbrCharges',
-                displayName: 'सभासद शुल्क',
+                field: 'regCodeNavigation.shName',
+                displayName: 'सभासदाचे नांव',
                 enableSorting: true,
-                type: 'number',
                 enableCellEdit: false,
-                cellFilter: 'number:2',
-                cellClass: 'alignRgrid',
-                width: "12 %"
+                cellClass: 'alignLgrid',
+                width: "30%"
 
             },
+
             {
                 field: 'shareAmt',
-                displayName: 'शेअर रक्कम ',
+                displayName: 'एकूण शेअर्स',
                 enableSorting: true,
+                enableCellEdit: false,
                 type: 'number',
                 cellFilter: 'number:2',
-                enableCellEdit: false,
                 cellClass: 'alignRgrid',
-                width: "10%"
-
+                width: "15%"
             },
-
-
             {
-                field: 'totalAmt',
-                displayName: 'एकूण रक्कम',
+                field: 'divAmt',
+                displayName: 'एकूण हिस्सा',
                 enableSorting: true,
-                type: 'number',
                 enableCellEdit: false,
+                type: 'number',
+                cellFilter: 'number:2',
                 cellClass: 'alignRgrid',
                 width: "10%"
-
             },
+
             {
                 name: 'Action ',
                 enableSorting: false,
@@ -108,8 +92,9 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 action: 'view',
                 id: row.entity.vchId
             };
-            $state.go('parent.sub.shareissue', param);
+            $state.go('parent.sub.Divident', param);
         };
+
 
         vm.remove = function (grid, row) {
             if (row.entity.vchId) {
@@ -123,7 +108,7 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
         }
 
         $scope.iConfirmFn = function () {
-            ajax.delete('ShareIssue', null, $scope.param).then(function (res) {
+            ajax.delete('Dividend', null, $scope.param).then(function (res) {
                 $scope.grid.appScope.vm.serviceGrid.data.splice($scope.index, 1);
             })
 
@@ -131,7 +116,7 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
         vm.getRecords = function () {
 
-            ajax.get('ShareIssue/list', null).then(function (res) {
+            ajax.get('Dividend/list').then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
                 }
@@ -150,14 +135,8 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 
 
-
-
-
-    }
-
-
-])
-myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
+    }])
+    myApp.controller('DividentCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
     function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
 
         var vm = this;
@@ -167,9 +146,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
 
         if ($stateParams.action)
-            vm.mode = $stateParams.action;
-
-
+        vm.mode = $stateParams.action;
 
         vm.action = function () {
             var deffered = $q.defer();
@@ -186,7 +163,6 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         vm.navaction = function (fn) {
             switch (vm.mode) {
                 case 'new':
-
                     vm.newrecord();
                     fn("OK")
                     break;
@@ -230,21 +206,23 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         };
 
 
+        
         $scope.save = function (fn) {
-            if ($scope.shareissueform.$valid) {
+            if ($scope.dividentform.$valid) {
                 $(".loading").show();
                 if (!vm.entity.vchId)
-                    ajax.post('ShareIssue/insert', vm.entity).then(function (res) {
+                    ajax.post('Dividend/insert', vm.entity).then(function (res) {
                         if (res) {
-                            vm.entity.vchId = vm.entity.vchId;
+
+                            vm.entity.vchId = res.vchId;
                             $(".loading").hide();
 
                             $scope.message = "Record Saved Sucessfully";
                             R1Util.createAlert($scope, "Success", $scope.message, null);
                             pastEntity = angular.copy(vm.entity);
                             fn("OK");
-
-                        } else {
+                        }
+                        else {
                             var error = "An Error has occured while saving record!";
 
                             if (res.error)
@@ -256,20 +234,21 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                             R1Util.createAlert($scope, "Error", error, null);
                             fn("CANCEL")
                         }
-
-                    }, function (err) {
-                        alert(err);
-                    })
-
+                    },
+                        function (err) {
+                            console.log(err);
+                        })
                 else {
-                    ajax.put('ShareIssue/update', vm.entity, { id: vm.entity.vchId }).then(function (res) {
+                    ajax.put('Dividend/update', vm.entity, { id: vm.entity.vchId }).then(function (res) {
                         if (res) {
                             $(".loading").hide();
+
                             $scope.message = "Record Saved Sucessfully";
                             R1Util.createAlert($scope, "Success", $scope.message, null);
                             pastEntity = angular.copy(vm.entity);
                             fn("OK");
-                        } else {
+                        }
+                        else {
                             var error = "An Error has occured while saving record!";
 
                             if (res.error)
@@ -281,82 +260,54 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                             R1Util.createAlert($scope, "Error", error, null);
                             fn("CANCEL")
                         }
+
+
+
 
                     })
                 }
 
             }
-        }
 
+
+
+
+        }
 
 
         vm.newrecord = function () {
             pastEntity = vm.entity;
             vm.entity = {};
-            vm.entity.member = {};
+            // vm.entity.member = {};
+            vm.entity.regCodeNavigation = {};
             vm.entity.vchDate = new Date();
-        }
 
-
-
-        $scope.amount = function () {
-            vm.entity.shareAmt = parseFloat(vm.entity.shareQty) * parseFloat(vm.entity.shareRate);
-            vm.entity.totalAmt = vm.entity.shareAmt + parseFloat(vm.entity.mbrCharges);
-        }
-
-
-
-
-        $scope.getMembers = function () {
-            ajax.get("Member/list").then(function (res) {
-                vm.Members = res;
-            }, function (err) {
-                var e = err;
-            })
-        }
-
-
-
-
-        $scope.getBankBranches = function () {
-            if (!vm.BankBranches)
-                ajax.get("BankBranch/list").then(function (res) {
-                    vm.BankBranches = res;
-                }, function (err) {
-                    var e = err;
-                })
-        }
-
-
-
-        getExistEntity = function () {
-
-            ajax.get('ShareIssue/get', null, { id: vm.entity.vchId }).then(function (res) {
-                vm.entity = res;
-                vm.entity.vchDate = new Date(res.vchDate);
-            }, function (err) {
-
-            })
 
         }
-
         $scope.init = function () {
             vm.entity = {};
             var q = $q.defer();
-
-
-            q.resolve();
-
-
+  
+                q.resolve();
+            
             return q.promise;
+        }
+        
+        getExistEntity = function () {
 
+            ajax.get('Dividend/get', null, { id: vm.entity.vchId }).then(function (res) {
+                vm.entity = res;
+                vm.entity.vchDate = new Date(vm.entity.vchDate);
+
+            }, function (err) {
+
+            })
 
         }
 
-
         $scope.init().then(function (res) {
             vm.action();
-            if ($stateParams.id != null) {
+            if ($stateParams.id) {
                 vm.entity.vchId = $stateParams.id;
                 getExistEntity();
             }
@@ -364,24 +315,21 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         });
 
         $scope.getMemberdetail = function () {
-            if (vm.entity.memberId != null) {
+            if (vm.entity.regCode) {
                 var param = {
-                    id: vm.entity.memberId
+                    id: vm.entity.regCode
+
                 }
                 $(".loading").show();
                 ajax.get('member/get', null, param).then(function (res) {
                     if (res) {
-
-                        vm.entity.member = res;
-                        if (vm.entity.member.cityName) {
-                            vm.entity.member.cityCodeNavigation = {};
-                            vm.entity.member.cityCodeNavigation.cityName = vm.entity.member.cityName;
+                        vm.entity.regCodeNavigation = res;
+                        if ( vm.entity.regCodeNavigation.cityName) {
+                            vm.entity.regCodeNavigation.cityCodeNavigation = {};
+                            vm.entity.regCodeNavigation.cityCodeNavigation.cityName = vm.entity.regCodeNavigation.cityName;
                         }
-                        setOtherinfo(res);
-
                     }
                     else {
-
                         var error = "Error";
                         if (res.error)
                             if (res.error.message)
@@ -395,51 +343,11 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         }
 
-        setOtherinfo = (res) => {
-            vm.entity.nomineeName = res.shNominee;
-            vm.entity.nomeeneAddress = res.shAddress;
-            vm.entity.nomineeRelation = res.shNomineeRelation;
-            vm.entity.bankCode = res.bankCode;
-            vm.entity.bankAccNo = res.bankAccNo;
-            vm.entity.bankCodeNavigation = res.bankCodeNavigation;
-        }
-
-        $scope.getMemberRequestdetail = function () {
-            if (vm.entity.reqId) {
-                var param = {
-                    id: $scope.datasource || vm.entity.reqId
-                }
-
-                ajax.get('MemberRequest/getbalance', null, param).then(function (res) {
-
-                    vm.entity.req = Object.assign({}, res);
-                    if (vm.entity.req ) {
-                        vm.entity.member = vm.entity.req.member;
-                        vm.entity.memberId=vm.entity.req.member.regCode;
-                        setOtherinfo(vm.entity.req.member);
-
-                    }
-                    if (vm.mode == 'new') {
-                        vm.entity.balance = res.balance;
-                    }
-                }, function (err) {
-                    vm.entity.req = undefined;
-                    var error = "Error";
-                    if (err.error)
-                        if (err.error.message)
-                            error = err.error.message;
-                    R1Util.createAlert($scope, "Error", error, null);
-                }
-                )
-            }
-
-        }
-
-        $scope.getMemberRequests = function () {
-            vm.MemberRequests = [];
-            if (!vm.memberRequest)
-                ajax.get("MemberRequest/list").then(function (res) {
-                    vm.MemberRequests = res;
+        $scope.getMembers = function () {
+            vm.Members = [];
+            if (!vm.member)
+                ajax.get("Member/list").then(function (res) {
+                    vm.Members = res;
                 }, function (err) {
                     var e = err;
                 })
@@ -454,7 +362,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             },
             {
                 field: "shName",
-                displayName: "अ. स. नांव ",
+                displayName: "पु. स. नांव ",
                 style: { "width": "60%", "overflow": "hidden", "text-align": "left" },
 
             },
@@ -466,22 +374,5 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             },
         ];
 
-        $scope.bank_coldef = [{
 
-            field: "branchName",
-            displayName: "बँक",
-            style: { "width": "80%", "overflow": "hidden", "text-align": "left" },
-
-        },
-        {
-
-            field: "banchIfscCode",
-            displayName: "बँक(IFSC)",
-            style: { "width": "20%", "overflow": "hidden", "text-align": "left" },
-
-        }]
-
-    }
-])
-
-
+    }])

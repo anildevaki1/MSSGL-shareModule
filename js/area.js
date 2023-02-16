@@ -141,7 +141,7 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
             switch (vm.mode) {
                 case 'new':
 
-                    $scope.newrecord();
+                   vm.newrecord();
                     fn("OK")
                     break;
                 case 'edit':

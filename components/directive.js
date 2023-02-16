@@ -93,7 +93,7 @@ getLocalIP().then((ipAddr) => {
 })
 
 myapp = angular.module('myApp');
- 
+
 myApp.filter('trust', ['$sce', function ($sce) {
     return function (text) {
         return $sce.trustAsHtml(text);
@@ -356,7 +356,7 @@ myApp.directive('ngMin', function () {
             scope.$watch(attr.ngMin, function () {
                 ctrl.$setViewValue(ctrl.$viewValue);
             });
-
+ngmode
             var minValidator = function (value) {
                 // var min = scope.$eval(attr.ngMin) || 0;
 
@@ -908,12 +908,12 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         headers.localIP = localIP;
         headers.publicIP = publicIP;
 
-        
+
 
         if (ajax.tokenbaseApi)
             headers.Authorization = 'Bearer ' + companyinfo.user.access_token;
 
-        url = this.baseurl + url ;
+        url = this.baseurl + url;
 
         $http({
             url: url,
@@ -947,7 +947,7 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         return deferred.promise;
     };
 
-  
+
     this.gets = function (url, data, headers, beforeSend, complete, ignoreDuplicate) {
 
         var deferred = $q.defer(),
@@ -1134,7 +1134,7 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         if ($().getConstant("at")) {
             headers.at = $().getConstant("at");
         }
-        url = this.baseurl + url ;
+        url = this.baseurl + url;
 
         if (ajax.tokenbaseApi)
             headers.Authorization = 'Bearer ' + companyinfo.user.access_token;
@@ -1171,7 +1171,7 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
         return deferred.promise;
     };
 
-   
+
 
     this.delete = function (url, data, params, headers, beforeSend, complete, ignoreDuplicate) {
         var deferred = $q.defer(),
@@ -3388,7 +3388,7 @@ function R1Util($compile, utilFunctions, $timeout) {
 
                 // });
                 $("#confirmDlg").modal('show');
-               // $('#confirmDlg').data('bs.modal').options.backdrop = 'static';
+                // $('#confirmDlg').data('bs.modal').options.backdrop = 'static';
                 break;
 
             case 'WarningOk':
@@ -3411,7 +3411,7 @@ function R1Util($compile, utilFunctions, $timeout) {
 
                 // });
                 $("#confirmDlg").modal('show');
-               // $('#confirmDlg').data('bs.modal').options.backdrop = 'static';
+                // $('#confirmDlg').data('bs.modal').options.backdrop = 'static';
                 break;
 
             case 'SuccessConfirm':
@@ -3937,7 +3937,7 @@ myApp.directive('dropdownBtn', function (ajax, $rootScope) {
     };
 });
 
-  
+
 
 myApp.directive('timepicker', function () {
     return {
@@ -4089,18 +4089,18 @@ function companyinfo() {
 
     // this.user=user==undefined ?{} :user;
 
-    var grants={
-        A : true ,
+    var grants = {
+        A: true,
         //: = abc.localuser3.B,
-        D : true,
-        E : true,
-        L : true,
-        O : true,
-        P : true,
+        D: true,
+        E: true,
+        L: true,
+        O: true,
+        P: true,
     }
 
     this.user = {};
-    this.user.grants=grants;
+    this.user.grants = grants;
     this.master = {};
     this.last_api_calls = {};
     this.ip = { Public: publicIP, Local: localIP };
@@ -4446,116 +4446,12 @@ myApp.directive('rdlcviewer', ['$sce', 'ajax', '$filter', 'companyinfo', functio
     }
 }]);
 
-//SOHAN 23-01-2021
-myApp.directive("helper_old", function () {
-    return {
-        restrict: 'EA',
-        scope: {
-
-            Items: "=list",
-            SelectedRow: "=row",
-            columnDefs: "=columns",
-            sortBy: "@filter"
-
-        },
-        controller: ['$scope', '$filter', function ($scope, $filter) {
-
-            $scope.reverse = false;
-            $scope.curPage = 1,
-                $scope.itemsPerPage = 25,
-
-                //  $scope.maxSize = 30;
-                //  $scope.filteredItems=$scope.Items;
-
-                // $scope.numOfPages = function () {
-                //     return Math.ceil($scope.filteredItems.length / $scope.itemsPerPage);
-                // };
-
-                // $scope.$watch('curPage + numPerPage', function () {
-                //     var begin = (($scope.curPage - 1) * $scope.itemsPerPage),
-                //         end = begin + $scope.itemsPerPage;
-
-                //     $scope.pageItems = $scope.filteredItems.slice(begin, end);
-                // });
-
-                // $scope.searchfilter=function(){
-
-                //     $scope.filteredItems=filterFilter($scope.Items,$scope.searchtext , true);
-
-                // }
-
-                // // $scope.failedSubjects = $filter('filter')($scope.Items, {'grade':'C'}, true);
-
-                $scope.field = function (item, value) {
-                    var l = value.split(".");
-                    switch (l.length) {
-                        case 1:
-                            return item[l[0]];
-                        case 2:
-                            return item[l[0]][l[1]];
-                        case 3:
-                            return item[l[0]][l[1]][l[2]];
-                        case 4:
-                            return item[l[0]][l[1]][l[2]][l[3]];
-                        case 5:
-                            return item[l[0]][l[1]][l[2]][l[3]][l[4]];
-                        case 6:
-                            return item[l[0]][l[1]][l[2]][l[3]][l[4]][l[5]];
-                        case 7:
-                            return item[l[0]][l[1]][l[2]][l[3]][l[4]][l[5]][l[6]];
-                        case 8:
-                            return item[l[0]][l[1]][l[2]][l[3]][l[4]][l[5]][l[6]][l[7]];
-                        case 9:
-                            return item[l[0]][l[1]][l[2]][l[3]][l[4]][l[5]][l[6]][l[7]][l[8]];
-                        default:
-                            return item
-
-                    }
-
-                }
-
-        }],
-        template: function (element, attrs) {
-            var htmltext = "\<div id=\"" + attrs.helperid + "\" class=\"helpnav\">" +
-                "<div  class=\"bg-primary p-1\" style=\"display: flex;justify-content:space-between;line-height:0px;\"><input style=\"padding:0px !important;line-height:0px;\" type=\"text\" ng-model=\"searchtext\" placeholder=\"Search\"/>" +
-                "<a href=\"javascript:void(0)\" class=\"closebtn\"  ng-click=\"closeNav()\">&times;</a> </div>" +
-
-                "<table class=\"table mb-0 table-striped table-bordered table-hover table-responsive\" cellspacing=\"0\" style=\"color:black;z-index:1;\">" +
-                "<thead>" +
-                "<tr class=\"bg-primary\">" +
-                "<td ng-repeat=\"header in columnDefs\" ng-style=\"header.style\">{{header.displayName}}</td>" +
-                "</tr>" +
-                "</thead>" +
-                "<tbody  style=\"width:100%;height: calc(100vh - 232px);overflow-y:scroll;overflow-x:scroll;display:block;\">" +
-                "<tr dir-paginate=\"item in Items| orderBy:sortBy|filter: searchtext| itemsPerPage: 50\" ng-click=\"closeNav(item)\">" +
-                "<td  ng-repeat=\"row in columnDefs\" ng-style=\"row.style\">{{field(item,row.field)}}</td></tr>" +
-                "</tbody></table>" +
-                "<dir-pagination-controls  max-size=\"5\" direction-links=\"true\" boundary-links=\"true\"></dir-pagination-controls></div>" +
-                "<span style=\"font-size:10px;cursor:pointer\" ng-click=\"openNav()\">&#9776;</span>"
-            return htmltext;
-        },
-        link: function (scope, element, attrs) {
-            scope.width = attrs.width;
-            scope.helperid = attrs.helperid;
-            scope.openNav = function () {
-                document.getElementById(scope.helperid).style.width = scope.width;
-            }
-
-            scope.closeNav = function (item) {
-                document.getElementById(scope.helperid).style.width = "0";
-                if (item) {
-                    scope.SelectedRow = item;
-                }
-            }
-        }
-    };
-});
-
+ 
 //FROM GFL 
 myApp.directive("helper", function () {
     return {
         restrict: 'EA',
-
+        require: '?ngModel',
         scope: {
             Items: "=list",
             SelectedRow: "=row",
@@ -4565,7 +4461,8 @@ myApp.directive("helper", function () {
             SelectedValue: "@selectedvalue",
             datasource: "=datasource",
             ngModel: "=",
-            hclick: "&"
+            hclick: "&",
+            onselected: "&"
 
         },
 
@@ -4653,17 +4550,38 @@ myApp.directive("helper", function () {
         template: function (element, attrs) {
 
 
+            // var htmltext = "\<div id=\"" + attrs.helperid + "\" class=\"helpnav\">" +
+            //     "<div  class=\"bg-primary p-1\" style=\"display: flex;justify-content:space-between;line-height:0px;\"><input style=\"padding:0px !important;line-height:0px;\" type=\"text\" ng-model=\"searchtext\" placeholder=\"Search\"/>" +
+            //     "<a href=\"javascript:void(0)\" class=\"closebtn\"  ng-click=\"closeNav()\">&times;</a> </div>" +
+
+            //     "<table class=\"table table-hover table-bordered mb-0 hidden-sm-down\" cellspacing=\"0\" style=\"color:black;z-index:1;\">" +
+            //     "<thead class=\"thead-light\">" +
+            //     "<tr class=\"bg-primary\">" +
+            //     "<th ng-repeat=\"header in columnDefs\" ng-style=\"header.style\" class=\"text-center\">{{header.displayName}}</th>" +
+            //     "</tr>" +
+            //     "</thead>" +
+            //     "<tbody  style=\"width:100%;height: calc(100vh - 232px);overflow-y:scroll;overflow-x:scroll;display:block;\">" +
+            //     "<tr dir-paginate=\"item in Items| orderBy:sortBy|filter: searchtext| itemsPerPage: 50\" ng-click=\"closeNav(item)\">" +
+            //     "<td style=\"max-width: 100px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;\" ng-repeat=\"row in columnDefs\" ng-style=\"row.style\">{{field(item,row.field)}}</td></tr>" +
+            //     "</tbody></table>" +
+            //     "<dir-pagination-controls  max-size=\"5\" direction-links=\"true\" boundary-links=\"true\"></dir-pagination-controls></div>" +
+            //     "<span style=\"font-size:10px;cursor:pointer ;padding:10px\" ng-click=\"openNav()\">&#9776;</span>"
+
+            // return htmltext;
+
+
+
             var htmltext = "\<div id=\"" + attrs.helperid + "\" class=\"helpnav\">" +
                 "<div  class=\"bg-primary p-1\" style=\"display: flex;justify-content:space-between;line-height:0px;\"><input style=\"padding:0px !important;line-height:0px;\" type=\"text\" ng-model=\"searchtext\" placeholder=\"Search\"/>" +
                 "<a href=\"javascript:void(0)\" class=\"closebtn\"  ng-click=\"closeNav()\">&times;</a> </div>" +
 
-                "<table class=\"table table-hover table-bordered mb-0 hidden-sm-down\" cellspacing=\"0\" style=\"color:black;z-index:1;\">" +
-                "<thead class=\"thead-light\">" +
+                "<table class=\"table table-hover table-bordered mb-0\" cellspacing=\"0\" style=\"color:black;z-index:1;\">" +
+                "<thead>" +
                 "<tr class=\"bg-primary\">" +
                 "<th ng-repeat=\"header in columnDefs\" ng-style=\"header.style\" class=\"text-center\">{{header.displayName}}</th>" +
                 "</tr>" +
                 "</thead>" +
-                "<tbody  style=\"width:100%;height: calc(100vh - 232px);overflow-y:scroll;overflow-x:scroll;display:block;\">" +
+                "<tbody  style=\"height: calc(100vh - 232px);\">" +
                 "<tr dir-paginate=\"item in Items| orderBy:sortBy|filter: searchtext| itemsPerPage: 50\" ng-click=\"closeNav(item)\">" +
                 "<td style=\"max-width: 100px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;\" ng-repeat=\"row in columnDefs\" ng-style=\"row.style\">{{field(item,row.field)}}</td></tr>" +
                 "</tbody></table>" +
@@ -4673,7 +4591,7 @@ myApp.directive("helper", function () {
             return htmltext;
         },
 
-        link: function (scope, element, attrs, ngModel) {
+        link: function (scope, element, attrs, ctrl) {
             scope.width = attrs.width;
             scope.helperid = attrs.helperid;
 
@@ -4699,10 +4617,14 @@ myApp.directive("helper", function () {
                 if (item) {
 
                     scope.SelectedRow = item;
+                    if( scope.datasource )
                     scope.datasource = item[scope.SelectedValue];
-
-                    //    ngModel.$setViewValue(item[scope.SelectedValue]);
-                    //    ngModel.$commitViewValue();
+                    
+                    ctrl.$setViewValue(item[scope.SelectedValue]);
+                    ctrl.$commitViewValue();
+                    ctrl.$render();
+                   
+                   
 
                 }
             }
@@ -4780,7 +4702,7 @@ myapp.service('Master', ['R1Util', 'orderByFilter', 'cache', 'ajax', '$q', 'comp
             return true;
     };
 
-  
+
 
 }]);
 
