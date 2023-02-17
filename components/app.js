@@ -300,6 +300,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       controller:'loginCtrl'
     })
 
+    
+    // .state("signup", {
+    //   url: "/signup",
+    //   templateUrl: "components/assets/UserInfo.html",
+    //   controller:'loginCtrl'
+    // })
+
     .state("parent", {
       url: "/parent",
       abstract: true,
@@ -311,6 +318,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     .state("parent.sub", {
       url: "/sub",
       template: '<ui-view></ui-view>',
+
     })
 
     .state("parent.sub.home", {
@@ -318,36 +326,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'src/home.html',
     })
 
-    //   .state("parent.sub.dashboard", {
-    //     url: "/css/img/erp1.jpg",  
-    // })
-
-
-
-    // .state('parent.sub.dashboard', {
-    //   url: "/css/img/erp1.jpg",
-    //   // template: "<div class='erpImage'></div>",
-
-    //   //page title goes here
-    //   ncyBreadcrumb: {
-    //     label: 'Home',
-    //   },
-    // })
-
-
-    // .state("parent.sub.cast", {
-    //   url: "/cast",
-    //   templateUrl: "src/cast.html",
-    //   controller: 'castCtrl as vm',
-    //   params: { action: null, id: null, firm_code: null, tom: null, grp: null },
-    // })
-
-    // .state("parent.sub.castdash", {
-    //   url: "/castDash",
-    //   templateUrl: "src/castdash.html",
-    //   controller: 'castdashCtrl as vm',
-    // })
-
+   
 
     .state("parent.sub.scheduldcast", {
       url: "/scheduldcast",
@@ -523,12 +502,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
     })
 
-    // .state("parent.sub.companydash", {
-    //   url: "/companydash",
-    //   templateUrl: "src/companydash.html",
-    //   controller: 'companydashCtrl as vm',
-
-    // })
+ 
 
     .state("parent.sub.receipt", {
       url: "/receipt",
@@ -637,5 +611,46 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'DividentdashCtrl as vm',
 
     })
+
+    .state("parent.sub.userinfo", {
+      url: "/userinfo",
+      templateUrl: "src/UserInfo.html",
+      controller: 'UserInfoCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.userinfodash", {
+      url: "/userinfodash",
+      templateUrl: "src/userinfodash.html",
+      controller: 'userinfodashCtrl as vm',
+
+    })
+
+    .state("parent.sub.changepsw", {
+      url: "/changepsw",
+      templateUrl: "components/assets/changepsw.html",
+      controller: 'changepswCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+    // .state("parent.sub.logout", {
+    //   url: "/logout",
+    //   templateUrl: "src/components/assets/logout.html",
+    //   controller: 'logoutCtrl as vm',
+    //   params: { id: null,action:null }
+    // })
+
+
+    // .state("parent.sub.logout", {
+    //   url: "/logoutdash",
+    //   templateUrl: "src/components/assets/logoutd.html",
+    //   controller: 'logoutdashCtrl as vm',
+
+    // })
+
+
+
+    $urlRouterProvider.otherwise('login'); 
 
 })
