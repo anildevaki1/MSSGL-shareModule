@@ -1,0 +1,77 @@
+<form >
+    <div class="container" style="padding-top:50px;">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mx-4">
+                    <a class="text-right cui-circle-x h2" style="cursor: pointer;" ui-sref="routeHere" target="_blank">
+                    </a>
+
+                    <div class="card-body p-4">
+                        <h5>Change Passward</h5>
+                        </br>
+                        <!-- <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="icon-user"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" ng-model="user.usernm" placeholder="Username"
+                                disabled>
+                        </div> -->
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock p-1"></i>
+                                </span>
+                            </div>
+                            <!--<input type="password" class="form-control" ng-model="user.oldpsw" autocomplete="off" placeholder="Old Password" ng-minlength="8" ng-maxlength="20"  required="" />-->
+                            <input type="password" ng-model="user.oldpassword" required class="form-control"
+                                placeholder="Old Password" />
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock p-1"></i>
+                                </span>
+                            </div>
+
+                            <input type="password" name="pwd" ng-model="user.newpassword" required class="form-control"
+                                placeholder="New Password" />
+                        </div>
+<!-- 
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock p-1"></i>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control" name="confirmPassword"
+                                ng-model="user.confirmPassword" required compare-to="vm.entity.password"
+                                placeholder="Confirm password" />
+                        </div> -->
+                    </div>
+
+                    <button type="button" class="btn btn-block btn-success" ng-disabled="FormchangePsw.$invalid"
+                        ng-click="submit()">
+                        Submit
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <style>
+        .ng-invalid {
+            border-color: red;
+            outline-color: red;
+        }
+
+        .ng-valid {
+            border-color: green;
+            outline-color: green;
+        }
+    </style>

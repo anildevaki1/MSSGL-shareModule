@@ -98,11 +98,13 @@
 
                        
                             <div class="form-floating mb-3" >
-                                <input type="username" class="form-control rounded-pill" style="padding-left: 3em;" id="floatingInput" placeholder="name@example.com">
-                                <label class="form-label" style="padding-left: 3em;"  for="typeEmailX">Username</label>
+                                <input type="username" class="form-control rounded-pill" style="padding-left: 3em;"
+                                 placeholder="Enter your user name" ng-model="username" >
+                                <label class="form-label" style="padding-left: 3em;" >Username</label>
                               </div>
                               <div class="form-floating mb-3" style="border-radius: 20px;">
-                                <input type="password" class="form-control rounded-pill" style="padding-left: 3em;" id="floatingPassword" placeholder="Password">
+                                <input type="password" class="form-control rounded-pill" style="padding-left: 3em;" 
+                                ng-model="psw"  placeholder="Password">
                                 <label class="form-label" style="padding-left: 3em;"  for="typePasswordX">Password</label>
                               </div>
 
@@ -115,15 +117,10 @@
                         </div>
 
                         <div> <button type="button" class="btn btn-link px-0"
-                                ui-sref="fogotpass({username:username})">Forgot password?</button>
+                                 ng-click="forgetpass()">Forgot password?</button>
                         </div>
 
-                        <div>
-                            <button type="button" class="btn btn-link px-0"
-                            ui-sref="singup">Sign Up</button>
-                        </div>
-
-
+                       
 
 
                     </div>
@@ -154,7 +151,7 @@
 
 
 
-<!-- <section class="vh-100 gradient-custom">
+ <!-- <section class="vh-100 gradient-custom">
     <div id="main-wrapper" class="container gradient-custom">
 
         <div style="height:calc(150vh - 350px)" class="d-flex align-items-center">
@@ -174,7 +171,7 @@
                     </div>
                     <form #loginform="ngForm" class="mt-5 px-3" (ngSubmit)="Submit()">
 
-                        <!-- <div class="px-3">
+                   <div class="px-3">
                             <label>Username</label>
                             <div class="input-group input-group-rounded">
 
@@ -216,7 +213,7 @@
 
 
                             </div>
-                        </div> -->
+                        </div> --> -->
 
 
 <!-- <div class="input-group col-sm-8 mb-3">
