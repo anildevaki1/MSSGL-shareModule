@@ -48,12 +48,29 @@
 
                             <div class="form-group col-sm-12">
                                 <label for="sharetype">शेअरस प्रकार </label>
-                                <div>
+                                <!-- <div>
                                     <select class="form-select input-sm" ng-model="vm.entity.shType"
                                         ng-options="item.shTypeCode as item.shTypeName for item in vm.ShareTypes">
                                     </select>
-                                </div>
+                                </div> -->
                             </div>
+
+                            <div>
+                              <multicolumncombo list="vm.reference.shares"
+                                    datasource="vm.entity" datamember="shTypeCode"
+                                    row="vm.reference.selectedshare"
+                                    placeholder="Please select Share" class="form-control p-1"
+                                    displayvalue="shTypeName"
+                                    name="sharenm" selectedvalue="shTypeCode"
+                                    extralables=""
+                                    disablefn="Master.formdisabled(vm.mode)" required>
+                                </multicolumncombo> 
+
+
+                             
+                            </div>
+
+                          
 
                             <div class="form-group col-sm-12">
                                 <label for="mbrAddress">
@@ -68,11 +85,25 @@
 
                             <div class="form-group col-sm-12">
                                 <label for="village">गाव</label>
-                                <div>
+                                <!-- <div>
                                     <select class="form-select input-sm" ng-model="vm.entity.cityCode"
                                         ng-options="item.cityCode as item.cityName for item in vm.Places">
                                     </select>
-                                </div>
+                                </div> -->
+                                <div>
+                                    <multicolumncombo list="vm.reference.Places"
+                                          datasource="vm.entity" datamember="cityCode"
+                                          row="vm.reference.selectedplace"
+                                          placeholder="Please select place" class="form-control p-1"
+                                          displayvalue="cityName"
+                                          name="areanm" selectedvalue="cityCode"
+                                          extralables=""
+                                          disablefn="Master.formdisabled(vm.mode)" required>
+                                      </multicolumncombo> 
+      
+      
+                                   
+                                  </div>
                             </div>
 
 
@@ -99,28 +130,70 @@
 
                                 <div class="form-group col-sm-12">
                                     <label for="designation">हुद्दा </label>
-                                    <div>
+                                    <!-- <div>
                                         <select class="form-select input-sm" ng-model="vm.entity.dsgnCode"
                                             ng-options="item.dsgnCode as item.designationName for item in   vm.Designations">
                                         </select>
-                                    </div>
+                                    </div> -->
+                                    <div>
+                                        <multicolumncombo list="vm.reference.Designations"
+                                              datasource="vm.entity" datamember="dsgnCode"
+                                              row="vm.reference.selecteddesignation"
+                                              placeholder="Please select designation" class="form-control p-1"
+                                              displayvalue="designationName"
+                                              name="designationnm" selectedvalue="dsgnCode"
+                                              extralables=""
+                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                          </multicolumncombo> 
+          
+          
+                                       
+                                      </div>
                                 </div>
 
                                 <div class="form-group col-sm-12">
                                     <label for="occupation">व्यवसाय</label>
-                                    <div>
+                                    <!-- <div>
                                         <select class="form-select input-sm" ng-model="vm.entity.ocpName"
                                             ng-options="item.ocpCode as item.ocpName for item in vm.Occupations">
                                         </select>
-                                    </div>
+                                    </div> -->
+                                    <div>
+                                        <multicolumncombo list="vm.reference.Occupations"
+                                              datasource="vm.entity" datamember="ocpCode"
+                                              row="vm.reference.selectedoccupations"
+                                              placeholder="Please select occupations" class="form-control p-1"
+                                              displayvalue="ocpName"
+                                              name="occupationsnnm" selectedvalue="ocpCode"
+                                              extralables=""
+                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                          </multicolumncombo> 
+          
+          
+                                       
+                                      </div>
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <label for="cast">जात</label>
-                                    <div>
+                                    <!-- <div>
                                         <select class="form-select input-sm" ng-model="vm.entity.castCode"
                                             ng-options="item.castCode as item.castName for item in vm.Religions">
                                         </select>
-                                    </div>
+                                    </div> -->
+                                    <div>
+                                        <multicolumncombo list="vm.reference.Religions"
+                                              datasource="vm.entity" datamember="castCode"
+                                              row="vm.reference.selectedreligions"
+                                              placeholder="Please select religions" class="form-control p-1"
+                                              displayvalue="castName"
+                                              name="religionsnnm" selectedvalue="castCode"
+                                              extralables=""
+                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                          </multicolumncombo> 
+          
+          
+                                       
+                                      </div>
                                 </div>
 
 
@@ -169,12 +242,26 @@
                                 <div class="form-group col-sm-10">
                                     <label for="bankbranch">बँक(शाखा)</label>
 
-                                    <div>
+                                    <!-- <div>
                                         <select class="form-select input-sm" id="bankName" name="bankName"
                                             ng-model="vm.entity.bankCode"
                                             ng-options="item.bankCode as item.branchName for item in vm.BankBranches">
                                         </select>
-                                    </div>
+                                    </div> -->
+                                    <div>
+                                        <multicolumncombo list="vm.reference.BankBranches"
+                                              datasource="vm.entity" datamember="bankCode"
+                                              row="vm.reference.selectedbankBranche"
+                                              placeholder="Please select bankBranche" class="form-control p-1"
+                                              displayvalue="branchName"
+                                              name="bankBranchennm" selectedvalue="bankCode"
+                                              extralables=""
+                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                          </multicolumncombo> 
+          
+          
+                                       
+                                      </div>
                                 </div>
 
                                 <div class="form-group col-sm-10">
@@ -184,7 +271,7 @@
                                     <div>
                                         <input type="text" id="account_no" name="account_no" autocomplete="off"
                                             ng-model="vm.entity.bankAccNo" class="form-control input-sm text-end"
-                                            numbers-only />
+                                             />
                                     </div>
                                 </div>
                             </div>
@@ -243,3 +330,17 @@
         </div>
     </fieldset>
 </form>
+<style>
+    body {
+      padding: 15px;
+    }
+
+    .select2 > .select2-choice.ui-select-match {
+      /* Because of the inclusion of Bootstrap */
+      height: 29px;
+    }
+
+    .selectize-control > .selectize-dropdown {
+      top: 36px;
+    }
+  </style>

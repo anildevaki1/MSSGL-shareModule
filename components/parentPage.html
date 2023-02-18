@@ -50,8 +50,22 @@
         </div>
 
         <!-- maincontant -->
-        <div  style="height:calc(100vh - 50px) !important;overflow-y: scroll;width: 100%;max-width: auto;">
+        <div  style="height:calc(100vh - 40px) !important;overflow-y: scroll;width: 100%;max-width: auto;">
             <div ui-view></div>
+
+
+            
+            <div class="loading" style="display: none; position: absolute; border: none;background-color: rgba(0,0,0,0.32);top:32px; 
+            z-index: 100;width: 100%; height: 100%;top:0px;overflow: hidden; filter: alpha(opacity=80);
+            -moz-opacity: .8; opacity: .8;">
+        
+                        <div style="top: 48%; left: 42%;  position: relative;">
+                            <div class="spinner-grow" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+         
+                    </div>
         </div>
     </div>
 </div>

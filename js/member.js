@@ -276,14 +276,28 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
         vm.newrecord = function () {
             vm.entity = {};
             // pastEntity = vm.entity;
+            vm.entity.gender=1;
+            vm.reference = {};
+            vm.reference.shares = [];
+            vm.reference.selectedshare={};
+            vm.reference.shares = res;
+            vm.reference.Places=[];
+            vm.reference.Designations=[];
+            vm.reference.Occupations=[];
+            vm.reference.Religions=[];
+            vm.reference.BankBranches=[];
+            vm.entity.value=[];
+            getShareTypes();
 
         }
 
 
         var getDesignations = function () {
             ajax.get("Designation/list").then(function (res) {
-                vm.Designations = res;
-                vm.entity.dsgnCode=2;
+                // vm.Designations = res;
+                // vm.entity.dsgnCode=2;
+                vm.reference.Designations=res;
+               vm.entity.dsgnCode=res[0].dsgnCode;
             }, function (err) {
                 var e = err;
             })
@@ -294,8 +308,10 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         var getOccupations = function () {
             ajax.get("Occupation/list").then(function (res) {
-                vm.Occupations = res;
-                vm.entity.ocpName=1;
+                // vm.Occupations = res;
+                // vm.entity.ocpName=1;
+                vm.reference.Occupations=res;
+                vm.entity.ocpCode=res[0].ocpCode;
             }, function (err) {
                 var e = err;
             })
@@ -308,8 +324,11 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         var getReligions = function () {
             ajax.get("religion/list").then(function (res) {
-                vm.Religions = res;
-                    vm.entity.castCode=1;
+                // vm.Religions = res;
+                //     vm.entity.castCode=1;
+                vm.reference.Religions=res;
+                vm.entity.castCode=res[0].castCode;
+               
             }, function (err) {
                 var e = err;
             })
@@ -319,8 +338,10 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         var getShareTypes = function () {
             ajax.get("sharetype/list").then(function (res) {
-                vm.ShareTypes = res;
-                vm.entity.shType=1;
+                // vm.ShareTypes = res;
+                // vm.entity.shType=1;
+                vm.reference.shares = res;
+                vm.entity.shTypeCode=res[0].shTypeCode;
             }, function (err) {
                 var e = err;
             })
@@ -369,9 +390,10 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         var getPlaces = function () {
             ajax.get("Place/list").then(function (res) {
-                vm.Places = res;
-                vm.entity.cityCode=1;
-             
+                // vm.Places = res;
+                // vm.entity.cityCode=1;
+                vm.reference.Places=res;
+                vm.entity.cityCode=res[0].cityCode;
             }, function (err) {
                 var e = err;
             })
@@ -382,8 +404,11 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         var getBankBranches = function () {
             ajax.get("BankBranch/list").then(function (res) {
-                vm.BankBranches = res;
+                // vm.BankBranches = res;
                 // vm.entity.bankCode=1;
+                vm.reference.BankBranches=res;
+                // vm.entity.bankCode=res[1].bankCode;
+               
             }, function (err) {
                 var e = err;
             })
@@ -402,6 +427,7 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         $scope.init = function () {
             vm.entity = {};
+            vm.reference={};
             var q = $q.defer();
 
             var p = getBankBranches();
@@ -439,15 +465,17 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         $scope.Gender = [
             {
-                "value": 1,
+                "value": 0,
                 "name": "पुरुष"
             },
             {
-                "value": 2,
+                "value": 1,
                 "name": "स्त्री"
             },
-            // vm.entity.gender=0
+             
 
         ]
+        vm.entity.value=1;
+       
     }
 ])

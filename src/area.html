@@ -16,7 +16,7 @@
                     <strong>गट </strong>
                 </div>
                 <div class="card-body">
-                    <div class="col-sm-6 offset-sm-2 ">
+                    <div class="col-sm-6 offset-sm-2">
                         <div class="row">
 
 
@@ -30,10 +30,22 @@
                             </div>
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">पंचायत </label>
-                                <div>
+                                <!-- <div>
                                     <select class="form-select input-sm" ng-model="vm.entity.panchayatCode"
                                         ng-options="item.panchayatCode as item.panchayatName for item in vm.panchayats">
                                     </select>
+                                </div> -->
+
+                                <div>
+                                    <multicolumncombo list="vm.reference.areas"
+                                        datasource="vm.entity" datamember="panchayatCode"
+                                        row="vm.reference.selectedarea"
+                                        placeholder="Please select area" class="form-control p-1"
+                                        displayvalue="panchayatName"
+                                        name="sharenm" selectedvalue="panchayatCode"
+                                        extralables=""
+                                        disablefn="Master.formdisabled(vm.mode)" required>
+                                    </multicolumncombo>
                                 </div>
                             </div>
                         </div>

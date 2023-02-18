@@ -597,20 +597,20 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     })
 
     
-    .state("parent.sub.Divident", {
-      url: "/Divident",
-      templateUrl: "src/Divident.html",
-      controller: 'DividentCtrl as vm',
+    .state("parent.sub.Dividend", {
+      url: "/Dividend",
+      templateUrl: "src/Dividend.html",
+      controller: 'DividendCtrl as vm',
       params: { id: null,action:null }
     })
 
 
-    .state("parent.sub.Dividentdash", {
-      url: "/Dividentdash",
-      templateUrl: "src/Dividentdash.html",
-      controller: 'DividentdashCtrl as vm',
+    // .state("parent.sub.Dividenddash", {
+    //   url: "/Dividenddash",
+    //   templateUrl: "src/Dividenddash.html",
+    //   controller: 'DividenddashCtrl as vm',
 
-    })
+    // })
 
     .state("parent.sub.userinfo", {
       url: "/userinfo",

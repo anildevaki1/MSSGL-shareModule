@@ -3325,11 +3325,7 @@ function R1Util($compile, utilFunctions, $timeout) {
                     "message": iMsg
                 });
                 $('body').append($compile(conf)($scope));
-                $("#errorDlg").modal({
-                    show: true,
-                    backdrop: 'static',
-
-                });
+                $("#errorDlg").modal('show');
                 break;
 
             case 'ErrorOk':
@@ -3359,11 +3355,7 @@ function R1Util($compile, utilFunctions, $timeout) {
                     "message": iMsg
                 });
                 $('body').append($compile(conf)($scope));
-                $("#errorCllbackDlg").modal({
-                    show: true,
-                    backdrop: 'static'
-
-                });
+                $("#errorCllbackDlg").modal('show');
                 $("confirm-dialogue,error-dialogue,success-dialogue").remove();
                 $("body").css("padding-right", "0").removeClass("modal-open");
                 break;

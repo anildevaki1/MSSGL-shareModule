@@ -1,0 +1,112 @@
+<form class="form-horizontal" role="form" name="divopenform">
+    <fieldset>
+        <div class="form-group">
+            <div class="card">
+                <div class="card-header" style="background-color:#acedae">
+                    <i class="fa fa-edit"></i>
+                    <strong>लाभांश</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row w-100">
+                        
+
+                            <div class="col col-sm-3">
+                                <div class="form-group p-1">
+                                    <label for="title">वर्ष</label>
+                                    <div>
+                                        <input type="text" ng-model="vm.entity.yr" maxlength="4" minlength="4"
+                                            class="form-control input-sm" id="year" placeholder="वर्ष"
+                                            autocomplete="off" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-sm-3">
+                                <div class="form-group  p-1">
+                                    <label for="title">प्रती शेअर दर</label>
+                                    <div>
+                                        <input type="text" name="Member" ng-model="vm.entity.divRate"
+                                            class="form-control input-sm" id="rate" placeholder="प्रती शेअर दर"
+                                            autocomplete="off" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col col-sm-1">
+                                <br>
+                               <button class="btn  btn-primary bi bi-plus-lg" ng-click="showfn()"></button>
+                              
+                            </div>
+ 
+
+                        
+                       
+                    </div>
+
+                </div>
+                <!-- <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="bg-primary">
+                                <td style="width:5%">Sr.no</td>
+                                <td style="width:20%">Memmber Id</td>
+                                <td style="width:25%">Member Name</td>
+                                <td style="width:20%">Credit</td>
+                                <td style="width:20%">Debit</td>
+                                <td style="width:10%">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody style="height:calc(100vh - 400px); overflow-y:scroll; border: 0px;">
+                            <tr ng-repeat="item in vm.entity.diviopen">
+                                <td style="width:5%">{{index + 1}}</td>
+                                <td style="width:20%">{{item.member_id}}</td>
+                                <td style="width:25%">{{item.member_name}}</td>
+                                <td style="width:20%">{{item.cramt}}</td>
+                                <td style="width:20%">{{item.dramt}}</td>
+                                <td style="width:10%">
+                                    <button type="button" style="border: 0px; padding: 0px;" id="edit"
+                                    ng-click="edit(item);">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                &nbsp;&nbsp;
+                                <button   type="button" style="border: 0px; padding: 0px;"
+                                    ng-click="remove(item);" id="delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div> -->
+
+
+            </div>
+    </fieldset>
+    </div>
+</form>
+<div class="card-body p-0">
+    <center class="ui-grid">
+        <div id="serviceGrid" ui-grid-move-columns ui-grid-pagination ui-grid-resize-columns ui-grid-pinning
+            ui-grid-selection ui-grid-auto-resize ui-grid-cellnav ui-grid="vm.serviceGrid" class="my-grid"
+            style="height: calc(100vh - 265px)">
+        </div>
+    </center>
+    <div class="col col-sm-12 text-end ">
+        <br>
+      
+       <button type="button" class="btn btn-danger" ng-click="remove()">Remove</button>
+      
+    </div>
+</div>
+
+
+
+
+
+<style>
+    .my-active-class {
+        background-color: yellow;
+        color: red;
+    }
+</style>

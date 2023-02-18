@@ -225,9 +225,7 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
                 else {
                     ajax.put('area/update', vm.entity, { id: vm.entity.areaCode }).then(function (res) {
                         if (res) {
-
-
-
+ 
                             if (res) {
 
                                 //    $scope.newarea.push(vm.entity);
@@ -310,8 +308,11 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
 
         var getPanchayats = function () {
             ajax.get("panchayat/list").then(function (res) {
-                vm.panchayats = res;
-                vm.entity.panchayatCode=1;
+                // vm.panchayats = res;
+                vm.reference.areas= res;
+                vm.entity.panchayatCode=res[0].panchayatCode;
+                // vm.entity.panchayatCode=1;
+
             }, function (err) {
                 var e = err;
             })
@@ -320,6 +321,10 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
         vm.newrecord = function () {
             // pastEntity = vm.entity;
             vm.entity = {};
+            vm.reference={};
+
+
+            getPanchayats();
 
         }
 
@@ -336,6 +341,7 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
 
         $scope.init = function () {
             vm.entity = {};
+            vm.reference={};
             var q = $q.defer();
 
             var p = getPanchayats();
