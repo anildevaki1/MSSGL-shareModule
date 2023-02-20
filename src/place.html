@@ -135,13 +135,28 @@
                                 </div>
                                 <div class="form-group col-sm-6 m-1">
                                     <label for="title">गट</label>
-                                    <div>
+                                    <!-- <div>
                                         <select class="form-select input-sm" id="area_id" name="area_id" ng-model="vm.entity.areaCode"
                                         ng-options="item.areaCode as item.areaName for item in vm.areas"
                                    
                                         >
                                         </select>
-                                    </div>
+                                    </div> -->
+
+                                    <div>
+                                        <multicolumncombo list="vm.reference.areas"
+                                              datasource="vm.entity" datamember="areaCode"
+                                              row="vm.reference.selectedarea"
+                                              placeholder="Please select areas" class="form-control p-1"
+                                              displayvalue="areaName"
+                                              name="areasnm" selectedvalue="areaCode"
+                                              extralables=""
+                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                          </multicolumncombo> 
+          
+          
+                                       
+                                      </div>
                                 </div>
 
                             </div>

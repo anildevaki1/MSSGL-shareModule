@@ -250,6 +250,7 @@ myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 
             vm.newrecord = function () {
                 // pastEntity = vm.entity;
                 vm.entity = {};
+                vm.reference.ScheduldCasts=[];
               
     
             }
@@ -257,8 +258,10 @@ myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 
 
             var getScheduldCasts = function () {
                 ajax.get("ScheduldCast/list").then(function (res) {
-                    vm.ScheduldCasts = res;
-                    vm.entity.scCode=1;
+                    // vm.ScheduldCasts = res;
+                    // vm.entity.scCode=1;
+                    vm.reference.ScheduldCasts=res;
+                    vm.entity.scCode=res[0].scCode;
                 
                 }, function (err) {
                     var e = err;
@@ -282,6 +285,7 @@ myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 
 
         $scope.init = function () {
             vm.entity = {};
+            vm.reference={};
             var q = $q.defer();
 
             var p = getScheduldCasts();
