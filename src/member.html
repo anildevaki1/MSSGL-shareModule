@@ -30,6 +30,14 @@
                                             placeholder="स्वयं क्रमांक" ng-model="vm.entity.regCode" numbers-only />
                                     </div>
                                 </div>
+                                <div class="form-group col-sm-8 ">
+                                    <label for="title">तारीख </label>
+                                    <div>
+                                        <input type="date" id="amember_dt" name="amember_dt" 
+                                        class="form-control input-sm"
+                                             ng-model="vm.entity.regDate"  />
+                                    </div>
+                                </div>
 
                                 <div class="form-group col-sm-12">
                                     <label for="member_name">सभासदाचे नाव</label>
@@ -52,7 +60,7 @@
                                     </div> -->
                                     <div>
                                         <multicolumncombo list="vm.reference.shares"
-                                              datasource="vm.entity" datamember="shTypeCode"
+                                              datasource="vm.entity" datamember="shType"
                                               row="vm.reference.selectedshare"
                                               placeholder="Please select Share" class="form-control p-1"
                                               displayvalue="shTypeName"
@@ -161,7 +169,7 @@
                                               row="vm.reference.selectedoccupations"
                                               placeholder="Please select occupations" class="form-control p-1"
                                               displayvalue="ocpName"
-                                              name="occupationsnnm" selectedvalue="ocpCode"
+                                              name="occupationsnm" selectedvalue="ocpCode"
                                               extralables=""
                                               disablefn="Master.formdisabled(vm.mode)" required>
                                           </multicolumncombo> 
@@ -184,7 +192,7 @@
                                               row="vm.reference.selectedreligions"
                                               placeholder="Please select religions" class="form-control p-1"
                                               displayvalue="castName"
-                                              name="religionsnnm" selectedvalue="castCode"
+                                              name="religionsnm" selectedvalue="castCode"
                                               extralables=""
                                               disablefn="Master.formdisabled(vm.mode)" required>
                                           </multicolumncombo> 
@@ -208,7 +216,7 @@
                                     </div> -->
                                     <div>
                                         <multicolumncombo list="Gender"
-                                              datasource="vm.entity" datamember="value"
+                                              datasource="vm.entity" datamember="gender"
                                               row="vm.reference.selectedGender"
                                               placeholder="Please select Gender" class="form-control p-1"
                                               displayvalue="name"
@@ -228,7 +236,7 @@
                                     </label>
                                     <div>
                                         <input type="text" id="age" name="age" class="form-control input-sm text-end"
-                                            ng-model="vm.entity.age" />
+                                            ng-model="vm.entity.age"  autocomplete="on" numbers-only/>
                                     </div>
                                 </div>
 
@@ -248,9 +256,9 @@
                                               row="vm.reference.selectedbankBranche"
                                               placeholder="Please select bankBranche" class="form-control p-1"
                                               displayvalue="branchName"
-                                              name="bankBranchennm" selectedvalue="bankCode"
+                                              name="bankBranchenm" selectedvalue="branchCode"
                                               extralables=""
-                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                              disablefn="Master.formdisabled(vm.mode)">
                                           </multicolumncombo> 
           
           
@@ -263,8 +271,8 @@
                                         खाते नंबर
                                     </label>
                                     <div>
-                                        <input type="text" id="account_no" name="account_no" autocomplete="off"
-                                            ng-model="vm.entity.bankAccNo" class="form-control input-sm text-end"
+                                        <input type="text" id="account_no" name="account_no"  autocomplete="off"
+                                            ng-model="vm.entity.bankAccNo" class="form-control input-sm "
                                            />
                                     </div>
                                 </div>

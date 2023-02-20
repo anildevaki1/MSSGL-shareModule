@@ -285,7 +285,7 @@ myApp.directive('numbersOnly', function () {
                     }
                     return transformedInput;
                 }
-                return undefined;
+                return 0;
             }
             ngModelCtrl.$parsers.push(fromUser);
         }
@@ -1360,7 +1360,7 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
 
             }
             else
-                msg = data.ExceptionMessage;
+                msg = data.message ;
 
         }
 

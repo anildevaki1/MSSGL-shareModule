@@ -174,9 +174,9 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
     function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
 
         var vm = this;
-      
-        vm.mode = 'new';
 
+        vm.mode = 'new';
+        vm.entity = {};
         if ($stateParams.action)
             vm.mode = $stateParams.action;
 
@@ -243,41 +243,37 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         };
 
         $scope.getMemberRequestdetail = function () {
-            if (vm.entity.reqCode != null) {
+            if (vm.entity.reqCode) {
                 var param = {
                     id: vm.entity.reqCode
                 }
                 $(".loading").show();
                 ajax.get('MemberRequest/get', null, param).then(function (res) {
-                    if (res) {
-                        vm.entity.reqCode = res.regCode;
-                        vm.entity.shName = res.shName;
-                        vm.entity.cityCode = res.cityCode;
-                        vm.entity.dsgnCode = res.dsgnCode;
-                        vm.entity.ocpCode = res.ocpCode;
-                        vm.entity.shAddress = res.shAddress;
-                        vm.entity.shNominee = res.shNominee;
-                        vm.entity.shNomineeRelation = res.shNomineeRelation;
-                        vm.entity.gender = res.gender;
-                        vm.entity.age = res.age;
-                        vm.entity.castCode = res.castCode;
-                        vm.entity.bankCode = res.bankCode;
-                        vm.entity.bankAccNo = res.bankAccNo;
-                    }
-                    else {
-                        var error = "Error";
-                        if (res.error)
-                            if (res.error.message)
-                                error = res.error.message;
-                        R1Util.createAlert($scope, "Error", error, null);
-                    }
-                    $(".loading").hide();
-                },)
-            }
-            else {
-                vm.entity = {}
 
+                    vm.entity.reqCode = res.regCode;
+                    vm.entity.shName = res.shName;
+                    vm.entity.shType = res.shType;
+                    vm.entity.cityCode = res.cityCode;
+                    vm.entity.dsgnCode = res.dsgnCode;
+                    vm.entity.ocpCode = res.ocpCode;
+                    vm.entity.shAddress = res.shAddress;
+                    vm.entity.shNominee = res.shNominee;
+                    vm.entity.shNomineeRelation = res.shNomineeRelation;
+                    vm.entity.gender = res.gender;
+                    vm.entity.age = res.age;
+                    vm.entity.castCode = res.castCode;
+                    vm.entity.bankCode = res.bankCode;
+                    vm.entity.bankAccNo = res.bankAccNo;
+                    // vm.entity.regDt= new Date(res.reqDt);
+
+                    $(".loading").hide();
+                }, function (err) {
+
+                    R1Util.createAlert($scope, "Error", err.msg, null);
+
+                })
             }
+
 
         }
 
@@ -288,25 +284,19 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
 
                 ajax.put('Member/update', vm.entity).then(function (res) {
-                    if (res) {
-                        $(".loading").hide();
-                        $scope.message = "Record Saved Sucessfully";
-                        R1Util.createAlert($scope, "Success", $scope.message, null);
-                        vm.entity.regCode = res.regCode;
-                        pastEntity = angular.copy(vm.entity);
-                        fn("OK");
-                    } else {
-                        var error = "An Error has occured while saving record!";
 
-                        if (res.error)
-                            if (res.error.message)
-                                error = res.error.message;
+                    $(".loading").hide();
+                    $scope.message = "Record Saved Sucessfully";
+                    R1Util.createAlert($scope, "Success", $scope.message, null);
+                    vm.entity.regCode = res.regCode;
+                    pastEntity = angular.copy(vm.entity);
+                    fn("OK");
 
-                        vm.mode = 'edit';
-                        $(".loading").hide();
-                        R1Util.createAlert($scope, "Error", error, null);
-                        fn("CANCEL")
-                    }
+                }, function (err) {
+                    vm.mode = 'edit';
+                    fn("CANCEL");
+                    R1Util.createAlert($scope, "Error", err.msg, null);
+
                 })
 
 
@@ -317,32 +307,20 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
 
         vm.newrecord = function () {
-            // vm.entity = {};
-            // vm.reference = {};
-            // vm.reference.shares = [];
-            // vm.reference.selectedshare={};
-            // pastEntity = vm.entity;
+            pastEntity = vm.entity;
+            vm.entity = {};
+            vm.entity.gender = 1;
 
-            // getShareTypes();
-            // getPlaces();
-            vm.entity.gender=1;
-            vm.reference = {};
-            vm.reference.shares = [];
-            vm.reference.selectedshare={};
-            vm.reference.shares = res;
-            vm.reference.Places=[];
-            vm.reference.Designations=[];
-            vm.reference.Occupations=[];
-            vm.reference.Religions=[];
-            getShareTypes();
+            vm.entity.regDt = new Date();
+
         }
 
         var getDesignations = function () {
             ajax.get("Designation/list").then(function (res) {
                 // vm.Designations = res;
                 // vm.entity.dsgnCode = 2;
-                vm.reference.Designations=res;
-                vm.entity.dsgnCode=res[0].dsgnCode;
+                vm.reference.Designations = res;
+                vm.entity.dsgnCode = res[0].dsgnCode;
             }, function (err) {
                 var e = err;
             })
@@ -355,8 +333,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             ajax.get("Occupation/list").then(function (res) {
                 // vm.Occupations = res;
                 // vm.entity.ocpName = 1;
-                vm.reference.Occupations=res;
-                vm.entity.ocpCode=res[0].ocpCode;
+                vm.reference.Occupations = res;
+                vm.entity.ocpCode = res[0].ocpCode;
             }, function (err) {
                 var e = err;
             })
@@ -366,8 +344,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             ajax.get("religion/list").then(function (res) {
                 // vm.Religions = res;
                 // vm.entity.castCode = 1;
-                vm.reference.Religions=res;
-                vm.entity.castCode=res[0].castCode;
+                vm.reference.Religions = res;
+                vm.entity.castCode = res[0].castCode;
             }, function (err) {
                 var e = err;
             })
@@ -378,7 +356,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         var getShareTypes = function () {
             ajax.get("sharetype/list").then(function (res) {
                 vm.reference.shares = res;
-                vm.entity.shTypeCode=res[0].shTypeCode;
+                vm.entity.shType = res[0].shTypeCode;
                 //  vm.entity.shType=1;
             }, function (err) {
                 var e = err;
@@ -389,8 +367,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             ajax.get("Place/list").then(function (res) {
                 // vm.Places = res;
                 // vm.entity.cityCode = 1;
-                vm.reference.Places=res;
-                vm.entity.cityCode=res[0].cityCode;
+                vm.reference.Places = res;
+                vm.entity.cityCode = res[1].cityCode;
             }, function (err) {
                 var e = err;
             })
@@ -403,7 +381,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             ajax.get("BankBranch/list").then(function (res) {
                 // vm.BankBranches = res;
                 // vm.entity.bankCode=1;
-                vm.reference.BankBranches=res;
+                vm.reference.BankBranches = res;
+                vm.entity.bankCode = res[0].branchCode;
             }, function (err) {
                 var e = err;
             })
@@ -414,6 +393,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             ajax.get('Member/Get', null, { id: $stateParams.id }).then(function (res) {
                 vm.entity = res;
                 pastEntity = vm.entity;
+                vm.entity.regDt = new Date(vm.entity.regDt);
             }, function (err) {
 
             })
@@ -422,7 +402,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         $scope.init = function () {
             vm.entity = {};
-            vm.reference={};
+            vm.reference = {};
             var q = $q.defer();
 
             var p = getBankBranches();
@@ -459,15 +439,17 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         $scope.Gender = [
             {
-                "value": 1,
+                "value": 0,
                 "name": "पुरुष"
             },
             {
-                "value": 2,
+                "value": 1,
                 "name": "स्त्री"
             },
 
+
         ]
+
 
 
     }

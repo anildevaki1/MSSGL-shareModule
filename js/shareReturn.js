@@ -364,9 +364,9 @@ myApp.controller('sharereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
                     var e = err;
                 })
         }
-
+       
         $scope.getCert=function(){
-            ajax.get('ShareIssue/getbyissue', null, {certno}).then(function (res) {
+            ajax.get('ShareIssue/getbyCert', null, {certno:vm.entity.shareCertNo}).then(function (res) {
                 
                     vm.entity.regCode=res.memberId;
                     vm.entity.regCodeNavigation=res.member;
