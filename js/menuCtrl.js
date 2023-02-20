@@ -136,6 +136,12 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
             path: 'parent.sub.userinfodash',
             params: { action: '', mode: true },
         },
+        {
+            icon: "bi bi-receipt",
+            name: 'लाभांश',
+            path: 'parent.sub.Dividend',
+            params: { action: '', mode: true },
+        },
         // {
         //     icon: 'bi bi-mastodon', name: "कंपनी", path: 'parent.sub.company',
         // }

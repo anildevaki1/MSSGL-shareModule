@@ -255,6 +255,7 @@ function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master)
             vm.newrecord = function () {
                 // pastEntity = vm.entity;
                 vm.entity = {};
+                vm.reference.areas=[];
             
     
             }
@@ -285,8 +286,11 @@ function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master)
 
               var getareas = function () {
                 ajax.get("Area/list").then(function (res) {
-                    vm.areas= res;
-                    vm.entity.areaCode=1;
+                    // vm.areas= res;
+                    // vm.entity.areaCode=1;
+                    vm.reference.areas=res;
+                    vm.entity.areaCode=res[0].areaCode;
+
                 }, function (err) {
                     var e = err;
                 })
@@ -306,6 +310,7 @@ function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master)
     
             $scope.init = function () {
                 vm.entity = {};
+                vm.reference={};
                 var q = $q.defer();
     
                 var p = getareas();

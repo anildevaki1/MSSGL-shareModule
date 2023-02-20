@@ -30,7 +30,7 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "12%"
+                width: "15%"
             },
             {
                 field: 'memberId',
@@ -39,7 +39,7 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "12  %"
+                width: "15%"
             },
             {
                 field: 'member.shName',
@@ -68,7 +68,7 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellFilter: 'number:2',
                 cellClass: 'alignRgrid',
-                width: "12 %"
+                width: "10%"
 
             },
             {

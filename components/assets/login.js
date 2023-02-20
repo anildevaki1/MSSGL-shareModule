@@ -9,10 +9,10 @@ myApp.controller('loginCtrl', ['$scope', '$state', 'ajax', 'R1Util','cache',
                     $state.go("parent.sub.home");
                 }
                 else
-                    R1Util.createAlert($scope, "error", "Invalid User Name or Password");
+                    R1Util.createAlert($scope, "Error", "Invalid User Name or Password");
             }, (err) => {
 
-                R1Util.createAlert($scope, "error", "Something Went Wrong");
+                R1Util.createAlert($scope, "Error", "Something Went Wrong");
             });
 
         }
@@ -23,10 +23,10 @@ myApp.controller('loginCtrl', ['$scope', '$state', 'ajax', 'R1Util','cache',
         $scope.iConfirmFn=()=>{
             ajax.get("UserInfo/forgotPassword", null, { id: $scope.username}).then((res) => {
                 if (!res == "success")
-                    R1Util.createAlert($scope, "error", "Invalid User Name");
+                    R1Util.createAlert($scope, "Error", "Invalid User Name");
             }, (err) => {
 
-                R1Util.createAlert($scope, "error", "Something Went Wrong");
+                R1Util.createAlert($scope, "Error", "Something Went Wrong");
             });
         }
     }])
