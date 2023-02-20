@@ -1,16 +1,12 @@
 var myApp = angular.module('myApp', [
   'LocalStorageModule',
   'ngAnimate',
-  'ngTouch',
-  'ngOnload',
   'ngSanitize',
-  'ngFileSaver',
   'ui.router',
   'ui.router.state.events',
   'ngLocale',
   'ngRoute',
   'oc.lazyLoad',
-  'ncy-angular-breadcrumb',
   'angular-loading-bar',
   'ui.grid',
   'ui.grid.cellNav',
@@ -27,9 +23,7 @@ var myApp = angular.module('myApp', [
   'ui.select',
   'ui.bootstrap',
   'angularUtils.directives.dirPagination',
-  'ngCookies',
-  'angular-uuid',
-  'ngImageCompress'
+  'ngCookies'
 
 ])
   .value('version', "0.0.1")
