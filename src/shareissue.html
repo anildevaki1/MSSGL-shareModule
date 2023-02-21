@@ -72,9 +72,9 @@
                                 <label for="title"> अपूर्ण सभासद नंबर </label>
                                 <div class="input-group">
                                     <input type="text" ng-blur="getMemberRequestdetail()" class="form-control input-sm"
-                                        ng-model="vm.entity.reqId" numbers-only />
+                                        ng-model="vm.entity.reqId" ng-disabled="vm.mode=='edit'" numbers-only />
 
-                                    <span class="input-group-text p-0">
+                                    <span class="input-group-text p-0" ng-if="vm.mode=='new'">
                                         <helper helperid="member1" id="name" list="vm.MemberRequests" width="30%"
                                             hclick="getMemberRequests()" row="vm.entity.req" columns="memberReq_coldef"
                                             filter="shName" selectedvalue="regCode" datasource="vm.entity.reqId"

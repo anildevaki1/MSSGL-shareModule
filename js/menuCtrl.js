@@ -132,7 +132,7 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
 
         {
             icon: "bi bi-person",
-            name: 'संपूर्ण माहिती',
+            name: 'User Info',
             path: 'parent.sub.userinfodash',
             params: { action: '', mode: true },
         },

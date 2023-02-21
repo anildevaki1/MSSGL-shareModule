@@ -22,7 +22,7 @@
                                         <input type="text" id="amember_number" name="amember_number"
                                         
                                             ng-blur="getMemberRequestdetail()" class="form-control input-sm"
-                                            ng-Model="vm.entity.reqCode" numbers-only />
+                                            ng-Model="vm.entity.reqCode" numbers-only  ng-disabled="vm.mode=='edit'" />
                                     </div>
                                 </div>
 
@@ -157,7 +157,7 @@
                                               displayvalue="designationName"
                                               name="designationnm" selectedvalue="dsgnCode"
                                               extralables=""
-                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                              disablefn="Master.formdisabled(vm.mode)">
                                           </multicolumncombo> 
           
           
@@ -180,7 +180,7 @@
                                               displayvalue="ocpName"
                                               name="occupationsnnm" selectedvalue="ocpCode"
                                               extralables=""
-                                              disablefn="Master.formdisabled(vm.mode)" required>
+                                              disablefn="Master.formdisabled(vm.mode)">
                                           </multicolumncombo> 
           
           
