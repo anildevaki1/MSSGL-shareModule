@@ -39,7 +39,7 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellFilter: 'date:\'dd/MM/yyyy\'',
                 cellClass: 'alignLgrid',
-                width: "15%"
+                width: "10%"
 
             },
 
@@ -62,26 +62,6 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
             },
             {
-                field: 'enteranceFee',
-                displayName: 'प्रवेश शुल्क',
-                enableSorting: true,
-                enableCellEdit: false,
-                type: 'number',
-                cellFilter: 'number:2',
-                cellClass: 'alignRgrid',
-                width: "10%"
-            },
-            {
-                field: 'shareAmt',
-                displayName: 'शेअर रक्कम',
-                enableSorting: true,
-                enableCellEdit: false,
-                type: 'number',
-                cellFilter: 'number:2',
-                cellClass: 'alignRgrid',
-                width: "10%"
-            },
-            {
                 field: 'totalAmt',
                 displayName: 'एकूण रक्कम',
                 enableSorting: true,
@@ -91,7 +71,14 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 cellClass: 'alignRgrid',
                 width: "10%"
             },
-
+            {
+                field: 'narration',
+                displayName: 'शेरा ',
+                enableSorting: true,
+                enableCellEdit: false,
+                type: 'string',
+                width: "25%"
+            },
             {
                 name: 'Action ',
                 enableSorting: false,
