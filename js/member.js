@@ -276,11 +276,7 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
             vm.entity = {};
             vm.entity.reqDt = new Date();
             vm.entity.gender = 1;
-
-
-
-
-        }
+ }
 
 
         var getDesignations = function () {
@@ -357,8 +353,7 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
 
         var getBankBranches = function () {
             ajax.get("BankBranch/list").then(function (res) {
-                // vm.BankBranches = res;
-                // vm.entity.bankCode=1;
+                
                 vm.reference.BankBranches = res;
                 //vm.entity.bankCode = res[0].branchCode;
                 // vm.entity.bankCode=res[1].bankCode;
