@@ -16,7 +16,7 @@ myapp.controller('userinfodashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 
         vm.serviceGrid.columnDefs = [
-             
+
             {
                 field: 'userName',
                 displayName: ' यूजरचे नाव',
@@ -92,9 +92,9 @@ myapp.controller('userinfodashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                     R1Util.createAlert($scope, "Error", error, null);
                 }
                 $(".loading").hide();
-            },)
+            })
         }
-        
+
         vm.getRecords();
 
     }])
@@ -102,10 +102,10 @@ myapp.controller('userinfodashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 
 
-myapp.controller('UserInfoCtrl', ['$scope', '$state', 'ajax', 'R1Util','$stateParams','$q','$rootScope',
-    function ($scope, $state, ajax, R1Util,$stateParams,$q,$rootScope) {
+myapp.controller('UserInfoCtrl', ['$scope', '$state', 'ajax', 'R1Util', '$stateParams', '$q', '$rootScope','Master',
+    function ($scope, $state, ajax, R1Util, $stateParams, $q, $rootScope,Master) {
         var vm = this;
-      
+        $scope.Master=Master
         vm.mode = 'new';
 
         if ($stateParams.action)
@@ -168,9 +168,8 @@ myapp.controller('UserInfoCtrl', ['$scope', '$state', 'ajax', 'R1Util','$statePa
                     break;
             }
         };
-        vm.newrecord =function()
-        {
-            vm.entity={};
+        vm.newrecord = function () {
+            vm.entity = {};
         }
 
         $scope.save = function (fn) {
@@ -178,55 +177,43 @@ myapp.controller('UserInfoCtrl', ['$scope', '$state', 'ajax', 'R1Util','$statePa
                 $(".loading").show();
                 if (!vm.entity.userId)
                     ajax.post('UserInfo/insert', vm.entity).then(function (res) {
-                        if (res) {
-                            vm.entity.userId = res.userId;
-                            $(".loading").hide();
 
-                            $scope.message = "Record Saved Sucessfully";
-                            R1Util.createAlert($scope, "Success", $scope.message, null);
-                            pastEntity = angular.copy(vm.entity);
-                            fn("OK");
+                        vm.entity.userId = res.userId;
+                        $(".loading").hide();
 
-                        } else {
-                            var error = "An Error has occured while saving record!";
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
 
-                            if (res.error)
-                                if (res.error.message)
-                                    error = res.error.message;
-
-                            vm.mode = 'edit';
-                            $(".loading").hide();
-                            R1Util.createAlert($scope, "Error", error, null);
-                            fn("CANCEL")
-                        }
 
                     }, function (err) {
-                        console.log(err);
+                        vm.mode = 'edit';
+                        $(".loading").hide();
+                        R1Util.createAlert($scope, "Error", err.msg, null);
+                        fn("CANCEL")
                     })
                 else {
                     ajax.put('UserInfo/update', vm.entity, { id: vm.entity.userId }).then(function (res) {
-                        if (res) {
-                            $(".loading").hide();
-                            $scope.message = "Record Saved Sucessfully";
-                            R1Util.createAlert($scope, "Success", $scope.message, null);
-                            pastEntity = angular.copy(vm.entity);
-                            fn("OK");
-                        } else {
-                            var error = "An Error has occured while saving record!";
 
-                            if (res.error)
-                                if (res.error.message)
-                                    error = res.error.message;
+                        $(".loading").hide();
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
 
-                            vm.mode = 'edit';
-                            $(".loading").hide();
-                            R1Util.createAlert($scope, "Error", error, null);
-                            fn("CANCEL")
-                        }
-
+                    }, function (err) {
+                        vm.mode = 'edit';
+                        $(".loading").hide();
+                        R1Util.createAlert($scope, "Error", err.msg, null);
+                        fn("CANCEL")
                     })
                 }
 
+            }
+            else
+            {
+                R1Util.createAlert($scope, "Error", 'Validation Failed', null);
             }
         }
 
@@ -261,10 +248,9 @@ myapp.controller('UserInfoCtrl', ['$scope', '$state', 'ajax', 'R1Util','$statePa
                 $scope.inputType = 'password';
         };
 
-        if($stateParams.id)
-        {
-            ajax.get("userinfo/get",null ,{id:$stateParams.id}).then((res)=>{
-                vm.entity=res;
+        if ($stateParams.id) {
+            ajax.get("userinfo/get", null, { id: $stateParams.id }).then((res) => {
+                vm.entity = res;
             });
 
         }
