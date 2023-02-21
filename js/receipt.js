@@ -161,7 +161,7 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
         vm.mode = 'new';
         ///vm.entity.vchDate =new Date();
         // vm.entity.vch_date = transactionValid.CurrDate(new Date());
-        // var pastEntity = {};
+         var pastEntity = {};
         var  NoViewing=true;
 
         if ($stateParams.action)

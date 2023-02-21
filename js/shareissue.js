@@ -227,7 +227,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         };
 
 
-        $scope.save = function (fn) {
+        $scope.save = function (fn){
             if ($scope.shareissueform.$valid) {
                 $(".loading").show();
                 if (!vm.entity.vchId)
@@ -277,7 +277,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
 
         vm.newrecord = function () {
-             pastEntity = vm.entity;
+            pastEntity = vm.entity;
             vm.entity = {};
             vm.entity.member = {};
             vm.entity.vchDate = new Date();
