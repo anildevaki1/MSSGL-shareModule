@@ -637,6 +637,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     })
 
 
+    .state("parent.sub.recreg", {
+      url: "/recreg",
+      templateUrl: "Reports/src/recreg.html",
+      controller: 'recregCtrl as vm',
+      params: { id: null,action:null }
+    })
+
     // .state("parent.sub.electorsdash", {
     //   url: "/electorsdash",
     //   templateUrl: "Reports/src/electorsdash.html",
