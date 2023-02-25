@@ -99,8 +99,8 @@ myApp.controller('designationdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
 ])
 
-myApp.controller('designationCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master) {
+myApp.controller('designationCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -174,7 +174,7 @@ myApp.controller('designationCtrl', ['$scope', '$stateParams', '$q', '$rootScope
 
       
             $scope.save = function (fn) {
-                if ($scope.designationform.$valid) {
+                if ($scope.designationform.$valid) {                        
                     $(".loading").show();
                     if (!vm.entity.dsgnCode)
                         ajax.post('designation/insert', vm.entity).then(function (res) {
@@ -212,12 +212,15 @@ myApp.controller('designationCtrl', ['$scope', '$stateParams', '$q', '$rootScope
         
                             })
     
-                      
-                    }
+                       }
     
                 }
                 else {
-                    R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                    // R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                    // invalid.Error($scope.designationform);
+                    vm.mode = 'edit';
+                    var fields = invalid.Error($scope.designationform);
+                    R1Util.createAlert($scope, "Error", fields, null);
                 }
             }
 
@@ -258,8 +261,5 @@ myApp.controller('designationCtrl', ['$scope', '$stateParams', '$q', '$rootScope
                 }
     
             });
-    
-
-      
-    }
+      }
 ])

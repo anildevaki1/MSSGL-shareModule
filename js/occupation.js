@@ -95,8 +95,8 @@ myApp.controller('occupationdashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
 ])
 
-myApp.controller('occupationCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master) {
+myApp.controller('occupationCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -205,7 +205,11 @@ myApp.controller('occupationCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                     }
     
                 } else {
-                    R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                    // R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                    // invalid.Error($scope.occupationform);
+                    vm.mode = 'edit';
+                    var fields = invalid.Error($scope.occupationform);
+                    R1Util.createAlert($scope, "Error", fields, null);
                 }
             }
 

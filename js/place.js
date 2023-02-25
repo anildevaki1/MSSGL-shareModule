@@ -1,9 +1,9 @@
 var myApp = angular.module('myApp');
-myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
-    function ($scope,$state,ajax, R1Util) {
+myApp.controller('placedashCtrl', ['$scope', '$state', 'ajax', 'R1Util', 'invalid',
+    function ($scope, $state, ajax, R1Util, invalid) {
 
         var vm = this;
-      
+
         vm.serviceGrid = {
             enableRowSelection: true,
             enableRowHeaderSelection: false,
@@ -12,14 +12,14 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
             enableFiltering: true,
             enableGridMenu: true,
             paginationPageSizes: [30, 50, 100, 70],
-          
+
         };
 
 
         vm.serviceGrid.columnDefs = [
 
-            
-           
+
+
             {
                 field: 'cityName',
                 displayName: 'गावाचे नाव',
@@ -87,7 +87,7 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
         vm.remove = function (grid, row) {
             if (row.entity.cityCode) {
                 $scope.grid = grid;
-                $scope.param = { "id": row.entity.cityCode};
+                $scope.param = { "id": row.entity.cityCode };
                 $scope.index = vm.serviceGrid.data.indexOf(row.entity);
 
                 R1Util.createAlert($scope, "Warning", "Do You Want Delete Row", $scope.iConfirmFn);
@@ -103,7 +103,7 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
         }
 
         vm.getRecords = function () {
-     
+
             ajax.get('place/list', null).then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
@@ -120,232 +120,218 @@ myApp.controller('placedashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
         }
 
         vm.getRecords()
-     
+
     }
 
 
 ])
 
-myApp.controller('placeCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master',
-function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master)
-   {
+myApp.controller('placeCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master', 'invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master, invalid) {
 
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
-          var pastEntity = {};
-          var NoViewing = true; 
+        var pastEntity = {};
+        var NoViewing = true;
 
 
         if ($stateParams.action)
             vm.mode = $stateParams.action;
 
-    
-            vm.action = function () {
-                var deffered = $q.defer();
-    
-                vm.navaction(function (res) {
-                    if (res == "OK")
-                        deffered.resolve(res)
-                    else
-                        deffered.reject(res)
-                })
-                return deffered.promise;
-            }
-    
 
-   
-            vm.navaction = function (fn) {
-                switch (vm.mode) {
-                    case 'new':
-    
-                       vm.newrecord();
-                        fn("OK")
-                        break;
-                    case 'edit':
-    
-                          if (vm.entity.areaCode != undefined) {
+        vm.action = function () {
+            var deffered = $q.defer();
+
+            vm.navaction(function (res) {
+                if (res == "OK")
+                    deffered.resolve(res)
+                else
+                    deffered.reject(res)
+            })
+            return deffered.promise;
+        }
+
+
+
+        vm.navaction = function (fn) {
+            switch (vm.mode) {
+                case 'new':
+
+                    vm.newrecord();
+                    fn("OK")
+                    break;
+                case 'edit':
+
+                    if (vm.entity.areaCode != undefined) {
                         if (NoViewing == true)
                             getExistEntity();
 
                     }
-                        fn("OK")
-                        break;
-    
-                    case 'save':
-                        $scope.save(function (res) {
-                            fn(res)
-                        });
-                        break;
-    
-                        case 'undo':
-                            if (pastEntity)
-                                vm.entity = angular.copy(pastEntity);
-                            fn("OK")
-        
-                            break;
-    
-                    case 'close':
-                        fn("OK")
-                        $rootScope.back();
-                        break;
-    
-    
-    
-                    default:
-                        fn("OK")
-                        break;
-                }
-            };
-            $scope.save = function (fn) {
-                if ($scope.placeform.$valid) {
-                    $(".loading").show();
-                    if (!vm.entity.cityCode)
-                        ajax.post('place/insert', vm.entity).then(function (res) {
-                        
-                                vm.entity.cityCode = res.cityCode;
-                                $(".loading").hide();
-    
-                                $scope.message = "Record Saved Sucessfully";
-                                R1Util.createAlert($scope, "Success", $scope.message, null);
-                                pastEntity = angular.copy(vm.entity);
-                                fn("OK");
-                            }, function (err) {
-                                $(".loading").hide();
-                                vm.mode = 'edit';
-                                fn("CANCEL")
-                                R1Util.createAlert($scope, "Error", err.msg, null);
-                            })
-                            // } else {
-                            //     var error = "An Error has occured while saving record!";
-    
-                            //     if (res.error)
-                            //         if (res.error.message)
-                            //             error = res.error.message;
-    
-                            //     vm.mode = 'edit';
-                            //     $(".loading").hide();
-                            //     R1Util.createAlert($scope, "Error", error, null);
-                            //     fn("CANCEL")
-                            // }
-    
-                       
-                    else {
-                        ajax.put('place/update', vm.entity, { id: vm.entity.cityCode }).then(function (res) {
-                           
-                                $(".loading").hide();
-                                $scope.message = "Record Saved Sucessfully";
-                                R1Util.createAlert($scope, "Success", $scope.message, null);
-                                pastEntity = angular.copy(vm.entity);
-                                fn("OK");
-                            },function (err) {
-                                $(".loading").hide();
-                                vm.mode = 'edit';
-                                fn("CANCEL")
-                                R1Util.createAlert($scope, "Error", err.msg, null);
-                            })
-                        }
-                    }
-                    else {
-                        R1Util.createAlert($scope, "Error", "Validation Failed", null);
-                    }
+                    fn("OK")
+                    break;
 
-                            
-                    }
-    
-                
-         
+                case 'save':
+                    $scope.save(function (res) {
+                        fn(res)
+                    });
+                    break;
 
-            vm.newrecord = function () {
-                pastEntity = vm.entity;
-                vm.entity = {};
-                vm.reference.areas=[];
+                case 'undo':
+                    if (pastEntity)
+                        vm.entity = angular.copy(pastEntity);
+                    fn("OK")
+
+                    break;
+
+                case 'close':
+                    fn("OK")
+                    $rootScope.back();
+                    break;
+
+
+
+                default:
+                    fn("OK")
+                    break;
+            }
+        };
+        $scope.save = function (fn) {
+            if ($scope.placeform.$valid) {
+                $(".loading").show();
+                if (!vm.entity.cityCode)
+                    ajax.post('place/insert', vm.entity).then(function (res) {
+
+                        vm.entity.cityCode = res.cityCode;
+                        $(".loading").hide();
+
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
+                    }, function (err) {
+                        $(".loading").hide();
+                        vm.mode = 'edit';
+                        fn("CANCEL")
+                        R1Util.createAlert($scope, "Error", err.msg, null);
+                    })
             
-    
-            }
 
-            getExistEntity = function () {
+                else {
+                    ajax.put('place/update', vm.entity, { id: vm.entity.cityCode }).then(function (res) {
 
-                ajax.get('place/get', null, { id: vm.reference.areaCode}).then(function (res) {
-                    vm.entity = res;
-                    pastEntity = vm.entity;
-                }, function (err) {
-    
-                })
-    
-            }
-
-            // $scope.init = function () {
-            //     vm.entity = {};
-            //     var q = $q.defer();
-     
-            //         q.resolve();
-              
-            //     return q.promise;
-    
-    
-            // }
-
-         
-
-              var getareas = function () {
-                ajax.get("Area/list").then(function (res) {
-                    // vm.areas= res;
-                    // vm.entity.areaCode=1;
-                    vm.reference.areas=res;
-                    vm.entity.areaCode=res[0].areaCode;
-
-                }, function (err) {
-                    var e = err;
-                })
-            }
-
-
-            // getExistEntity = function () {
-
-            //     ajax.get('area/get', null, { id: vm.entity.areaCode }).then(function (res) {
-            //         vm.entity = res;
-    
-            //     }, function (err) {
-    
-            //     })
-    
-            // }
-    
-            $scope.init = function () {
-                vm.entity = {};
-                vm.reference={};
-                var q = $q.defer();
-    
-                var p = getareas();
-                $q.all([p]).then(function (res) {
-    
-                    q.resolve();
-                }, function (err) {
-    
-                    q.reject();
-    
-                })
-    
-                return q.promise;
-    
-    
-            }
-
-
-            $scope.init().then(function (res) {
-                vm.action();
-                if ($stateParams.id) {
-                    vm.reference.areaCode = $stateParams.id;
-                    getExistEntity();
+                        $(".loading").hide();
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
+                    }, function (err) {
+                        $(".loading").hide();
+                        vm.mode = 'edit';
+                        fn("CANCEL")
+                        R1Util.createAlert($scope, "Error", err.msg, null);
+                    })
                 }
-    
-            });
-          
-    
-    
+            }
+            else {
+                vm.mode = 'edit';
+                var fields = invalid.Error($scope.placeform);
+                R1Util.createAlert($scope, "Error", fields, null);
+                
+            }
 
-    
 
+        }
+
+
+
+
+        vm.newrecord = function () {
+            pastEntity = vm.entity;
+            vm.entity = {};
+            // vm.reference.areas=[];
+
+
+        }
+
+        getExistEntity = function () {
+
+            ajax.get('place/get', null, { id: vm.reference.areaCode }).then(function (res) {
+                vm.entity = res;
+                pastEntity = vm.entity;
+            }, function (err) {
+
+            })
+
+        }
+
+        // $scope.init = function () {
+        //     vm.entity = {};
+        //     var q = $q.defer();
+
+        //         q.resolve();
+
+        //     return q.promise;
+
+
+        // }
+
+
+
+        var getareas = function () {
+            ajax.get("Area/list").then(function (res) {
+                // vm.areas= res;
+                // vm.entity.areaCode=1;
+                vm.reference.areas = res;
+                vm.entity.areaCode = res[0].areaCode;
+
+            }, function (err) {
+                var e = err;
+            })
+        }
+
+
+        // getExistEntity = function () {
+
+        //     ajax.get('area/get', null, { id: vm.entity.areaCode }).then(function (res) {
+        //         vm.entity = res;
+
+        //     }, function (err) {
+
+        //     })
+
+        // }
+
+        $scope.init = function () {
+            vm.entity = {};
+            vm.reference = {};
+            var q = $q.defer();
+
+            var p = getareas();
+            $q.all([p]).then(function (res) {
+
+                q.resolve();
+            }, function (err) {
+
+                q.reject();
+
+            })
+
+            return q.promise;
+
+
+        }
+
+
+        $scope.init().then(function (res) {
+            vm.action();
+            if ($stateParams.id) {
+                vm.reference.areaCode = $stateParams.id;
+                getExistEntity();
+            }
+
+        });
     }
 ])
+
+

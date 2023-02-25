@@ -25,9 +25,9 @@
                                 <div class="form-group col-sm-8 ">
                                     <label for="title">सभासद नंबर</label>
                                     <div>
-                                        <input type="text" id="amember_no" name="amember_no"
+                                        <input type="text" id="amember_no" name="सभासद नंबर"
                                             class="form-control input-sm" placeholder="स्वयं क्रमांक"
-                                            ng-model="vm.entity.regCode" numbers-only />
+                                            ng-model="vm.entity.regCode" numbers-only  required/>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-8 ">
@@ -41,8 +41,8 @@
                                 <div class="form-group col-sm-12">
                                     <label for="member_name">सभासदाचे नाव</label>
                                     <div>
-                                        <input type="text" id="member_name" name="member_name"
-                                            class="form-control input-sm" ng-model="vm.entity.shName" />
+                                        <input type="text" id="member_name" name="सभासदाचे नाव"
+                                            class="form-control input-sm" ng-model="vm.entity.shName" required/>
                                     </div>
                                 </div>
 
@@ -62,7 +62,7 @@
                                             datamember="shType" row="vm.reference.selectedshare"
                                             placeholder="Please select Share" class="form-control p-1"
                                             displayvalue="shTypeName" name="sharenm" selectedvalue="shTypeCode"
-                                            extralables="" disablefn="Master.formdisabled(vm.mode)" required>
+                                            extralables="" disablefn="Master.formdisabled(vm.mode)">
                                         </multicolumncombo>
 
 
@@ -92,7 +92,7 @@
                                         <multicolumncombo list="vm.reference.Places" datasource="vm.entity"
                                             datamember="cityCode" row="vm.reference.selectedplace"
                                             placeholder="Please select place" class="form-control p-1"
-                                            displayvalue="cityName" name="areanm" selectedvalue="cityCode"
+                                            displayvalue="cityName" name="गाव" selectedvalue="cityCode"
                                             extralables="" disablefn="Master.formdisabled(vm.mode)" required>
                                         </multicolumncombo>
 
@@ -136,8 +136,8 @@
                                         <multicolumncombo list="vm.reference.Designations" datasource="vm.entity"
                                             datamember="dsgnCode" row="vm.reference.selecteddesignation"
                                             placeholder="Please select designation" class="form-control p-1"
-                                            displayvalue="designationName" name="designationnm" selectedvalue="dsgnCode"
-                                            extralables="" disablefn="Master.formdisabled(vm.mode)">
+                                            displayvalue="designationName" name="हुद्दा" selectedvalue="dsgnCode"
+                                            extralables="" disablefn="Master.formdisabled(vm.mode)" required>
                                         </multicolumncombo>
 
 
@@ -177,7 +177,7 @@
                                         <multicolumncombo list="vm.reference.Religions" datasource="vm.entity"
                                             datamember="castCode" row="vm.reference.selectedreligions"
                                             placeholder="Please select religions" class="form-control p-1"
-                                            displayvalue="castName" name="religionsnm" selectedvalue="castCode"
+                                            displayvalue="castName" name="जात" selectedvalue="castCode"
                                             extralables="" disablefn="Master.formdisabled(vm.mode)" required>
                                         </multicolumncombo>
 
@@ -201,7 +201,7 @@
                                     <div>
                                         <multicolumncombo list="Gender" datasource="vm.entity" datamember="gender"
                                             row="vm.reference.selectedGender" placeholder="Please select Gender"
-                                            class="form-control p-1" displayvalue="name" name="Gendernm"
+                                            class="form-control p-1" displayvalue="name" name=" पु./स्त्री"
                                             selectedvalue="value" extralables=""
                                             disablefn="Master.formdisabled(vm.mode)" required>
                                         </multicolumncombo>

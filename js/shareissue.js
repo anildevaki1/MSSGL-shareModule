@@ -157,8 +157,8 @@ myApp.controller('shareissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 
 ])
-myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
+myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -270,7 +270,9 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
             }
             else {
-                R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                vm.mode = 'edit';
+                var fields = invalid.Error($scope.shareissueform);
+                R1Util.createAlert($scope, "Error", fields, null);
             }
         }
 

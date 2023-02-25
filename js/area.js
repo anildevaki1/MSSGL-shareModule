@@ -111,8 +111,8 @@ myApp.controller('areadashCtrl', ['$scope', 'ajax', '$state', 'R1Util',
 
 ])
 
-myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax', 'R1Util', 'Master', '$rootScope',
-    function ($scope, $stateParams, $q, shareData, ajax, R1Util, Master, $rootScope) {
+myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax', 'R1Util', 'Master', '$rootScope','invalid',
+    function ($scope, $stateParams, $q, shareData, ajax, R1Util, Master, $rootScope,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -231,7 +231,12 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
 
             }
             else {
-                R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                // R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                
+                // invalid.Error($scope.areaform);
+                vm.mode = 'edit';
+                var fields = invalid.Error($scope.areaform);
+                R1Util.createAlert($scope, "Error", fields, null);
             }
         }
         vm.newrecord = function () {

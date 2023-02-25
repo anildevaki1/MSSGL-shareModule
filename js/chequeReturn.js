@@ -133,8 +133,8 @@ vm.edit = function (grid, row) {
 
     }])
 
-myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ( $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
+myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master','invalid',
+    function ( $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,invalid) {
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
@@ -245,9 +245,11 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
             else
             {
                 vm.mode = 'edit';
-                $(".loading").hide();
-                R1Util.createAlert($scope, "Error", "Validation Failed", null);
-                fn("CANCEL")
+                // $(".loading").hide();
+                // R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                // fn("CANCEL")
+                var fields = invalid.Error($scope.chequereturnform);
+                R1Util.createAlert($scope, "Error", fields, null);
             }
 
 

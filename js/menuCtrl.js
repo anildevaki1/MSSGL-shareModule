@@ -142,11 +142,27 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
             path: 'parent.sub.Dividend',
             params: { action: '', mode: true },
         },
-        // {
-        //     icon: 'bi bi-mastodon', name: "कंपनी", path: 'parent.sub.company',
-        // }
 
 
+        {
+            icon: 'bi bi-mastodon', name: "रीपोर्ट ", path: 'masterchild',
+
+
+            content: [
+
+                {
+                    icon: "bi bi-cast",
+                    name: 'मतदार यादी',
+                    path: 'parent.sub.electorslist',
+                    params: { action: '', mode: true },
+
+                },
+            ]
+        }
+
+
+       
+        
     ]
     $scope.stateGo = function (path, params) {
         $state.go(path);

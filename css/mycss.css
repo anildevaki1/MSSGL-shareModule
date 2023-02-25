@@ -70,6 +70,18 @@ tfoot {
   font-weight: bold;
 }
 
+
+.form-check,
+    .form-switch {
+        padding-left: 0px !important;
+    }
+
+    .form-switch {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+
  
   
 

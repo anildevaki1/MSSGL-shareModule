@@ -115,8 +115,8 @@ myApp.controller('religiondashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
 ])
 
-myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master) {
+myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -194,7 +194,7 @@ myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 
                     $(".loading").show();
                     if (!vm.entity.castCode)
                         ajax.post('Religion/insert', vm.entity).then(function (res) {
-                            if (res) {
+                         
                                 vm.entity.castCode = res.castCode;
                                 $(".loading").hide();
     
@@ -203,50 +203,40 @@ myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 
                                 pastEntity = angular.copy(vm.entity);
                                 fn("OK");
     
-                            } else {
-                                var error = "An Error has occured while saving record!";
-    
-                                if (res.error)
-                                    if (res.error.message)
-                                        error = res.error.message;
-    
-                                vm.mode = 'edit';
+                            }  ,
+                            function (err) {
                                 $(".loading").hide();
-                                R1Util.createAlert($scope, "Error", error, null);
+                                vm.mode = 'edit';
                                 fn("CANCEL")
-                            }
+                                R1Util.createAlert($scope, "Error", err.msg, null);
+                            })
+                           
     
-                        })
                     else {
                         ajax.put('religion/update', vm.entity, { id: vm.entity.castCode }).then(function (res) {
-                            if (res) {
+                         
                                 $(".loading").hide();
                                 $scope.message = "Record Saved Sucessfully";
                                 R1Util.createAlert($scope, "Success", $scope.message, null);
                                 pastEntity = angular.copy(vm.entity);
                                 fn("OK");
-                            } else {
-                                var error = "An Error has occured while saving record!";
-    
-                                if (res.error)
-                                    if (res.error.message)
-                                        error = res.error.message;
-    
-                                vm.mode ='edit';
+                            }, function (err) {
                                 $(".loading").hide();
-                                R1Util.createAlert($scope, "Error", error, null);
+                                vm.mode = 'edit';
                                 fn("CANCEL")
-                            }
+                                R1Util.createAlert($scope, "Error", err.msg, null);
+        
+                            })
+                        }
+
     
-                        })
-                    }
-    
-                } else
-                {
+                } else {
+
                     vm.mode = 'edit';
-                    $(".loading").hide();
-                    R1Util.createAlert($scope, "Error", err.msg, null);
-                    fn("CANCEL")
+                    var fields= invalid.Error($scope.religionform);
+                     R1Util.createAlert($scope, "Error", fields, null);
+                    // R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                    // invalid.Error($scope.religionform);
                 }
 
 
@@ -279,11 +269,10 @@ myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 
 
            
         getExistEntity = function () {
-
-            ajax.get('Religion/get', null,{id: vm.entity.castCode} ).then(function (res) {
+            ajax.get('Religion/get', null,{id: vm.entity.castCode}).then(function (res) {
                 vm.entity = res;
-              
                 pastEntity = angular.copy(vm.entity);
+
             }, function (err) {
                 R1Util.createAlert($scope, "Error", err.msg, null);
             })
@@ -298,9 +287,8 @@ myApp.controller('religionCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 
             var q = $q.defer();
 
             var p = getScheduldCasts();
-            var s=getExistEntity()
-            $q.all([p,s]).then(function (res) {
-
+         //   var s=getExistEntity()
+            $q.all([p]).then(function (res) {
                 q.resolve();
             }, function (err) {
 

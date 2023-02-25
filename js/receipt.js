@@ -140,8 +140,8 @@ myApp.controller('receiptdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 ])
 
-myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($filter, $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,) {
+myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master','invalid',
+    function ($filter, $scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -230,8 +230,7 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
 
                     }, function (err) {
                         vm.mode = 'edit';
-                        fn("CANCEL")
-
+                        // fn("CANCEL")
                         R1Util.createAlert($scope, "Error", err.msg, null);
                     });
                 else {
@@ -256,10 +255,12 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
             }
             else
             {
-                vm.mode = 'edit';
-                $(".loading").hide();
-                R1Util.createAlert($scope, "Error", err.msg, null);
-                fn("CANCEL")
+              vm.mode = 'edit';
+                // $(".loading").hide();
+                // R1Util.createAlert($scope, "Error", err.msg, null);
+                // fn("CANCEL")
+                var fields = invalid.Error($scope.receiptform);
+                R1Util.createAlert($scope, "Error", fields, null);
             }
         }
 
@@ -267,11 +268,7 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
             pastEntity = vm.entity;
             vm.entity = {};
             vm.entity.vchDate = new Date();
-
-
-        }
-
-
+ }
 
         $scope.amount = function () {
             vm.entity.totalAmt = parseFloat(vm.entity.enteranceFee) + parseFloat(vm.entity.shareAmt);

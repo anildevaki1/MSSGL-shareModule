@@ -628,18 +628,19 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       params: { id: null,action:null }
     })
 
-    // .state("parent.sub.logout", {
-    //   url: "/logout",
-    //   templateUrl: "src/components/assets/logout.html",
-    //   controller: 'logoutCtrl as vm',
-    //   params: { id: null,action:null }
-    // })
+   
+    .state("parent.sub.electorslist", {
+      url: "/electorslist",
+      templateUrl: "Reports/src/Electorslist.html",
+      controller: 'electorslistCtrl as vm',
+      params: { id: null,action:null }
+    })
 
 
-    // .state("parent.sub.logout", {
-    //   url: "/logoutdash",
-    //   templateUrl: "src/components/assets/logoutd.html",
-    //   controller: 'logoutdashCtrl as vm',
+    // .state("parent.sub.electorsdash", {
+    //   url: "/electorsdash",
+    //   templateUrl: "Reports/src/electorsdash.html",
+    //   controller: 'electorsdashCtrl as vm',
 
     // })
 
