@@ -7,6 +7,11 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
         vm.entity = {};
         vm.reference = {};
         vm.entity.edt = new Date();
+      
+
+
+   
+
 
         vm.ALLplace = {
             'cityName': 'सर्व',
@@ -133,6 +138,76 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
              params +="&pagebreak="+(vm.entity.break||"false")
 
           window.open(myprovider.appserver+"report/electors?"+params);
+      
+    }
+
+    }])
+
+
+
+
+    myApp.controller('recregCtrl', ['ajax', '$scope','$filter','myprovider','$http',
+    function (ajax, $scope,$filter,myprovider,$http) {
+        var vm = this;
+        vm.entity = {};
+        vm.reference = {};
+        vm.entity.edt = new Date();
+        vm.entity.sdt = new Date();
+//    vm.entity.sdt = monthsAgo(vm.entity.sdt)
+   
+
+     
+
+        vm.format = [
+            {
+                "value": 1,
+                "name": "Pdf"
+            },
+            {
+                "value": 2,
+                "name": "Excel"
+            },
+
+        ]
+        vm.entity.format = 1;
+
+
+        vm.index = [
+            {
+                "value": 1,
+                "name": "सभासद नंबर"
+            },
+            {
+                "value": 2,
+                "name": "सभासद नाव"
+            },
+            {
+                "value": 3,
+                "name": "गाव"
+            },
+         
+        ]
+        vm.entity.index = 1;
+
+      
+   
+
+        $scope.show = function () {
+            var params = {
+                sdt:  $filter('date')(vm.entity.sdt, 'yyyy-MM-dd'),
+                edt:  $filter('date')(vm.entity.edt, 'yyyy-MM-dd'),
+                format: (vm.entity.format==1 ? "PDF" :"EXCEL"),
+                orderBy: vm.entity.index,
+               
+            }
+      
+         var params= "edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+             params+= "&sdt="+ $filter('date')(vm.entity.sdt, 'yyyy-MM-dd')
+             params +="&format="+ (vm.entity.format==1 ? "PDF" :"EXCEL")
+             params +="&orderBy="+vm.entity.index
+          
+
+          window.open(myprovider.appserver+"report/recreg?"+params);
       
     }
 
