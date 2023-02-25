@@ -157,6 +157,13 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                     params: { action: '', mode: true },
 
                 },
+                {
+                    icon: "bi bi-cast",
+                    name: 'पावती पुस्तक',
+                    path: 'parent.sub.recreg',
+                    params: { action: '', mode: true },
+
+                },
             ]
         }
 
