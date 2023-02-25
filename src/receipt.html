@@ -36,7 +36,7 @@
                                     </label>
                                     <div>
                                         <input type="date" name="vchdate" data-ng-model="vm.entity.vchDate"
-                                            class="form-control input-sm" autocomplete="off" title="vchdate" />
+                                            class="form-control input-sm" autocomplete="off" title="vchdate"  required/>
                                     </div>
                                 </div>
 
@@ -44,9 +44,9 @@
                                 <div class="form-group col-sm-6  m-1">
                                     <label for="title"> अपूर्ण सभासद नंबर </label>
                                     <div class="input-group">
-                                        <input type="text" id="member_number" name="member_number"
+                                        <input type="text" id="member_number" name="अपूर्ण सभासद नंबर"
                                             ng-blur="getMemberRequestdetail()" class="form-control input-sm"
-                                            ng-Model="vm.entity.regCode" numbers-only />
+                                            ng-Model="vm.entity.regCode" numbers-only  required/>
 
                                         <span class="input-group-text p-0">
                                             <helper helperid="memberRequest"id="name" list=" vm.MemberRequests" width="30%"
@@ -61,7 +61,7 @@
                                 <div class="form-group col-sm-10 m-1">
                                     <label for="title"> अपूर्ण सभासद नाव</label>
                                     <div>
-                                        <input type="text" class="form-control input-sm"
+                                        <input type="text" class="form-control input-sm" 
                                             ng-value="vm.entity.memberRequest.shName" disabled />
                                         <input type="text" class="form-control input-sm"
                                             ng-value="vm.entity.memberRequest.cityCodeNavigation.cityName" disabled />
@@ -76,9 +76,9 @@
                                 <div class="form-group col-sm-5 m-1">
                                     <label for="enterance_fee">प्रवेश शुल्क</label>
                                     <div>
-                                        <input type="text" id="enterance_fee" name="enterance_fee" ng-change="amount()"
+                                        <input type="text" id="enterance_fee" name="प्रवेश शुल्क" ng-change="amount()"
                                             class="form-control input-sm text-end" ng-model="vm.entity.enteranceFee"
-                                            autocomplete="off" data-format="currency" data-fraction="2" />
+                                            autocomplete="off" data-format="currency" data-fraction="2" required />
                                     </div>
                                 </div>
                             </div>
@@ -86,8 +86,8 @@
                                 <div class="form-group col-sm-5 m-1">
                                     <label for="quantity"> शेअर संख्या</label>
                                     <div>
-                                        <input type="text" id="quantity" name="quantity"
-                                            class="form-control input-sm text-end" ng-model="vm.entity.shareQty" />
+                                        <input type="text" id="quantity" name="शेअर संख्या"
+                                            class="form-control input-sm text-end" ng-model="vm.entity.shareQty" required/>
                                     </div>
                                 </div>
                             </div>
@@ -96,9 +96,9 @@
                                     <label for="share_amount">शेअर रक्कम</label>
 
                                     <div>
-                                        <input type="text" id="share_amt" name="share_amt" ng-change="amount()"
+                                        <input type="text" id="share_amt" name="शेअर रक्कम" ng-change="amount()"
                                             class="form-control input-sm text-end" ng-model="vm.entity.shareAmt"
-                                            data-format="currency" data-fraction="2" />
+                                            data-format="currency" data-fraction="2" required/>
                                     </div>
                                 </div>
                             </div>

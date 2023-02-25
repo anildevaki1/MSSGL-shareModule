@@ -36,8 +36,8 @@
                                         तारीख
                                     </label>
                                     <div>
-                                        <input type="date" name="vchdate" data-ng-model="vm.entity.vchDate"
-                                            class="form-control input-sm" autocomplete="off" />
+                                        <input type="date" name="तारीख" data-ng-model="vm.entity.vchDate"
+                                            class="form-control input-sm" autocomplete="off" required />
                                     </div>
                                 </div>
 
@@ -45,9 +45,9 @@
                                 <div class="form-group col-sm-6  m-1">
                                     <label for="title"> अपूर्ण सभासद नंबर </label>
                                     <div class="input-group">
-                                        <input type="text" id="member_number" name="member_number"
+                                        <input type="text" id="member_number" name="अपूर्ण सभासद नाव"
                                             ng-blur="getMemberRequestdetail()" class="form-control input-sm"
-                                            ng-Model="vm.entity.regCode" numbers-only />
+                                            ng-Model="vm.entity.regCode" numbers-only required/>
 
                                         <span class="input-group-text p-0">
                                             <helper helperid="memberRequest"id="name" list=" vm.MemberRequests" width="30%"

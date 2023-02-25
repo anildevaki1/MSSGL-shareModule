@@ -167,8 +167,8 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 ])
 
-myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
+myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -261,8 +261,10 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
             }
             else {
                 vm.mode = 'edit';
-                fn("CANCEL")
-                R1Util.createAlert($scope, "Error", 'Validation Failed ', null);
+                // fn("CANCEL")
+                // R1Util.createAlert($scope, "Error", 'Validation Failed ', null);
+                var fields = invalid.Error($scope.memberrequestform);
+                R1Util.createAlert($scope, "Error", fields, null);
             }
 
 

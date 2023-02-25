@@ -165,8 +165,8 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 ])
 
-myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
+myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,invalid) {
 
         var vm = this;
         $scope.Master=Master;
@@ -297,8 +297,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             else
             {
                 vm.mode = 'edit';
-                fn("CANCEL");
-                R1Util.createAlert($scope, "Error",'Validation Failed', null); 
+                var fields = invalid.Error($scope.memberform);
+                R1Util.createAlert($scope, "Error", fields, null);
             }
 
         }
@@ -309,6 +309,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             vm.entity = {};
             vm.entity.gender = 1;
             vm.entity.regDt = new Date();
+            vm.entity.deathDate = new Date();
         }
 
         var getDesignations = function () {
@@ -390,6 +391,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             
                 vm.entity = res;
                 vm.entity.regDt = new Date(vm.entity.regDt);
+                vm.entity.deathDate = new Date(vm.entity.deathDate);
                 pastEntity = angular.copy(vm.entity);
             }, function (err) {
 

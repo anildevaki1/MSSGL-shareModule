@@ -139,8 +139,8 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
     }])
 
-myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master) {
+myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,invalid) {
         var vm = this;
         $scope.Master = Master;
         vm.mode = 'new';
@@ -253,9 +253,11 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
             else
             {
                 vm.mode = 'edit';
-                $(".loading").hide();
-                R1Util.createAlert($scope, "Error", err.msg, null);
-                fn("CANCEL")
+                var fields = invalid.Error($scope.chequeissueform);
+                R1Util.createAlert($scope, "Error", fields, null);
+                // $(".loading").hide();
+                // R1Util.createAlert($scope, "Error", err.msg, null);
+                // fn("CANCEL")
             }
 
 

@@ -101,6 +101,7 @@ myApp.filter('trust', ['$sce', function ($sce) {
 }])
 
     .service('validations', validations)
+    .service('invalid', invalid)
     .service('companyinfo', companyinfo)
     .factory('httpTimeout', httpTimeout)
     .directive('datepicker', datepicker)
@@ -292,6 +293,19 @@ myApp.directive('numbersOnly', function () {
     };
 });
 
+function invalid() {
+    this.Error = function (x) {
+        var b = [];
+        x.$error.required.forEach(function (element) {
+            b.push(element.$$attr.name + '&nbsp;');
+        });
+        return   "<span class=text-danger> Validation Failed </span> <br/>----------------------- <br>" + b;
+    }
+
+    
+}
+
+
 myApp.directive("limitToMax", function () {
     return {
         link: function (scope, element, attributes) {
@@ -356,7 +370,7 @@ myApp.directive('ngMin', function () {
             scope.$watch(attr.ngMin, function () {
                 ctrl.$setViewValue(ctrl.$viewValue);
             });
-ngmode
+            ngmode
             var minValidator = function (value) {
                 // var min = scope.$eval(attr.ngMin) || 0;
 
@@ -1360,13 +1374,15 @@ myApp.service('ajax', ['$http', '$q', '$rootScope', 'httpLoader', "myprovider", 
 
             }
             else
-                msg = data.message ;
+                msg = data.message;
 
         }
 
         return msg;
     }
 
+
+    
 
 }]);
 
@@ -4438,7 +4454,7 @@ myApp.directive('rdlcviewer', ['$sce', 'ajax', '$filter', 'companyinfo', functio
     }
 }]);
 
- 
+
 //FROM GFL 
 myApp.directive("helper", function () {
     return {
@@ -4609,14 +4625,14 @@ myApp.directive("helper", function () {
                 if (item) {
 
                     scope.SelectedRow = item;
-                    if( scope.datasource )
-                    scope.datasource = item[scope.SelectedValue];
-                    
+                    if (scope.datasource)
+                        scope.datasource = item[scope.SelectedValue];
+
                     ctrl.$setViewValue(item[scope.SelectedValue]);
                     ctrl.$commitViewValue();
                     ctrl.$render();
-                   
-                   
+
+
 
                 }
             }

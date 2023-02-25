@@ -101,8 +101,8 @@ myApp.controller('schedulddashCtrl', ['$scope', '$state',  'ajax', 'R1Util',
 
 ])
 
-myApp.controller('scheduldcastCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master) {
+myApp.controller('scheduldcastCtrl', ['$scope', '$stateParams', '$q', '$rootScope',  'R1Util',  'ajax', 'Master','invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax,Master,invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -214,7 +214,10 @@ myApp.controller('scheduldcastCtrl', ['$scope', '$stateParams', '$q', '$rootScop
                     }
     
                 }  else {
-                    R1Util.createAlert($scope, "Error", "Validation Failed", null);
+                    vm.mode = 'edit';
+                    var fields= invalid.Error($scope.scheduldcastform);
+                     R1Util.createAlert($scope, "Error", fields, null);
+                    // R1Util.createAlert($scope, "Error", "Validation Failed", null);
                 }
             }
             vm.newrecord = function () {
