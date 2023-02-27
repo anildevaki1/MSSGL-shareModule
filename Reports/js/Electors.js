@@ -212,3 +212,6 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
     }
 
     }])
+
+
+   
