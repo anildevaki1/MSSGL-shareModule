@@ -107,7 +107,9 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
             var params = {
                 edt:  $filter('date')(vm.entity.edt, 'yyyy-MM-dd'),
                 placeId: vm.entity.cityCode,
-                areaId: vm.entity.areaCode,
+                // areaId:vm.entity.areaCode,
+                // placeId: vm.reference.selectedplace.cityCode,
+                areaId: vm.reference.selectedarea.areaCode,
                 format: (vm.entity.format==1 ? "PDF" :"EXCEL"),
                 groupBy: vm.entity.group,
                 orderBy: vm.entity.index,
@@ -196,6 +198,7 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
             var params = {
                 sdt:  $filter('date')(vm.entity.sdt, 'yyyy-MM-dd'),
                 edt:  $filter('date')(vm.entity.edt, 'yyyy-MM-dd'),
+                placeId: vm.entity.cityCode,
                 format: (vm.entity.format==1 ? "PDF" :"EXCEL"),
                 orderBy: vm.entity.index,
                
@@ -203,6 +206,7 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
       
          var params= "edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
              params+= "&sdt="+ $filter('date')(vm.entity.sdt, 'yyyy-MM-dd')
+            //  params +="&placeId="+vm.entity.cityCode
              params +="&format="+ (vm.entity.format==1 ? "PDF" :"EXCEL")
              params +="&orderBy="+vm.entity.index
           

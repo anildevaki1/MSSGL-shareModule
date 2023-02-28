@@ -173,7 +173,7 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                 },
                 {
                     icon: "bi bi-person-circle",
-                    name: 'पु .स.खतावणी',
+                    name: 'पू.स.खतावणी',
                     path: 'parent.sub.memberrep',
                     params: { action: '', mode: true },
 

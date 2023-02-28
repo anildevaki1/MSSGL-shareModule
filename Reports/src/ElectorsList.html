@@ -27,14 +27,14 @@
                                 </label>
                                 <div>
                                     <input type="date" name="date" data-ng-model="vm.entity.edt"
-                                        class="form-control input-sm" autocomplete="off" title="vchdate" />
+                                        class="form-control  form-control-sm" autocomplete="off" title="vchdate"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="title">अनुक्रमणिका</label>
 
                                 <div>
-                                    <select class="form-select input-sm" ng-model="vm.entity.index"
+                                    <select class="form-select form-select-sm" ng-model="vm.entity.index"
                                         ng-options="item.value as item.name for item in vm.index">
                                     </select>
                                 </div>
@@ -43,7 +43,7 @@
                             <div class="form-group mb-3">
                                 <label for="title">वर्गीकरण </label>
                                 <div>
-                                    <select class="form-select input-sm" ng-model="vm.entity.group"
+                                    <select class="form-select form-select-sm" ng-model="vm.entity.group"
                                         ng-options="item.value as item.name for item in vm.group">
                                     </select>
                                 </div>
@@ -52,7 +52,7 @@
 
                             <div class="form-group ">
 
-                                <div class="form-check form-switch  border p-2">
+                                <div class="form-check form-switch  border p-1">
 
 
                                     <input class="form-check-input" type="checkbox" ng-model="vm.entity.break"
@@ -76,7 +76,7 @@
                             <div class="form-group col-sm-5">
                                 <label for="title">स्वरूप (format) </label>
                                 <div>
-                                    <select class="form-select input-sm" ng-model="vm.entity.format"
+                                    <select class="form-select form-select-sm" ng-model="vm.entity.format"
                                         ng-options="item.value as item.name for item in vm.format">
                                     </select>
                                 </div>

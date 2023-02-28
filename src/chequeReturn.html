@@ -21,7 +21,7 @@
                                 </label>
                                 <div>
                                     <input type="text" name="vchid" data-ng-model="vm.entity.vchId"
-                                        class="form-control input-sm" placeholder="स्वयंम  क्रमांक"
+                                        class="form-control form-control-sm" placeholder="स्वयंम  क्रमांक"
                                         autocomplete="off" />
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 </label>
                                 <div>
                                     <input type="date" name="vchdate" data-ng-model="vm.entity.vchDate"
-                                        class="form-control input-sm" autocomplete="off" title="vchdate" />
+                                        class="form-control form-control-sm" autocomplete="off" title="vchdate" />
                                 </div>
                             </div>
 
@@ -40,7 +40,7 @@
                                 <label for="title">सभासद नंबर </label>
                                 <div class="input-group">
                                     <input type="text" id="member_number" name="member_number"
-                                        ng-blur="getMemberdetail()" class="form-control input-sm"
+                                        ng-blur="getMemberdetail()" class="form-control form-control-sm"
                                         ng-Model="vm.entity.regCode" numbers-only />
     
                                         <span class="input-group-text p-0">
@@ -56,9 +56,9 @@
                             <div class="form-group col-sm-10 m-1">
                                 <label for="title">सभासद नाव</label>
                                 <div>
-                                    <input type="text" class="form-control input-sm"
+                                    <input type="text" class="form-control form-control-sm"
                                         ng-value="vm.entity.regCodeNavigation.shName" disabled />
-                                    <input type="text" class="form-control input-sm"
+                                    <input type="text" class="form-control form-control-sm"
                                         ng-value="vm.entity.regCodeNavigation.cityCodeNavigation.cityName" disabled />
                                 </div>
     
@@ -69,7 +69,7 @@
                                 <label for="title">बँक(शाखा)</label>
     
                                 <div>
-                                    <input type="text" id="bankbranch" name="bankbranch" class="form-control input-sm"
+                                    <input type="text" id="bankbranch" name="bankbranch" class="form-control form-control-sm"
                                         ng-model="vm.entity.bankName" />
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                           
                             <div class=" form-group">
                                 <input type="text" name="vchid" data-ng-model="vm.entity.chNo"
-                                class="form-control input-sm" autocomplete="off" />
+                                class="form-control form-control-sm" autocomplete="off" />
                                   
                             </div>
                         </div>
@@ -92,7 +92,7 @@
 
                             <div>
                                 <input type="text" id="share_amt" name="share_amt"
-                                    class="form-control input-sm text-end fw-bold" ng-model="vm.entity.chAmt"
+                                    class="form-control form-control-sm text-end fw-bold" ng-model="vm.entity.chAmt"
                                     data-format="currency" data-fraction="2" />
                             </div>
                         </div>
@@ -105,14 +105,14 @@
                                 </label>
                                 <div>
                                     <input type="date" name="vchdate" data-ng-model="vm.entity.chDt"
-                                        class="form-control input-sm" autocomplete="off" title="vchdate" />
+                                        class="form-control form-control-sm" autocomplete="off" title="vchdate" />
                                 </div>
                             </div>
 
                             <div class="form-group col-sm-6 m-1">
                                 <label for="address">टिप्पणी</label>
                                 <div>
-                                    <textarea id="Address" class="form-control" autocomplete="off"
+                                    <textarea id="Address" class="form-control form-control-sm" autocomplete="off"
                                         ng-model="vm.entity.reason" style="width: 400px;height: 97px;">
                                                          </textarea>
                                 </div>
