@@ -1,0 +1,194 @@
+<form class="form-horizontal" role="form" name="placeform">
+
+    <!-- <div class="form-body p-0">
+        <div>
+            <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
+        </div>
+    </div> -->
+
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+
+        <div class="form-group p-1">
+
+            <div class="card ">
+
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-cast"></i>
+                    <strong>सभासद यादी </strong>
+
+                </div>
+                <!-- #abc135 -->
+
+
+
+
+
+
+
+                <div class="card-body">
+                    <div class="row ">
+
+
+                        <div class="col-sm-3 mb-1  ">
+                            <div class="row col-12 ">
+
+                                <div class="form-group">
+                                    <label for="title">
+                                        अखेर तारीख
+                                    </label>
+                                    <div>
+                                        <input type="date" name="date" data-ng-model="vm.entity.edt"
+                                            class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row col-12 p-2 m-0">
+                               
+
+                                <!-- <div class="row col-6 ">
+                                    <div class="form-check reversscale  mb-3  border m-2 p-1 px-2 w-80">
+                                        <input class="form-check-input" type="radio" value="1" ng-model="isChecked">
+                                        <label class="form-check-label">
+                                            पूर्ण सभासद
+                                        </label>
+                                    </div>
+                                </div>
+
+                             
+                                <div class="row col-6 ">
+                                    <div class="form-check reversscale  mb-3  border m-2 p-1 px-2 w-80">
+                                        <input class="form-check-input" type="radio" value="2" ng-model="isChecked">
+                                        <label class="form-check-label">
+                                            अपूर्ण सभासद
+                                        </label>
+                                    </div>
+                                </div> -->
+                                <div class="pl-10">
+                                <div class="form-check">
+                                    <input class="form-check-input"  ng-model="isChecked" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1">
+                                    <label class="form-check-label"  for="flexRadioDefault1" >
+                                        पूर्ण सभासद
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input"  ng-model="isChecked" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        अपूर्ण सभासद
+                                    </label>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3  ">
+
+                            <div class="form-group col-sm-12   m-1">
+                                <label for="village">गाव</label>
+                                <!-- <div>
+                                    <select class="form-select input-sm" ng-model="vm.entity.cityCode"
+                                        ng-options="item.cityCode as item.cityName for item in vm.Places">
+                                    </select>
+                                </div> -->
+                                <div>
+                                    <multicolumncombo list="vm.reference.Places" datasource="vm.entity"
+                                        datamember="cityCode" row="vm.reference.selectedplace"
+                                        placeholder="Please select place" class="form-control p-1"
+                                        displayvalue="cityName" name="गाव" selectedvalue="cityCode" extralables=""
+                                        disablefn="Master.formdisabled(vm.mode)" required>
+                                    </multicolumncombo>
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-12 m-1">
+                                <label for="title">गट</label>
+
+
+                                <div>
+                                    <multicolumncombo list="vm.reference.areas" datasource="vm.entity"
+                                        datamember="areaCode" row="vm.reference.selectedarea"
+                                        placeholder="Please select areas" class="form-control p-1"
+                                        displayvalue="areaName" name="areasnm" selectedvalue="areaCode" extralables=""
+                                        disablefn="Master.formdisabled(vm.mode)">
+                                    </multicolumncombo>
+
+                                </div>
+                            </div>
+                            <!-- <div class="form-group col-sm-12 m-1">
+                                <label for="bankbranch">बँक(शाखा)</label>
+
+                                <div>
+                                    <multicolumncombo list="vm.reference.BankBranches" datasource="vm.entity"
+                                        datamember="branchCode" row="vm.reference.selectedbankBranche"
+                                        placeholder="Please select bankBranche" class="form-control p-1"
+                                        displayvalue="branchName" name="bankBranchenm" selectedvalue="branchCode"
+                                        extralables="" disablefn="Master.formdisabled(vm.mode)">
+                                    </multicolumncombo>
+
+
+
+                                </div>
+                            </div> -->
+
+
+
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="form-group col-sm-4  m-1 p-1">
+                                <label for="title">अनुक्रमणिका</label>
+
+                                <div>
+                                    <select class="form-select form-select-sm" ng-model="vm.entity.index"
+                                        ng-options="item.value as item.name for item in vm.index">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-4 m-1 p-1">
+                                <label for="title">स्वरूप (format) </label>
+                                <div>
+                                    <select class="form-select form-select-sm" ng-model="vm.entity.format"
+                                        ng-options="item.value as item.name for item in vm.format">
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class=" form-group col-sm-6 m-2">
+                                <br>
+                                <button type="button" class="btn btn-primary btn-sm " style="width: 120px;"
+                                    ng-click="show()">पहा </button>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        </div>
+
+
+
+        </div>
+
+        </div>
+
+    </fieldset>
+</form>
+<style>
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+</style>

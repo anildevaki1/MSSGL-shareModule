@@ -178,6 +178,20 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                     params: { action: '', mode: true },
 
                 },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'सभासद यादी',
+                     path: 'parent.sub.memberlist',
+                    params: { action: '', mode: true },
+
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'सभासद संक्षिप्त ',
+                     path: 'parent.sub.membersnshipt',
+                    params: { action: '', mode: true },
+
+                },
             ]
         }
 

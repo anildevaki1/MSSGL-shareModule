@@ -76,11 +76,20 @@ tfoot {
         padding-left: 0px !important;
     }
 
-    .form-switch {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
+
+    .reversscale{
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
     }
+
+    .form-switch {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+
+
 
  
   
