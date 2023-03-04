@@ -20,7 +20,7 @@
                                     <label>अपूर्ण सभासद नंबर</label>
                                     <div>
                                         <input type="text" id="amember_number" name="amember_number"
-                                            ng-blur="getMemberRequestdetail()" class="form-control input-sm"
+                                            ng-blur="getMemberRequestdetail()" class="form-control form-control-sm"
                                             ng-Model="vm.entity.reqCode" numbers-only ng-disabled="vm.mode=='edit'" />
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                 <div class="form-group col-sm-6">
                                     <label>सभासद नंबर</label>
                                     <div>
-                                        <input type="text" id="member_no" name="सभासद नंबर" class="form-control input-sm"
+                                        <input type="text" id="member_no" name="सभासद नंबर" class="form-control form-control-sm"
                                             placeholder="स्वयं क्रमांक" ng-Model="vm.entity.regCode" numbers-only />
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                             <div class="form-group col-sm-12">
                                 <label for="member_name">सभासदाचे नाव</label>
                                 <div>
-                                    <input type="text" id="member_name" name="सभासदाचे नाव" class="form-control input-sm"
+                                    <input type="text" id="member_name" name="सभासदाचे नाव" class="form-control form-control-sm"
                                         ng-model="vm.entity.shName" required/>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                                     पत्ता
                                 </label>
                                 <div>
-                                    <textarea id="mbrAddress" class="form-control" autocomplete="off"
+                                    <textarea id="mbrAddress" class="form-control form-control-sm" autocomplete="off"
                                         ng-model="vm.entity.shAddress" style="width: 373px; height: 100px;">
                                     </textarea>
                                 </div>
@@ -116,7 +116,7 @@
                                 <label for="nominee">वारसदार</label>
                                 <div>
                                     <input type="text" id="nominee" name="nominee" autocomplete="off"
-                                        ng-model="vm.entity.shNominee" class="form-control input-sm" />
+                                        ng-model="vm.entity.shNominee" class="form-control form-control-sm" />
                                 </div>
                             </div>
                             <div class="form-group col-sm-12">
@@ -125,7 +125,7 @@
                                 </label>
                                 <div>
                                     <input type="text" id="nominee_ralation" name="nominee_ralation" autocomplete="off"
-                                        ng-model="vm.entity.shNomineeRelation" class="form-control input-sm" />
+                                        ng-model="vm.entity.shNomineeRelation" class="form-control form-control-sm" />
                                 </div>
                             </div>
 
@@ -223,7 +223,7 @@
                                         वय
                                     </label>
                                     <div>
-                                        <input type="text" id="age" name="age" class="form-control input-sm text-end"
+                                        <input type="text" id="age" name="age" class="form-control form-control-sm text-end"
                                             ng-model="vm.entity.age" autocomplete="off" numbers-only />
                                     </div>
                                 </div>
@@ -231,7 +231,7 @@
                                     <label for="date">मंजूरी तारीख</label>
                                     <div>
                                         <input type="date" name="date" data-ng-model="vm.entity.regDt"
-                                            class="form-control input-sm" id="date" autocomplete="off" title="" />
+                                            class="form-control form-control-sm" id="date" autocomplete="off" title="" />
                                     </div>
                                 </div>
 
@@ -241,7 +241,7 @@
                                     </label>
                                     <div>
                                         <input type="text" id="no" name="no" autocomplete="off"
-                                            ng-model="vm.entity.meetingRefNo" class="form-control input-sm " />
+                                            ng-model="vm.entity.meetingRefNo" class="form-control form-control-sm" />
                                     </div>
                                 </div>
 
@@ -289,7 +289,7 @@
                                     </label>
                                     <div>
                                         <input type="text" id="account_no" name="account_no" autocomplete="off"
-                                            ng-model="vm.entity.bankAccNo" class="form-control input-sm " />
+                                            ng-model="vm.entity.bankAccNo" class="form-control form-control-sm" />
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +321,7 @@
                                                 <div>
                                                     <input type="date" name="vchdate"
                                                         data-ng-model="vm.entity.deathDate"
-                                                        class="form-control input-sm" autocomplete="off"
+                                                        class="form-control form-control-sm" autocomplete="off"
                                                         title="vchdate" />
                                                 </div>
                                             </div>
@@ -333,7 +333,7 @@
                                                 <div class="input-group">
                                                     <input type="text" id="cert_no" name="cert_no" autocomplete="off"
                                                         ng-model="vm.entity.deathCertNo"
-                                                        class="form-control input-sm" />
+                                                        class="form-control form-control-sm" />
 
 
                                                 </div>

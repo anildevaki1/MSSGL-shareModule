@@ -10,37 +10,28 @@
 
                 <div class="card-header" style="background-color:#caf0f8">
                     <i class="bi bi-cast"></i>
-                    <strong>पावती पुस्तक</strong>
+                    <strong>सभासद संक्षिप्त</strong>
 
                 </div>
                 <!-- #abc135 -->
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-5 offset-sm-1">
-                            <div class="form-group col-sm-4 m-1">
+                            <div class="form-group col-sm-4">
                                 <label for="title">
-                                    पासून
-                                </label>
-                                <div>
-                                    <input type="date" name="date" data-ng-model="vm.entity.sdt"
-                                        class="form-control  form-control-sm" autocomplete="off" />
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-4 m-1">
-                                <label for="title">
-                                    पर्यंत
+                                    अखेर तारीख
                                 </label>
                                 <div>
                                     <input type="date" name="date" data-ng-model="vm.entity.edt"
-                                        class="form-control  form-control-sm" autocomplete="off" />
+                                        class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
                                 </div>
                             </div>
-                            <div class="form-group col-sm-4 m-1">
-                                <label for="title">अनुक्रमणिका</label>
-
+                          
+                            <div class="form-group col-sm-4 mb-3">
+                                <label for="title">वर्गीकरण </label>
                                 <div>
-                                    <select class="form-select form-select-sm" ng-model="vm.entity.index"
-                                        ng-options="item.value as item.name for item in vm.index">
+                                    <select class="form-select form-select-sm" ng-model="vm.entity.group"
+                                        ng-options="item.value as item.name for item in vm.group">
                                     </select>
                                 </div>
                             </div>
@@ -53,7 +44,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3  text-center m-3">
+                            <div class="col-sm-3  text-center m-4">
 
                                 <button type="button" class="btn btn-primary " style="width: 120px;"
                                     ng-click="show()">पहा </button>

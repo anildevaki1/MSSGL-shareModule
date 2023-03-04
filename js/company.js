@@ -93,9 +93,20 @@ myApp.controller('companyCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
             }
         }
 
+        // var getPlaces = function () {
+        //     ajax.get("Place/list").then(function (res) {
+        //         vm.Places = res;
+        //     }, function (err) {
+        //         var e = err;
+        //     })
+        // }
+
         var getPlaces = function () {
             ajax.get("Place/list").then(function (res) {
-                vm.Places = res;
+                // vm.Places = res;
+                // vm.entity.cityCode = 1;
+                vm.reference.Places = res;
+             
             }, function (err) {
                 var e = err;
             })
@@ -115,6 +126,7 @@ myApp.controller('companyCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
 
         $scope.init = function () {
             vm.entity = {};
+            vm.reference = {};
             var q = $q.defer();
 
 

@@ -212,3 +212,223 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
     }])
 
 
+
+    myApp.controller('memberlistCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+    function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+        var vm = this;
+        vm.entity = {};
+        vm.reference = {};
+       
+        vm.entity.edt = new Date();
+
+     
+ vm.ALLplace = {
+            'cityName': 'सर्व',
+            'cityCode': ''
+        }
+
+        vm.reference.Places = [];
+        ajax.get('place/list').then(function (res) {
+            // res.splice(0, 0, vm.ALLplace);
+            vm.reference.Places = res;
+            vm.reference.Places.push(vm.ALLplace);
+            vm.entity.cityCode = "";
+        }, function (err) {
+
+        })
+   
+
+        vm.ALLarea = {
+            'areaName': 'सर्व',
+            'areaCode': ''
+        }
+
+
+        vm.reference.areas = [];
+        vm.reference.selectedarea = {};
+        ajax.get("Area/list").then(function (res) {
+            //res.splice(0, 0, vm.ALLarea);
+            vm.reference.areas = res;
+            vm.reference.areas.push(vm.ALLarea);
+            vm.entity.areaCode = "";
+        }, function (err) {
+        })
+
+
+
+
+        
+        // vm.ALLbankBranche = {
+        //     'branchName': 'सर्व',
+        //     'branchCode': ''
+        // }
+
+
+        // vm.reference.BankBranches = [];
+        // vm.reference.selectedbankBranche = {};
+        // ajax.get("BankBranch/list").then(function (res) {
+        //     //res.splice(0, 0, vm.ALLarea);
+        //     vm.reference.BankBranches = res;
+        //     vm.reference.BankBranches.push(vm.ALLbankBranche);
+        //     vm.entity.branchCode = "";
+        // }, function (err) {
+        // })
+
+
+
+
+
+        vm.format = [
+            {
+                "value": 1,
+                "name": "Pdf"
+            },
+            {
+                "value": 2,
+                "name": "Excel"
+            },
+
+        ]
+        vm.entity.format = 1;
+
+        vm.index = [
+            {
+                "value": 1,
+                "name": "सभासद नंबरप्रमाणे "
+            },
+           
+            {
+                "value": 2,
+                "name": "गावेप्रमाणे"
+            },
+            {
+                "value": 3,
+                "name": "नावेप्रमाणे"
+            },
+        
+        ]
+        vm.entity.index = 1;
+
+    
+        $scope.isChecked="1";
+
+
+        $scope.show = function () {
+         
+            //  params = "id=" + vm.entity.regCode
+            
+            var  params ="&placeId="+vm.entity.cityCode
+            params += "&edt=" + $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+            params +="&areaId="+vm.entity.areaCode
+            // params +="&areaId="+vm.entity.branchCode
+            params +="&orderBy="+vm.entity.index
+            params += "&membertype=" +  $scope.isChecked
+            params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
+
+            
+          
+           window.open(myprovider.appserver + "Report/memberlist?" + params);
+
+        }
+
+
+
+    }])
+
+
+    
+    myApp.controller('membersnshiptCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+    function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+        var vm = this;
+        vm.entity = {};
+      
+        vm.reference = {};
+        vm.entity.edt = new Date();
+       
+     
+
+        vm.format = [
+            {
+                "value": 1,
+                "name": "Pdf"
+            },
+            {
+                "value": 2,
+                "name": "Excel"
+            },
+
+        ]
+        vm.entity.format = 1;
+
+        vm.group = [
+            {
+                "value": 1,
+                // "name": "[All]"
+                "name": "गांव"
+            },
+            {
+                "value": 2,
+                "name": "गट"
+            },
+            {
+                "value": 3,
+                "name": "गट+गांव"
+            },
+            {
+                "value": 4,
+                "name": "बँक"
+            },
+
+
+        ]
+        vm.entity.group = 1;
+
+    
+
+
+        $scope.show = function () {
+         
+            
+            var  params = "&edt=" + $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+         
+            params +="&groupby="+vm.entity.group
+         
+            params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
+
+            
+          
+           window.open(myprovider.appserver + "Report/shareReg?" + params);
+
+        }
+
+
+    //     $scope.show = function () {
+    //         var params = {
+              
+    //             edt:  $filter('date')(vm.entity.edt, 'yyyy-MM-dd'),
+    //             // placeId: vm.entity.cityCode,
+    //             format: (vm.entity.format==1 ? "PDF" :"EXCEL"),
+    //             groupby: vm.entity.group,
+               
+    //         }
+      
+    //      var params= "edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+           
+    //           params +="&placeId="+vm.entity.cityCode
+    //          params +="&format="+ (vm.entity.format==1 ? "PDF" :"EXCEL")
+    //          params +="&groupby="+vm.entity.group
+          
+
+    //       window.open(myprovider.appserver+"report/shareReg?"+params);
+      
+    // }
+
+
+    }])
+
+
+

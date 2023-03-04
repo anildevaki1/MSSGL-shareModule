@@ -664,6 +664,25 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       params: { id: null,action:null }
     })
 
+
+
+    .state("parent.sub.memberlist", {
+      url: "/memberlist",
+      templateUrl: "Reports/src/memberlist.html",
+      controller: 'memberlistCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.membersnshipt", {
+      url: "/membersnshipt",
+      templateUrl: "Reports/src/membersnshipt.html",
+      controller: 'membersnshiptCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+
     // .state("parent.sub.electorsdash", {
     //   url: "/electorsdash",
     //   templateUrl: "Reports/src/electorsdash.html",

@@ -1,0 +1,319 @@
+    /* line 51, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-content h2 {
+      color: #575757;
+      font-size: 30px;
+      text-align: center;
+      font-weight: 600;
+      text-transform: none;
+      position: relative;
+      margin: 10px 0;
+      padding: 0;
+      line-height: 40px;
+      display: block; }
+    /* line 63, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-content .m-icon {
+      width: 60px;
+      height: 60px;
+      border: 4px solid gray;
+      -webkit-border-radius: 40px;
+      border-radius: 40px;
+      border-radius: 50%;
+      margin: 20px auto;
+      padding: 0;
+      position: relative;
+      box-sizing: content-box; }
+    /* line 75, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-content .m-warning {
+      border-color: #F8BB86; }
+      /* line 77, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-warning .micon-body {
+        position: absolute;
+        width: 5px;
+        height: 30px;
+        left: 50%;
+        top: 10px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        margin-left: -2px;
+        background-color: #F8BB86; }
+      /* line 88, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-warning .micon-dot {
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        margin-left: -3px;
+        left: 50%;
+        bottom: 10px;
+        background-color: #F8BB86; }
+    /* line 100, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-content .m-error {
+      border-color: #F27474; }
+      /* line 102, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-error .x-mark {
+        position: relative;
+        display: block; }
+        /* line 105, ../sass/bootstrap/_modals.scss */
+        .modal-dialog.sweet .modal-content .m-error .x-mark .m-line {
+          position: absolute;
+          height: 5px;
+          width: 45px;
+          background-color: #F27474;
+          display: block;
+          top: 28px;
+          border-radius: 2px; }
+        /* line 114, ../sass/bootstrap/_modals.scss */
+        .modal-dialog.sweet .modal-content .m-error .x-mark .m-left {
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+          -ms-transform: rotate(45deg) \9;
+          left: 8px; }
+        /* line 120, ../sass/bootstrap/_modals.scss */
+        .modal-dialog.sweet .modal-content .m-error .x-mark .m-right {
+          -webkit-transform: rotate(-45deg);
+          -ms-transform: rotate(-45deg) \9;
+          transform: rotate(-45deg);
+          right: 8px; }
+    /* line 128, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-content .m-success {
+      border-color: #A5DC86; }
+      /* line 130, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success:before {
+        -webkit-border-radius: 120px 0 0 120px;
+        border-radius: 120px 0 0 120px;
+        top: -17px;
+        left: -44px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-transform-origin: 60px 60px;
+        transform-origin: 60px 60px; }
+      /* line 140, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success:after {
+        -webkit-border-radius: 0 120px 120px 0;
+        border-radius: 0 120px 120px 0;
+        top: -23px;
+        left: 18px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-transform-origin: 0px 60px;
+        transform-origin: 0px 60px;
+        /*-webkit-animation: rotatePlaceholder 0.7s ease-in;
+        animation: rotatePlaceholder 0.7s ease-in;
+        animation: rotatePlaceholder 0.7s ease-in;*/ }
+      /* line 153, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success:before, .modal-dialog.sweet .modal-content .m-success:after {
+        content: '';
+        /* -webkit-border-radius: 40px; */
+        /* border-radius: 40px; */
+        /* border-radius: 50%; */
+        position: absolute;
+        width: 62px;
+        height: 114px;
+        background: white;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(-44deg); }
+      /* line 167, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success .m-line {
+        height: 5px;
+        background-color: #A5DC86;
+        display: block;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 2; }
+      /* line 175, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success .m-long {
+        width: 39px;
+        left: 16px;
+        top: 30px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg) \9; }
+      /* line 183, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success .m-tip {
+        width: 19px;
+        left: 8px;
+        top: 36px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -ms-transform: rotate(45deg) \9; }
+      /* line 191, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success .animateSuccessTip {
+        -webkit-animation: animateSuccessTip 0.7s;
+        animation: animateSuccessTip 0.7s; }
+      /* line 195, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success .animateSuccessLong {
+        -webkit-animation: animateSuccessLong 0.8s;
+        animation: animateSuccessLong 0.8s; }
+      /* line 199, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success .m-placeholder {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(165, 220, 134, 0.2);
+        -webkit-border-radius: 40px;
+        border-radius: 40px;
+        border-radius: 50%;
+        box-sizing: content-box;
+        position: absolute;
+        left: -4px;
+        top: -4px;
+        z-index: 2; }
+      /* line 212, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success .m-fix {
+        width: 5px;
+        height: 86px;
+        background-color: white;
+        position: absolute;
+        left: 16px;
+        top: -3px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg); }
+      /* line 223, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success.loaded:after {
+        -webkit-animation: rotatePlaceholder 0.7s ease-in;
+        animation: rotatePlaceholder 0.7s ease-in;
+        animation: rotatePlaceholder 0.7s ease-in; }
+      /* line 230, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success.loading .m-placeholder {
+        border: 4px solid #a5dc86;
+        border-left-color: transparent;
+        animation: rotate .4s infinite linear; }
+      /* line 235, ../sass/bootstrap/_modals.scss */
+      .modal-dialog.sweet .modal-content .m-success.loading .m-line {
+        display: none; }
+      .modal-dialog.sweet .modal-content .m-warning {
+          border-color: #7f7f7f;
+      }
+  
+          /* line 183, ../sass/hc/_ipbootstrap.scss */
+          .modal-dialog.sweet .modal-content .m-warning .micon-body {
+              position: absolute;
+              width: 5px;
+              height: 30px;
+              left: 50%;
+              top: 10px;
+              -webkit-border-radius: 2px;
+              border-radius: 2px;
+              margin-left: -2px;
+              background-color: #7f7f7f;
+          }
+  
+          /* line 195, ../sass/hc/_ipbootstrap.scss */
+          .modal-dialog.sweet .modal-content .m-warning .micon-dot {
+              position: absolute;
+              width: 7px;
+              height: 7px;
+              -webkit-border-radius: 50%;
+              border-radius: 50%;
+              margin-left: -3px;
+              left: 50%;
+              bottom: 10px;
+              background-color: #7f7f7f;
+          }
+  
+  
+  @-webkit-keyframes animateSuccessTip {
+    0% {
+      width: 0;
+      left: 1px;
+      top: 28px; }
+    60% {
+      width: 0;
+      left: 1px;
+      top: 28px; }
+    80% {
+      width: 17px;
+      left: 8px;
+      top: 35px; }
+    100% {
+      width: 19px;
+      left: 8px;
+      top: 36px; } }
+  @-webkit-keyframes animateSuccessLong {
+    0% {
+      width: 0;
+      left: 16px;
+      top: 39px; }
+    65% {
+      width: 0px;
+      left: 20px;
+      top: 39px; }
+    84% {
+      width: 25px;
+      left: 20px;
+      top: 32px; }
+    100% {
+      width: 39px;
+      left: 16px;
+      top: 30px; } }
+  @-webkit-keyframes rotatePlaceholder {
+    0% {
+      /*transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg); */ }
+    5% {
+      /*transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg); */ }
+    80% {
+      transform: rotate(-390deg);
+      -webkit-transform: rotate(-390deg); }
+    100% {
+      transform: rotate(-407deg);
+      -webkit-transform: rotate(-407deg); } }
+  @-webkit-keyframes rotate {
+    0% {
+      -moz-transform: rotate(0);
+      -ms-transform: rotate(0);
+      -webkit-transform: rotate(0);
+      transform: rotate(0); }
+    100% {
+      -moz-transform: rotate(-360deg);
+      -ms-transform: rotate(-360deg);
+      -webkit-transform: rotate(-360deg);
+      transform: rotate(-360deg); } }
+    /* line 321, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-content .pulseWarning {
+      -webkit-animation: pulseWarning 0.75s infinite alternate;
+      animation: pulseWarning 0.75s infinite alternate; }
+    /* line 325, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-content .pulseWarningIns {
+      -webkit-animation: pulseWarningIns 0.75s infinite alternate;
+      animation: pulseWarningIns 0.75s infinite alternate; }
+    /* line 330, ../sass/bootstrap/_modals.scss */
+    .modal-dialog.sweet .modal-footer {
+      text-align: center;
+      border-top: 1px solid;
+      color:red;
+    }
+  
+   
+  
+    
+   
+    /* line 14, ../sass/bootstrap/mixins/_clearfix.scss */
+    .modal-header:before, .modal-header:after {
+      /* content: " "; */
+      display: table; }
+    /* line 19, ../sass/bootstrap/mixins/_clearfix.scss */
+    .modal-header:after {
+      clear: both; }
+    
+  
+  /* line 385, ../sass/bootstrap/_modals.scss */
+  .modal-body {
+    position: relative;
+    padding: 15px; }
+  
+  
+    /* line 14, ../sass/bootstrap/mixins/_clearfix.scss */
+    .modal-footer:before, .modal-footer:after {
+      content: " ";
+      display: table; }
+    /* line 19, ../sass/bootstrap/mixins/_clearfix.scss */
+    .modal-footer:after {
+      clear: both; }
+    /* line 398, ../sass/bootstrap/_modals.scss */
+ 
+/*       
+.sweet {
+  top: 150px !important;
+} */

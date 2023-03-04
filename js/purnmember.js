@@ -441,9 +441,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 "value": 1,
                 "name": "स्त्री"
             },
-
-
-        ]
+             ]
 
 
 
