@@ -1,0 +1,161 @@
+<form class="form-horizontal" role="form" name="memreqform">
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+        <div class="form-group p-1">
+            <div class="card ">
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-cast"></i>
+                    <strong>पूर्ण सभासद खतावणी</strong>
+
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2 offset-sm-1">
+
+                            <div class="form-group  m-1">
+                                <label for="title">
+                                    पासून
+                                </label>
+                                <div>
+                                    <input type="date" name="date" data-ng-model="vm.entity.sdt"
+                                        class="form-control  form-control-sm" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group   m-1">
+                                <label for="title">
+                                    पर्यंत
+                                </label>
+                                <div>
+                                    <input type="date" name="date" data-ng-model="vm.entity.edt"
+                                        class="form-control  form-control-sm" autocomplete="off" />
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                        <div class="col-sm-6  offset-sm-1 ">
+
+                            <div class="form-group col-sm-4  m-1">
+                                <label for="title"> पूर्ण सभासद नंबर </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" ng-blur="getMemberdetail()"
+                                        name="पूर्ण सभासद नाव" ng-Model="vm.entity.regCode" numbers-only required />
+                                    <span class="input-group-text p-0">
+                                        <helper helperid="member" list="vm.Members" width="30%" hclick="getMembers()"
+                                            row="vm.entity.regCodeNavigation" columns="memberReq_coldef" filter="shName"
+                                            selectedvalue="regCode" ng-model="vm.entity.regCode"
+                                            ng-change="getMemberdetail()">
+                                        </helper>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group col-sm-5 m-1">
+                                <label for="title"> पूर्ण सभासद नाव</label>
+                                <div>
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.regCodeNavigation.shName" disabled />
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.regCodeNavigation.cityCodeNavigation.cityName" disabled />
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-3">
+                                    <label for="title">स्वरूप (format)</label>
+                                    <div>
+                                        <select class="form-select  form-select-sm" ng-model="vm.entity.format"
+                                            ng-options="item.value as item.name for item in vm.format">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class=" form-group col-sm-6">
+                                    <br>
+                                    <button type="button" class="btn btn-primary btn-sm " style="width: 110px;"
+                                        ng-click="show()">पहा </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+        </div>
+        </div>
+
+
+    </fieldset>
+</form>
+
+<style>
+    .form-group{
+        margin-bottom: 15px !important;
+    }
+</style>
+
+
+<!-- table table-borderd -->
+<!-- <div class="card">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th >
+                तारीख
+            </th>
+            <th>
+                पावती प्रकार 
+            </th>
+            <th>
+                पावती नंबर
+            </th>
+            <th colspan="2" class="text-center">
+                शेअर
+            </th>
+            <th colspan="2" class="text-center">
+                लाभांश
+            </th>
+            <th>
+                शेरा
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+           <td></td>
+           
+            <td> जमा</td>
+            <td>नावे </td>
+            <td>जमा </td>
+            <td>नावे </td>
+         <td></td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+</div> -->

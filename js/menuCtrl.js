@@ -145,7 +145,7 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
 
 
         {
-            icon: 'bi bi-mastodon', name: "रीपोर्ट ", path: 'masterchild',
+            icon: 'bi bi-mastodon', name: "रिपोर्ट", path: 'masterchild',
 
 
             content: [
@@ -158,9 +158,23 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
 
                 },
                 {
-                    icon: "bi bi-cast",
+                    icon: "bi bi-receipt",
                     name: 'पावती पुस्तक',
                     path: 'parent.sub.recreg',
+                    params: { action: '', mode: true },
+
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'अ.स.खतावणी',
+                    path: 'parent.sub.memberreq',
+                    params: { action: '', mode: true },
+
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'पु .स.खतावणी',
+                    path: 'parent.sub.memberrep',
                     params: { action: '', mode: true },
 
                 },

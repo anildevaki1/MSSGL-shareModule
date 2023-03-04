@@ -291,9 +291,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
                 })
 
-
-
-            }
+  }
             else
             {
                 vm.mode = 'edit';
@@ -328,8 +326,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         var getOccupations = function () {
             ajax.get("Occupation/list").then(function (res) {
-                // vm.Occupations = res;
-                // vm.entity.ocpName = 1;
+              
                 vm.reference.Occupations = res;
               
             }, function (err) {
@@ -339,8 +336,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         var getReligions = function () {
             ajax.get("religion/list").then(function (res) {
-                // vm.Religions = res;
-                // vm.entity.castCode = 1;
+              
                 vm.reference.Religions = res;
               
             }, function (err) {
@@ -354,7 +350,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             ajax.get("sharetype/list").then(function (res) {
                 vm.reference.shares = res;
               
-                //  vm.entity.shType=1;
+              
             }, function (err) {
                 var e = err;
             })
@@ -387,7 +383,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         getExistEntity = function () {
 
-            ajax.get('Member/Get', null, { id:  vm.entity.regCode }).then(function (res) {
+            ajax.get('Member/Get',null,{id:vm.entity.regCode}).then(function(res){
             
                 vm.entity = res;
                 vm.entity.regDt = new Date(vm.entity.regDt);
