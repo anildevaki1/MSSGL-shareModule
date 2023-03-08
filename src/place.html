@@ -1,5 +1,5 @@
 <form class="form-horizontal" role="form" name="placeform">
-    
+
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
@@ -12,13 +12,13 @@
 
             <div class="card ">
                 <!-- style="background-color:#e4e4e4" -->
-                <div class="card-header"  style="background-color:#caf0f8">
+                <div class="card-header" style="background-color:#caf0f8">
                     <i class="bi bi-cast"></i>
                     <strong>गाव</strong>
 
                 </div>
                 <!-- #abc135 -->
-                 <!-- <div class="row">
+                <!-- <div class="row">
                         <div >
                             <div class="row">
 
@@ -88,54 +88,45 @@
                             </div>
                         </div> -->
 
-                
+
                 <div class="card-body">
-                      <div class="col-sm-6 offset-sm-2">
-                            <div class="row">
-                                <div class="form-group col-sm-6 m-1">
-                                    <label for="title">गावाचे नाव </label>
-                                    <div>
-                                        <input type="text" id="city_name" name="गावाचे नाव " 
-                                            class="form-control form-control-sm"
-                                            autocomplete="off" ng-model="vm.entity.cityName"
-                                         required   />
-                                         </div>
-                                </div>
-
-                                <div class="form-group col-sm-6 m-1">
-                                    <label for="title">
-                                      तालुका 
-                                    </label>
-                                    <div>
-                                        <input type="text" id="तालुका" name="तालुका"
-                                            class="form-control form-control-sm"
-                                            autocomplete="off" ng-model="vm.entity.taluka"
-                                           />
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6 m-1">
-                                    <label for="memberid">जिल्हा </label>
-                                    <div>
-                                        <input type="text" id="जिल्हा" name="जिल्हा"
-                                            class="form-control form-control-sm" ng-model="vm.entity.district"
-                                             autocomplete="off"
-                                           />
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-sm-6 m-1">
-                                    <label for="title">राज्य</label>
+                    <div class="col-sm-6 offset-sm-2">
+                        <div class="row">
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">गावाचे नाव </label>
                                 <div>
-                                    <input type="text" id="राज्य" name="राज्य" 
-                                        class="form-control form-control-sm"
-                                        ng-model="vm.entity.state"
-                                         autocomplete="off"
-                                         />
+                                    <input type="text" id="city_name" name="गावाचे नाव"
+                                        class="form-control form-control-sm" autocomplete="off"
+                                        ng-model="vm.entity.cityName" required />
                                 </div>
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">
+                                    तालुका
+                                </label>
+                                <div>
+                                    <input type="text" id="तालुका" name="तालुका" class="form-control form-control-sm"
+                                        autocomplete="off" ng-model="vm.entity.taluka" />
                                 </div>
-                                <div class="form-group col-sm-6 m-1">
-                                    <label for="title">गट</label>
-                                    <!-- <div>
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="memberid">जिल्हा</label>
+                                <div>
+                                    <input type="text" id="जिल्हा" name="जिल्हा" class="form-control form-control-sm"
+                                        ng-model="vm.entity.district" autocomplete="off" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">राज्य</label>
+                                <div>
+                                    <input type="text" id="राज्य" name="राज्य" class="form-control form-control-sm"
+                                        ng-model="vm.entity.state" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">गट</label>
+                                <!-- <div>
                                         <select class="form-select input-sm" id="area_id" name="area_id" ng-model="vm.entity.areaCode"
                                         ng-options="item.areaCode as item.areaName for item in vm.areas"
                                    
@@ -143,33 +134,29 @@
                                         </select>
                                     </div> -->
 
-                                    <div>
-                                        <multicolumncombo list="vm.reference.areas"
-                                              datasource="vm.entity" datamember="areaCode"
-                                              row="vm.reference.selectedarea"
-                                              placeholder="Please select areas" class="form-control p-1"
-                                              displayvalue="areaName"
-                                              name="areasnm" selectedvalue="areaCode"
-                                              extralables=""
-                                              disablefn="Master.formdisabled(vm.mode)" required>
-                                          </multicolumncombo> 
-          
-          
-                                       
-                                      </div>
+                                <div>
+                                    <multicolumncombo list="vm.reference.areas" datasource="vm.entity"
+                                        datamember="areaCode" row="vm.reference.selectedarea"
+                                        placeholder="Please select areas" class="form-control p-1"
+                                        displayvalue="areaName" name="areasnm" selectedvalue="areaCode" extralables="" 
+                                        disablefn="Master.formdisabled(vm.mode)" required>
+                                    </multicolumncombo>
                                 </div>
-
                             </div>
+
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">
+                                    अनुक्रमांक
+                                </label>
+                                <div>
+                                    <input type="text" name="अनुक्रमांक" data-ng-model="vm.entity.serialNo"
+                                        class="form-control input-sm" autocomplete="off" numbers-only />
+                                </div>
+                            </div>
+
+
                         </div>
-                       
-                    
-
-                   
-
-
-
-
-
+                    </div>
 
                 </div>
 
@@ -177,17 +164,13 @@
 
         </div>
 
-
-        
-
-
     </fieldset>
 
 
 
 </form>
 <style>
-    .form-group{
+    .form-group {
         margin-bottom: 15px !important;
     }
 </style>

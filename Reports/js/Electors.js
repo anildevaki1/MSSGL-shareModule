@@ -70,7 +70,7 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
             },
             {
                 "value": 3,
-                "name": "गाव"
+                "name": "गावं"
             },
             {
                 "value": 4,
@@ -185,7 +185,7 @@ myApp.controller('electorslistCtrl', ['ajax', '$scope','$filter','myprovider','$
             },
             {
                 "value": 3,
-                "name": "गाव"
+                "name": "गावं"
             },
          
         ]

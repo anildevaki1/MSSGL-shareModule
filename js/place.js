@@ -18,7 +18,16 @@ myApp.controller('placedashCtrl', ['$scope', '$state', 'ajax', 'R1Util', 'invali
 
         vm.serviceGrid.columnDefs = [
 
+   {
+                field: 'serialNo',
+                displayName: 'अनुक्रमांक',
+                enableSorting: true,
+                type: 'string',
+                enableCellEdit: false,
+                cellClass: 'alignLgrid',
+                width: "10%"
 
+            },
 
             {
                 field: 'cityName',
@@ -27,7 +36,7 @@ myApp.controller('placedashCtrl', ['$scope', '$state', 'ajax', 'R1Util', 'invali
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "20%"
+                width: "10%"
 
             },
             {

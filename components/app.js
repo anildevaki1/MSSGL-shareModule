@@ -681,14 +681,47 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       params: { id: null,action:null }
     })
 
+    .state("parent.sub.BoardMembers", {
+      url: "/BoardMembers",
+      templateUrl: "Reports/src/BoardMembers.html",
+      controller: 'BoardMembersCtrl as vm',
+      params: { id: null,action:null }
+    })
+    
+    .state("parent.sub.placelist",{
+      url: "/placelist",
+      templateUrl: "Reports/src/placelist.html",
+      controller: 'placelistCtrl as vm',
+      params: { id: null,action:null }
+    })
+   
+
+    .state("parent.sub.placememberlist",{
+      url:"/placememberlist",
+      templateUrl: "Reports/src/placememberlist.html",
+      controller: 'placememberlistCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+    .state("parent.sub.scsamplelist",{
+      url:"/scsamplelist",
+      templateUrl: "Reports/src/scsamplelist.html",
+      controller: 'scsamplelistCtrl as vm',
+      params: { id: null,action:null }
+    })
 
 
-    // .state("parent.sub.electorsdash", {
-    //   url: "/electorsdash",
-    //   templateUrl: "Reports/src/electorsdash.html",
-    //   controller: 'electorsdashCtrl as vm',
-
+    // .state("parent.sub.chequereturn",{
+    //   url: "/chequereturn",
+    //   templateUrl: "Reports/src/chequereturnlist.html",
+    //   controller: 'chequereturnlistCtrl as vm',
+    //   params: { id: null,action:null}
     // })
+
+
+
+
+   
 
 
 
