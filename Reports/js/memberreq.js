@@ -596,7 +596,7 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
         $scope.show = function () {
          
             
-            var params= "&CityCode="+vm.entity.cityCode
+            var params= "&placeId="+vm.entity.cityCode
          
           
          
