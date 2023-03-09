@@ -192,6 +192,42 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                     params: { action: '', mode: true },
 
                 },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'अ.स.ठराव मंजूरी यादी',
+                     path: 'parent.sub.BoardMembers',
+                    params: { action: '', mode: true },
+
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'गावांची यादी',
+                     path: 'parent.sub.placelist',
+                    params: { action: '', mode: true },
+
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'गावांप्रमाणे स. यादी',
+                     path: 'parent.sub.placememberlist',
+                    params: { action: '', mode: true },
+
+                },
+
+                {
+                    icon: "bi bi-person-circle",
+                    name: ' ज नमूना यादी',
+                     path: 'parent.sub.scsamplelist',
+                    params: { action: '', mode: true },
+
+                },
+                // {
+                //     icon: "bi bi-person-circle",
+                //     name: 'चेक परत यादी',
+                //      path: 'parent.sub.chequereturn',
+                //     params: { action: '', mode: true },
+
+                // },
             ]
         }
 

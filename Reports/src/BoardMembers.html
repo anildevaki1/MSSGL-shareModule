@@ -1,0 +1,102 @@
+<form class="form-horizontal" role="form" name="placeform">
+
+
+
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+
+        <div class="form-group p-1">
+
+            <div class="card ">
+
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-cast"></i>
+                    <strong>अपूर्ण सभासद ठराव मंजुरिसाठी यादी</strong>
+
+                </div>
+                <!-- #abc135 -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group col-sm-6 m-2">
+                                <label for="title">
+                                    अखेर तारीख
+                                </label>
+                                <div>
+                                    <input type="date" name="date" data-ng-model="vm.entity.edt"
+                                        class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-8 m-2">
+                                <label for="shareQty">
+                                    शेअर रक्कम 
+                                </label>
+                                <div>
+                                    <input type="text" id="shareQty" name=" शेअर रक्कम"
+                                        class="form-control form-control-sm text-end" ng-model="vm.entity.shareQty"
+                                        data-format="currency" data-fraction="2"
+                                         />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-8 m-2">
+                                <label for="mbrCharges">
+                                    सभासद शुल्क
+                                </label>
+                                <div>
+                                    <input type="text" id="member_charge" name=" सभासद शुल्क"
+                                        class="form-control form-control-sm text-end" ng-model="vm.entity.mbrCharges"
+                                        numbers-only/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-5">
+
+
+                            <div class="form-group col-sm-6 m-1">
+                                <label for="title">गाव</label>
+                                <div>
+                                    <multicolumncombo list="vm.reference.Places" datasource="vm.entity"
+                                        datamember="cityCode" row="vm.reference.selectedplace"
+                                        placeholder="Please select place" class="form-control p-1"
+                                        displayvalue="cityName" name="areanm" selectedvalue="cityCode" extralables=""
+                                        disablefn="Master.formdisabled(vm.mode)">
+                                    </multicolumncombo>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-5 m-1">
+                                <label for="title">स्वरूप (format) </label>
+                                <div>
+                                    <select class="form-select form-select-sm" ng-model="vm.entity.format"
+                                        ng-options="item.value as item.name for item in vm.format">
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-3  text-center m-4">
+                                <!-- <br> -->
+                                <button type="button" class="btn btn-primary"  ng-disabled="!vm.entity.shareQty|| !vm.entity.mbrCharges"  style="width: 122px;"
+                                    ng-click="show()">पहा</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+</form>
+<style>
+    .form-group {
+        margin-bottom: 15px !important;
+    }
+</style>

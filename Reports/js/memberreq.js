@@ -96,10 +96,6 @@ myApp.controller('memberreqCtrl', ['$scope', '$state', 'ajax', 'R1Util', '$filte
             params += "&sdt=" + $filter('date')(vm.entity.sdt, 'yyyy-MM-dd')
             params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
           
-          
- 
-
-
             window.open(myprovider.appserver + "Report/ledger1?" + params);
 
         }
@@ -213,7 +209,7 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
 
 
 
-    myApp.controller('memberlistCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+  myApp.controller('memberlistCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
     function ($scope, $state, ajax, R1Util, $filter, myprovider) {
 
 
@@ -301,11 +297,11 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
            
             {
                 "value": 2,
-                "name": "गावेप्रमाणे"
+                "name": "गावाप्रमाणे"
             },
             {
                 "value": 3,
-                "name": "नावेप्रमाणे"
+                "name": "नावाप्रमाणे"
             },
         
         ]
@@ -368,7 +364,7 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
             {
                 "value": 1,
                 // "name": "[All]"
-                "name": "गांव"
+                "name": "गाव"
             },
             {
                 "value": 2,
@@ -429,6 +425,298 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
 
 
     }])
+
+
+    myApp.controller('BoardMembersCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+    function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+        var vm = this;
+        vm.entity = {};
+      
+        vm.reference = {};
+        vm.entity.edt = new Date();
+       
+        vm.ALLplace = {
+            'cityName': 'सर्व',
+            'cityCode': ''
+        }
+
+        vm.reference.Places = [];
+        ajax.get('place/list').then(function (res) {
+            // res.splice(0, 0, vm.ALLplace);
+            vm.reference.Places = res;
+            vm.reference.Places.push(vm.ALLplace);
+            vm.entity.cityCode = "";
+        }, function (err) {
+
+        })
+
+        vm.format = [
+            {
+                "value": 1,
+                "name": "Pdf"
+            },
+            {
+                "value": 2,
+                "name": "Excel"
+            },
+
+        ]
+        vm.entity.format = 1;
+
+    
+    
+
+
+        $scope.show = function () {
+         
+
+            var  params ="&edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+          
+                 params +="&faceValue="+vm.entity.shareQty
+                 params += "&mgrcharges="+vm.entity.mbrCharges
+                 params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
+
+            
+          
+           window.open(myprovider.appserver + "Report/OnBoardMembers?" + params);
+
+        }
+
+
+   
+    
+
+
+    }])
+
+
+    myApp.controller('placelistCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+    function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+        var vm = this;
+        vm.entity = {};
+      
+        vm.reference = {};
+        vm.entity.edt = new Date();
+
+
+          vm.ALLarea = {
+            'areaName': 'सर्व',
+            'areaCode': ''
+        }
+
+
+        vm.reference.areas = [];
+        vm.reference.selectedarea = {};
+        ajax.get("Area/list").then(function (res) {
+            //res.splice(0, 0, vm.ALLarea);
+            vm.reference.areas = res;
+            vm.reference.areas.push(vm.ALLarea);
+            vm.entity.areaCode = "";
+        }, function (err) {
+        })
+
+     
+
+        vm.format = [
+            {
+                "value": 1,
+                "name": "Pdf"
+            },
+            {
+                "value": 2,
+                "name": "Excel"
+            },
+
+        ]
+        vm.entity.format = 1;
+
+    
+
+    
+
+        $scope.show = function () {
+         
+            var params= "&AreaCode="+vm.entity.areaCode
+                params +="&format="+ (vm.entity.format==1 ? "PDF" :"EXCEL")
+       
+    
+         window.open(myprovider.appserver+"Report/placelist?"+params);
+        }
+
+
+    }])
+
+    myApp.controller('placememberlistCtrl', ['$scope','$state','ajax','R1Util','$filter','myprovider',
+    function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+        var vm = this;
+        vm.entity = {};
+      
+        vm.reference = {};
+        vm.entity.edt = new Date();
+
+        vm.ALLplace = {
+            'cityName': 'सर्व',
+            'cityCode': ''
+        }
+
+        vm.reference.Places = [];
+        ajax.get('place/list').then(function (res) {
+            // res.splice(0, 0, vm.ALLplace);
+            vm.reference.Places = res;
+            vm.reference.Places.push(vm.ALLplace);
+            vm.entity.cityCode = "";
+        }, function (err) {
+
+        })
+     
+
+        vm.format = [
+            {
+                "value": 1,
+                "name": "Pdf"
+            },
+            {
+                "value": 2,
+                "name": "Excel"
+            },
+
+        ]
+        vm.entity.format = 1;
+
+    
+
+    
+
+        $scope.show = function () {
+         
+            
+            var params= "&placeId="+vm.entity.cityCode
+         
+          
+         
+            params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
+
+            window.open(myprovider.appserver+"Report/placememberlist?"+params);
+
+        }
+
+
+    }])
+
+
+    // myApp.controller('chequereturnlistCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+    // function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+    //     var vm = this;
+    //     vm.entity = {};
+      
+    //     vm.reference = {};
+       
+
+    //     vm.ALLplace = {
+    //         'cityName': 'सर्व',
+    //         'cityCode': ''
+    //     }
+
+    //     vm.reference.Places = [];
+    //     ajax.get('place/list').then(function (res) {
+    //         vm.reference.Places = res;
+    //         vm.reference.Places.push(vm.ALLplace);
+    //         vm.entity.cityCode ="";
+    //     }, function (err) {
+
+    //     })
+     
+
+    //     vm.format = [
+    //         {
+    //             "value": 1,
+    //             "name": "Pdf"
+    //         },
+    //         {
+    //             "value": 2,
+    //             "name": "Excel"
+    //         },
+
+    //     ]
+    //     vm.entity.format = 1;
+
+    
+     
+    
+        
+      
+
+
+
+    // }])
+     
+
+    myApp.controller('scsamplelistCtrl',['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+    function ($scope, $state, ajax, R1Util, $filter, myprovider){
+
+        var vm = this;
+        vm.entity = {};
+      
+        vm.reference = {};
+        vm.entity.edt = new Date();
+
+        vm.ALLplace = {
+            'cityName': 'सर्व',
+            'cityCode': ''
+        }
+
+        vm.reference.Places = [];
+        ajax.get('place/list').then(function (res) {
+            vm.reference.Places = res;
+            vm.reference.Places.push(vm.ALLplace);
+            vm.entity.cityCode ="";
+        }, function (err) {
+
+        })
+     
+
+        vm.format = [
+            {
+                "value": 1,
+                "name": "Pdf"
+            },
+            {
+                "value": 2,
+                "name": "Excel"
+            },
+
+        ]
+        vm.entity.format = 1;
+
+        $scope.show = function () {
+         
+
+        var  params ="&edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+             params +="&CityCode="+vm.entity.cityCode
+             params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
+
+
+
+            window.open(myprovider.appserver + "Report/scsamplelist?" + params);
+
+    }
+
+
+
+
+
+    }])
+
+
+
 
 
 
