@@ -232,17 +232,12 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 $(".loading").show();
                 if (!vm.entity.vchId)
                     ajax.post('ShareIssue/insert', vm.entity).then(function (res) {
-
                         vm.entity.vchId = vm.entity.vchId;
                         $(".loading").hide();
-
                         $scope.message = "Record Saved Sucessfully";
                         R1Util.createAlert($scope, "Success", $scope.message, null);
                         pastEntity = angular.copy(vm.entity);
                         fn("OK");
-
-
-
                     }, function (err) {
                         $(".loading").hide();
                         vm.mode = 'edit';
@@ -358,8 +353,6 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                             vm.entity.member.cityCodeNavigation.cityName = vm.entity.member.cityName;
                         }
                         setOtherinfo(res);
-
-                    
                     $(".loading").hide();
                 },function(err){
                     $(".loading").hide();
@@ -367,19 +360,20 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
                 })
             }
-
-
+           else{
+               vm.entity.member = {};
+            }
         }
 
         setOtherinfo = (res) => {
-            vm.entity.nomineeName = res.shNominee;
+            vm.entity.nomineeName = res.shNominee;   
             vm.entity.nomeeneAddress = res.shAddress;
             vm.entity.nomineeRelation = res.shNomineeRelation;
             vm.entity.bankCode = res.bankCode;
             vm.entity.bankAccNo = res.bankAccNo;
             vm.entity.bankCodeNavigation = res.bankCodeNavigation;
         }
-
+                                                                                
         $scope.getMemberRequestdetail = function () {
             if (vm.entity.reqId) {
                 var param = {
@@ -390,8 +384,10 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
                     vm.entity.req = Object.assign({}, res);
                     if (vm.entity.req) {
-                        vm.entity.member = vm.entity.req.member;
-                        vm.entity.memberId = vm.entity.req.member.regCode;
+                        // vm.entity.member = vm.entity.req.member;
+                        vm.entity.member = vm.entity.member;
+                        // vm.entity.memberId = vm.entity.req.member.regCode;
+                        vm.entity.memberId = vm.entity.member.regCode;
                         setOtherinfo(vm.entity.req.member);
 
                     }
@@ -407,6 +403,9 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                     R1Util.createAlert($scope, "Error", error, null);
                 }
                 )
+            }
+            else{
+                vm.entity.req = {};
             }
 
         }

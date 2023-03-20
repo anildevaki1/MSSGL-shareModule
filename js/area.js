@@ -111,8 +111,8 @@ myApp.controller('areadashCtrl', ['$scope', 'ajax', '$state', 'R1Util',
 
 ])
 
-myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax', 'R1Util', 'Master', '$rootScope','invalid',
-    function ($scope, $stateParams, $q, shareData, ajax, R1Util, Master, $rootScope,invalid) {
+myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax', 'R1Util', 'Master', '$rootScope', 'invalid',
+    function ($scope, $stateParams, $q, shareData, ajax, R1Util, Master, $rootScope, invalid) {
 
         var vm = this;
         $scope.Master = Master;
@@ -189,7 +189,6 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
                 if (!vm.entity.areaCode)
                     ajax.post('area/insert', vm.entity).then(function (res) {
 
-
                         vm.entity.areaCode = res.areaCode;
 
                         $(".loading").hide();
@@ -198,7 +197,6 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
                         R1Util.createAlert($scope, "Success", $scope.message, null);
                         pastEntity = angular.copy(vm.entity);
                         fn("OK");
-
                     },
                         function (err) {
                             $(".loading").hide();
@@ -209,11 +207,6 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
 
                 else {
                     ajax.put('area/update', vm.entity, { id: vm.entity.areaCode }).then(function (res) {
-
-
-
-
-
                         $(".loading").hide();
 
                         $scope.message = "Record Saved Sucessfully";
@@ -232,7 +225,7 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
             }
             else {
                 // R1Util.createAlert($scope, "Error", "Validation Failed", null);
-                
+
                 // invalid.Error($scope.areaform);
                 vm.mode = 'edit';
                 var fields = invalid.Error($scope.areaform);
@@ -250,7 +243,7 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
         }
 
 
-      
+
         var getPanchayats = function () {
             ajax.get("panchayat/list").then(function (res) {
                 // vm.panchayats = res;
@@ -263,7 +256,7 @@ myApp.controller('areaCtrl', ['$scope', '$stateParams', '$q', 'ShareData', 'ajax
             })
         }
 
-      
+
         getExistEntity = function () {
 
             ajax.get('area/get', null, { id: vm.entity.areaCode }).then(function (res) {

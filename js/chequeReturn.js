@@ -270,11 +270,11 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
             vm.entity = {};
             var q = $q.defer();
            
-           
+        
                 q.resolve();
             
 
-            return q.promise;
+         return q.promise;
 
 
         }
@@ -309,8 +309,7 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
                 }
                 $(".loading").show();
                 ajax.get('member/get', null, param).then(function (res) {
-                    
-                        vm.entity.regCodeNavigation = res;
+                      vm.entity.regCodeNavigation = res;
                         if ( vm.entity.regCodeNavigation.cityName) {
                             vm.entity.regCodeNavigation.cityCodeNavigation = {};
                             vm.entity.regCodeNavigation.cityCodeNavigation.cityName = vm.entity.regCodeNavigation.cityName;
@@ -324,6 +323,10 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
                             error = err.error.message;
                     R1Util.createAlert($scope, "Error", error, null);
                 })
+            }
+            else{
+                
+                vm.entity.regCodeNavigation = {};
             }
 
 

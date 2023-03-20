@@ -216,7 +216,7 @@ myApp.controller('memberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R
                     $scope.save(function (res) {
                         fn(res)
                     });
-                    break;
+                 break;
 
                 case 'undo':
                     if (pastEntity)

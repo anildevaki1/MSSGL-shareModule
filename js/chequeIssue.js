@@ -281,7 +281,7 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
             var q = $q.defer();
            
            
-                q.resolve();
+            q.resolve();
             
 
             return q.promise;
@@ -340,6 +340,10 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
                         R1Util.createAlert($scope, "Error", error, null);
                     
                 })
+            }
+            else
+            {
+                vm.entity.regCodeNavigation ={};
             }
 
 

@@ -711,13 +711,20 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     })
 
 
-    // .state("parent.sub.chequereturn",{
-    //   url: "/chequereturn",
-    //   templateUrl: "Reports/src/chequereturnlist.html",
-    //   controller: 'chequereturnlistCtrl as vm',
-    //   params: { id: null,action:null}
-    // })
+    .state("parent.sub.chequereturn",{
+      url: "/chequereturn",
+      templateUrl: "Reports/src/chequereturnlist.html",
+      controller: 'chequereturnlistCtrl as vm',
+      params: { id: null,action:null}
+    })
 
+
+    .state("parent.sub.blukchequeissue",{
+      url:"/blukchequeissue",
+      templateUrl: "Reports/src/blukchequeissue.html",
+      controller: 'blukchequeissueCtrl as vm',
+      params: { id: null,action:null }
+    })
 
 
 

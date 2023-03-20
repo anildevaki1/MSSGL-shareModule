@@ -220,7 +220,7 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
 
                         vm.entity.vchId = res.vchId;
                         $(".loading").hide();
-
+                        
                         $scope.message = "Record Saved Sucessfully";
                         R1Util.createAlert($scope, "Success", $scope.message, null);
                         pastEntity = angular.copy(vm.entity);
@@ -325,20 +325,23 @@ myApp.controller('receiptCtrl', ['$filter', '$scope', '$stateParams', '$q', '$ro
                 }
                 $(".loading").show();
                 ajax.get('MemberRequest/get', null, param).then(function (res) {
-                   
+                 
+
                         vm.entity.memberRequest = res;
                         if (memberRequest.cityName) {
                             vm.entity.memberRequest.cityCodeNavigation = {};
                             vm.entity.memberRequest.cityCodeNavigation.cityName = vm.entity.memberRequest.cityName;
                         }
                         $(".loading").hide();
-                  
+                
                 },function(err){
                     $(".loading").hide();
                     R1Util.createAlert($scope, "Error", err.msg, null);
                 })
             }
-
+            else{
+                vm.entity.memberRequest={};
+            }
 
         }
 

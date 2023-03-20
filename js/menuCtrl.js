@@ -221,13 +221,20 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                     params: { action: '', mode: true },
 
                 },
-                // {
-                //     icon: "bi bi-person-circle",
-                //     name: 'चेक परत यादी',
-                //      path: 'parent.sub.chequereturn',
-                //     params: { action: '', mode: true },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'चेक परत यादी',
+                     path: 'parent.sub.chequereturn',
+                    params: { action: '', mode: true },
 
-                // },
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'बल्क चेक इश्यू ',
+                     path: 'parent.sub.blukchequeissue',
+                    params: { action: '', mode: true },
+
+                },
             ]
         }
 

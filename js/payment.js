@@ -316,12 +316,10 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
             if (vm.entity.regCode) {
                 var param = {
                     id: vm.entity.regCode
-
-                }
+                  }
                 $(".loading").show();
                 ajax.get('MemberRequest/get', null, param).then(function (res) {
-                   
-                        vm.entity.regCodeNavigation = res;
+                   vm.entity.regCodeNavigation = res;
                         if (regCodeNavigation.cityName) {
                             vm.entity.regCodeNavigation.cityCodeNavigation = {};
                             vm.entity.regCodeNavigation.cityCodeNavigation.cityName = vm.entity.regCodeNavigation.cityName;
@@ -333,6 +331,10 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
                     R1Util.createAlert($scope, "Error", err.msg, null);
                 })
             }
+            else{
+                vm.entity.regCodeNavigation={};
+            }
+
 
 
         }

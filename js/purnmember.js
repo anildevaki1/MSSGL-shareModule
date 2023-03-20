@@ -148,11 +148,11 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
         vm.getRecords = function () {
             $(".loading").show();
             ajax.get('Member/list', null).then(function (res) {
-               
-                    vm.serviceGrid.data = res;
-               
+
+                vm.serviceGrid.data = res;
+
                 $(".loading").hide();
-            },function(err){
+            }, function (err) {
                 R1Util.createAlert($scope, "Error", err.msg, null);
             })
         }
@@ -165,15 +165,15 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
 ])
 
-myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master','invalid',
-    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master,invalid) {
+myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope', 'R1Util', 'ajax', 'Master', 'invalid',
+    function ($scope, $stateParams, $q, $rootScope, R1Util, ajax, Master, invalid) {
 
         var vm = this;
-        $scope.Master=Master;
+        $scope.Master = Master;
         vm.mode = 'new';
         vm.entity = {};
-        var pastEntity={};
-        var NoViewing=true;
+        var pastEntity = {};
+        var NoViewing = true;
         if ($stateParams.action)
             vm.mode = $stateParams.action;
 
@@ -205,7 +205,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                     if (vm.entity.vch_id != undefined) {
                         if (NoViewing == true)
                             getExistEntity();
-                       
+
                     }
                     fn("OK")
                     break;
@@ -276,29 +276,25 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 $(".loading").show();
 
                 ajax.put('Member/update', vm.entity).then(function (res) {
-
-                    $(".loading").hide();
+                     $(".loading").hide();
                     $scope.message = "Record Saved Sucessfully";
                     R1Util.createAlert($scope, "Success", $scope.message, null);
                     vm.entity.regCode = res.regCode;
                     pastEntity = angular.copy(vm.entity);
                     fn("OK");
 
-                }, function (err) {
+                },function (err) {
                     vm.mode = 'edit';
                     fn("CANCEL");
                     R1Util.createAlert($scope, "Error", err.msg, null);
-
                 })
 
-  }
-            else
-            {
+            }
+            else {
                 vm.mode = 'edit';
                 var fields = invalid.Error($scope.memberform);
                 R1Util.createAlert($scope, "Error", fields, null);
             }
-
         }
 
 
@@ -312,10 +308,9 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         var getDesignations = function () {
             ajax.get("Designation/list").then(function (res) {
-                // vm.Designations = res;
-                // vm.entity.dsgnCode = 2;
+               
                 vm.reference.Designations = res;
-              
+
             }, function (err) {
                 var e = err;
             })
@@ -326,9 +321,9 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         var getOccupations = function () {
             ajax.get("Occupation/list").then(function (res) {
-              
+
                 vm.reference.Occupations = res;
-              
+
             }, function (err) {
                 var e = err;
             })
@@ -336,9 +331,9 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         var getReligions = function () {
             ajax.get("religion/list").then(function (res) {
-              
+
                 vm.reference.Religions = res;
-              
+
             }, function (err) {
                 var e = err;
             })
@@ -349,8 +344,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
         var getShareTypes = function () {
             ajax.get("sharetype/list").then(function (res) {
                 vm.reference.shares = res;
-              
-              
+
+
             }, function (err) {
                 var e = err;
             })
@@ -361,7 +356,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 // vm.Places = res;
                 // vm.entity.cityCode = 1;
                 vm.reference.Places = res;
-             
+
             }, function (err) {
                 var e = err;
             })
@@ -375,7 +370,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 // vm.BankBranches = res;
                 // vm.entity.bankCode=1;
                 vm.reference.BankBranches = res;
-               
+
             }, function (err) {
                 var e = err;
             })
@@ -383,8 +378,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
         getExistEntity = function () {
 
-            ajax.get('Member/Get',null,{id:vm.entity.regCode}).then(function(res){
-            
+            ajax.get('Member/Get', null, { id: vm.entity.regCode }).then(function (res) {
+
                 vm.entity = res;
                 vm.entity.regDt = new Date(vm.entity.regDt);
                 vm.entity.deathDate = new Date(vm.entity.deathDate);
@@ -406,7 +401,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             var g = getReligions();
             var r = getPlaces();
             var x = getShareTypes();
-          
+
             $q.all([p, y, a, g, r, x]).then(function (res) {
 
                 q.resolve();
@@ -441,7 +436,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 "value": 1,
                 "name": "स्त्री"
             },
-             ]
+        ]
 
 
 

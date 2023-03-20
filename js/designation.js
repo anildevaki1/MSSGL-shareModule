@@ -178,7 +178,7 @@ myApp.controller('designationCtrl', ['$scope', '$stateParams', '$q', '$rootScope
                     $(".loading").show();
                     if (!vm.entity.dsgnCode)
                         ajax.post('designation/insert', vm.entity).then(function (res) {
-                       
+                    
                                 vm.entity.dsgnCode = res.dsgnCode;
                                 $(".loading").hide();
     

@@ -301,7 +301,7 @@ var NoViewing=true;
 
         getExistEntity = function () {
 
-            ajax.get('ShareReturn/get', null, { id: vm.entity.vchId }).then(function (res) {
+            ajax.get('ShareReturn/get',null, { id: vm.entity.vchId }).then(function (res) {
                 vm.entity = res;
                 vm.entity.vchDate = new Date(vm.entity.vchDate);
                 pastEntity = angular.copy(vm.entity);
@@ -344,6 +344,8 @@ var NoViewing=true;
                                 error = res.error.message;
                         R1Util.createAlert($scope, "Error", error, null);
                 })
+            }else{
+                vm.entity.regCodeNavigation = {};
             }
 
 
