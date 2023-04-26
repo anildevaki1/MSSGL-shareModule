@@ -1,8 +1,34 @@
 var myApp = angular.module('myApp');
-myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
-    function ($scope, $state, ajax, R1Util) {
+myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter',
+    function ($scope, $state, ajax, R1Util,$filter) {
 
         var vm = this;
+
+        vm.entity = {};
+
+        vm.entity.to_date=new Date();
+        vm.entity.from_date=new Date();
+       
+        vm.entity.from_date= new Date(vm.entity.to_date.getFullYear() - 1,3,1);
+        
+
+        // vm.entity.to_date=new Date();
+        // vm.entity.from_date=new Date();
+
+        // function addOneYear(date) {
+            // Making a copy with the Date() constructor
+            // const dateCopy =  vm.entity.from_date;
+          // getfullyear = vm.to_date-1 func for full year
+            // dateCopy.setFullYear(dateCopy.getFullYear() - 1);
+          //inbuild function 
+        //     return dateCopy;
+        //   }
+             
+        //   const date = new Date('vm.entity.to_date');      
+        //   const newDate = addOneYear(date);
+          
+        // vm.entity.sdt=new Date();
+        // vm.entity.edt=new Date();
 
         vm.serviceGrid = {
             enableRowSelection: true,
@@ -110,6 +136,49 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
             }
         ];
 
+        $scope.show = function () {
+            $(".loading").show();
+            var params = {
+                "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+                "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),
+         }
+       ajax.get('MemberRequest/list',null,params).then(function (res) {
+                if (res) {
+                    vm.serviceGrid.data = res;
+                }
+                else {
+                    var error = "Error";
+                    if (res.error)
+                        if (res.error.message)
+                            error = res.error.message;
+                    R1Util.createAlert($scope, "Error", error, null);
+                }
+                $(".loading").hide();
+            },)
+        }
+    
+        $scope.refreshData = function (){
+            $(".loading").show();
+            var params = {
+                "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+                "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),
+             }
+    
+            ajax.get('MemberRequest/list',null,params).then(function (res) {
+                if (res) {
+                    vm.serviceGrid.data = res;
+                }
+                else {
+                    var error = "Error";
+                    if (res.error)
+                        if (res.error.message)
+                            error = res.error.message;
+                    R1Util.createAlert($scope, "Error", error, null);
+                }
+                $(".loading").hide();
+            },)
+         }
+
 
         vm.edit = function (grid, row) {
             var param = {
@@ -139,9 +208,31 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
         }
 
-        vm.getRecords = function () {
+
+        $scope.show = function () {
             $(".loading").show();
-            ajax.get('MemberRequest/list', null).then(function (res) {
+            var params = {
+
+                "fromdate": $filter('date')(new Date(vm.entity.from_date), 'yyyy/MM/dd'),
+                "todate": $filter('date')(new Date(vm.entity.to_date), 'yyyy/MM/dd'),
+         
+            
+            }
+
+
+     
+
+
+            // const currentYear = new Date().getFullYear(); // 2020
+
+            // const previousYear = currentYear - 1;
+
+            // console.log(previousYear); // 2019
+
+            // new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+
+
+            ajax.get('MemberRequest/list', null, params).then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
                 }
@@ -153,10 +244,54 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                     R1Util.createAlert($scope, "Error", error, null);
                 }
                 $(".loading").hide();
-            })
+            },)
         }
 
-        vm.getRecords()
+
+      
+
+
+
+        $scope.refreshData = function () {
+            $(".loading").show();
+            var params = {
+                "fromdate": $filter('date')(new Date(vm.entity.from_date), 'yyyy/MM/dd'),
+                "todate": $filter('date')(new Date(vm.entity.to_date), 'yyyy/MM/dd'),
+            }
+
+            ajax.get('MemberRequest/list', null, params).then(function (res) {
+                if (res) {
+                    vm.serviceGrid.data = res;
+                }
+                else {
+                    var error = "Error";
+                    if (res.error)
+                        if (res.error.message)
+                            error = res.error.message;
+                    R1Util.createAlert($scope, "Error", error, null);
+                }
+                $(".loading").hide();
+            },)
+        }
+
+        // vm.getRecords = function () {
+        //     $(".loading").show();
+        //     ajax.get('MemberRequest/list', null).then(function (res) {
+        //         if (res) {
+        //             vm.serviceGrid.data = res;
+        //         }
+        //         else {
+        //             var error = "Error";
+        //             if (res.error)
+        //                 if (res.error.message)
+        //                     error = res.error.message;
+        //             R1Util.createAlert($scope, "Error", error, null);
+        //         }
+        //         $(".loading").hide();
+        //     })
+        // }
+
+        // vm.getRecords()
 
 
 

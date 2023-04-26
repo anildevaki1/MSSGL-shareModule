@@ -1,8 +1,11 @@
 var myApp = angular.module('myApp');
-myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
-    function ($scope, $state, ajax, R1Util) {
+myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter',
+    function ($scope, $state, ajax, R1Util,$filter) {
 
         var vm = this;
+        vm.entity={};
+        vm.entity.sdt= new Date();
+        vm.entity.edt= new Date();
         vm.serviceGrid = {
             enableRowSelection: true,
             enableRowHeaderSelection: false,
@@ -24,7 +27,7 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
 
-                width: "10%"
+                width: "11%"
             },
 
             {
@@ -35,19 +38,20 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 enableCellEdit: false,
                 cellFilter: 'date:\'dd/MM/yyyy\'',
                 cellClass: 'alignLgrid',
-                width: "15%"
+                width: "11%"
 
             },
 
             {
                 field: 'regCode',
-                displayName: 'नंबर',
+                displayName: 'सभासद नंबर',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
-                width: "15%"
+                width: "11%"
 
             },
+
             {
                 field: 'regCodeNavigation.shName',
                 displayName: 'सभासदाचे नांव',
@@ -60,13 +64,23 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
             {
                 field: 'chNo',
-                displayName: ' नंबर',
+                displayName: ' चेक नंबर',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
 
-                width: "15%"
+                width: "11%"
+            },
+            {
+                field: 'chAmt',
+                displayName: 'चेक इश्यू रक्कम ',
+                enableSorting: true,
+                enableCellEdit: false,
+                type: 'number',
+                cellFilter: 'number:2',
+                cellClass: 'alignRgrid',
+                width: "16%"
             },
 
  
@@ -76,15 +90,44 @@ myApp.controller('chequereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 name: 'Action ',
                 enableSorting: false,
                 enableCellEdit: false,
-                width: "15%",
+                width: "10%",
                 cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="bi bi-eye"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="bi bi-trash3"></i></a></center>'
             }
         ];
 
+       
+       
 
 
 
-vm.edit = function (grid, row) {
+
+$scope.show = function (){
+    $(".loading").show();
+   var params = {
+    "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+    "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),
+   }
+   ajax.get('ChequeReturn/list',null,params).then(function(res){
+    if(res){
+        vm.serviceGrid.data = res;
+    }
+    else {
+        var error = "Error";
+        if(res.error)
+        if (res.error.message)
+        error = res.error.message;
+        R1Util.createAlert($scope,"Error",error,null);
+    }
+    $(".loading").hide();
+
+   })
+
+
+
+}
+
+
+       vm.edit = function (grid, row) {
             var param = {
                 action: 'view',
                 id: row.entity.vchId
@@ -110,9 +153,32 @@ vm.edit = function (grid, row) {
 
         }
 
-        vm.getRecords = function () {
+        // vm.getRecords = function () {
 
-            ajax.get('ChequeReturn/list').then(function (res) {
+        //     ajax.get('ChequeReturn/list').then(function (res) {
+        //         if (res) {
+        //             vm.serviceGrid.data = res;
+        //         }
+        //         else {
+        //             var error = "Error";
+        //             if (res.error)
+        //                 if (res.error.message)
+        //                     error = res.error.message;
+        //             R1Util.createAlert($scope, "Error", error, null);
+        //         }
+        //         $(".loading").hide();
+        //     },)
+        // }
+
+        // vm.getRecords()
+
+        $scope.refreshData = function (){
+            $(".loading").show();
+            var params = {
+                "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+                "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),   
+            }
+            ajax.get('ChequeReturn/list',params).then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
                 }
@@ -127,8 +193,7 @@ vm.edit = function (grid, row) {
             },)
         }
 
-        vm.getRecords()
-
+      
 
 
     }])
@@ -336,7 +401,7 @@ myApp.controller('chequereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootSco
         $scope.getMembers = function () {
             vm.Members = [];
             if (!vm.member)
-                ajax.get("Member/list").then(function (res) {
+                ajax.get("Member/getMemlist").then(function (res) {
                     vm.Members = res;
                 }, function (err) {
                     var e = err;

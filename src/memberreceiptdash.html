@@ -4,16 +4,15 @@
 
             <div style="width:3%"></div>
             <div class="col-2">
-                <i class="bi bi-share-fill m-1"></i><strong>शेअर परत</strong>
+                <i class="bi bi-receipt m-1"></i><strong>पावती (पू.स)</strong>
             </div>
-
 
             <div class="row  col-12" style="width:40%;text-align: center;">
 
                 <div class="col-sm-5 p-1">
       
                   <div class="input-group">
-                    <div class="input-group-prepend  border-right-0" style="border: 2px solid rgba(108, 89, 179, 0.75);">
+                    <div class="input-group-prepend   border-right-0" style="border: 2px solid rgba(108, 89, 179, 0.75);">
                       <span class="input-group-text" id="basic-addon1 p-1"> पासून </span>
                     </div>
                     <input type="date" name="from" data-ng-model="vm.entity.sdt" 
@@ -40,18 +39,17 @@
               </div> 
 
             <div style="width:70%;text-align: right;">
-       
+              
                 <button style="font-weight:600;font-size:20px; padding-left: 10px; padding-right: 10px; padding-top: 6px; padding-bottom: 2px;"
                 class="btn  btn-sm btn-info active" data-toggle="tooltip" data-placement="bottom"  ng-click="refreshData()" >
                 <i class="bi bi-arrow-clockwise"></i>
             </button>
                 <a style="font-weight:600;font-size:20px; padding-left: 10px; padding-right: 10px;"
                     class="btn  btn-sm btn-info active" data-toggle="tooltip" data-placement="bottom"
-                    ui-sref="parent.sub.sharereturn({action:'new',firm_code:''})">
+                    ui-sref="parent.sub.memberreceipt({action:'new',firm_code:''})">
                     <i class="icon-plus icons h4"></i>
                     New Entry
                 </a>
-
             </div>
 
             <div style="width:1%"></div>

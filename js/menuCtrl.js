@@ -7,6 +7,9 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
         {
             icon: 'bi bi-person-circle', name: "अपूर्ण सभासद", path: 'parent.sub.memberdash',
         },
+        // {
+        //     icon: 'bi bi-person-circle', name: "date", path: 'parent.sub.date',
+        // },
         {
             icon: "bi bi-person-circle",
             name: 'पूर्ण सभासद',
@@ -95,22 +98,90 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
         },
 
 
+        // {
+        //     icon: 'bi bi-receipt', name: "जमा पावती(अ.सभासद)", path: 'parent.sub.receiptdash',
+        // },
+
         {
-            icon: 'bi bi-receipt', name: "जमा पावती(अ.सभासद)", path: 'parent.sub.receiptdash',
+            icon: 'bi bi-receipt', name: "जमा पावती", path: 'parent.sub.receiptdash',
+
+            content: [
+
+                {
+                    icon: "bi bi-cast",
+                    name: 'अपूर्ण सभासद ',
+                    path: 'parent.sub.receiptdash',
+                    params: { action: '', mode: true },
+
+                },
+
+                {
+                    icon: "bi bi-house-fill",
+                    name: 'पूर्ण सभासद ',
+                    path: 'parent.sub.memberreceiptdash',
+                    params: { action: '', mode: true },
+
+                },
+            ]
         },
 
 
         {
-            icon: 'bi bi-receipt-cutoff', name: "पेमेंट (अ. सभासद)", path: 'parent.sub.paymentdash',
+            icon: 'bi bi-receipt', name: "पेमेंट", path: 'parent.sub.paymentdash',
 
+            content: [
 
+                {
+                    icon: "bi bi-cast",
+                    name: 'अपूर्ण सभासद ',
+                    path: 'parent.sub.paymentdash',
+                    params: { action: '', mode: true },
+
+                },
+
+                {
+                    icon: "bi bi-house-fill",
+                    name: 'पूर्ण सभासद ',
+                    path: 'parent.sub.mempaydash',
+                    params: { action: '', mode: true },
+
+                },
+            ]
         },
+
+
+//         {
+//             icon: 'bi bi-receipt-cutoff', name: "पेमेंट (अ. सभासद)", path: 'parent.sub.paymentdash',
+// contant :[
+//     {
+//         icon: "bi bi-cast",
+//         name: 'अपूर्ण सभासद ',
+//         path: 'parent.sub.paymentdash',
+//         params: { action: '', mode: true },  
+//     },
+//     {
+//         icon: "bi bi-cast",
+//         name: 'पूर्ण सभासद ',
+//         path: 'parent.sub.mempaydash',
+//         params: { action: '', mode: true },  
+//     }
+// ]
+
+//         },
         {
             icon: "bi bi-share-fill",
             name: 'शेअर वाटप',
             path: 'parent.sub.shareissuedash',
             params: { action: '', mode: true },
         },
+
+        {
+            icon: "bi bi-share-fill",
+            name: 'हस्तांतरण',
+            path: 'parent.sub.journaldash',
+            params: { action: '', mode: true },
+        },
+
         {
             icon: "bi bi-share-fill",
             name: 'शेअर परत',
@@ -128,6 +199,14 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
             name: 'चेक परत',
             path: 'parent.sub.Chequereturndash',
             params: { action: '', mode: true },
+        },
+
+        {
+            icon: "bi bi-person-circle",
+            name: 'बल्क चेक इश्यू ',
+             path: 'parent.sub.bulkchequeissue',
+            params: { action: '', mode: true },
+
         },
 
         {
@@ -227,14 +306,8 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                      path: 'parent.sub.chequereturn',
                     params: { action: '', mode: true },
 
-                },
-                {
-                    icon: "bi bi-person-circle",
-                    name: 'बल्क चेक इश्यू ',
-                     path: 'parent.sub.blukchequeissue',
-                    params: { action: '', mode: true },
-
-                },
+                }
+              
             ]
         }
 

@@ -68,13 +68,13 @@
 
                         <div class="col-sm-3  ">
 
-                            <div class="form-group col-sm-10   m-1">
+                            <!-- <div class="form-group col-sm-10   m-1">
                                 <label for="title"> अपूर्ण सभासद नंबर </label>
                                 <div class="input-group">
                                     <input type="text" ng-blur="getMemberRequestdetail()" class="form-control form-control-sm"
                                         ng-model="vm.entity.reqId" ng-disabled="vm.mode=='edit'" numbers-only />
 
-                                    <span class="input-group-text p-0" ng-if="vm.mode=='new'">
+                                    <span class="input-group-text p-0" >
                                         <helper helperid="member1" id="name" list="vm.MemberRequests" width="30%"
                                             hclick="getMemberRequests()" row="vm.entity.req" columns="memberReq_coldef"
                                             filter="shName" selectedvalue="regCode" datasource="vm.entity.reqId"
@@ -94,7 +94,34 @@
 
                                 </div>
 
+                            </div> -->
+                            <div class="form-group col-sm-8   m-1">
+                                <label for="title"> पूर्ण सभासद नंबर </label>
+                                <div class="input-group">
+                                    <input type="text" ng-blur="getMemberdetail()" class="form-control form-control-sm" name="पूर्ण सभासद नाव"
+                                        ng-Model="vm.entity.memberId" numbers-only required/>
+                                    <span class="input-group-text p-0">
+                                        <helper helperid="member2" list="vm.Members" width="30%"
+                                            hclick="getMembers()" row="vm.entity.member" columns="memberReq_coldef"
+                                            filter="shName" selectedvalue="regCode" datasource="vm.entity.memberId"
+                                            ng-model="vm.entity.memberId" ng-change="getMemberdetail()" >
+                                        </helper>
+                                    </span>
+                                </div>
                             </div>
+
+                            <div class="form-group col-sm-10 m-1">
+                                <label for="title"> पूर्ण सभासद नाव</label>
+                                <div>
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.member.shName" disabled />
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.member.cityCodeNavigation.cityName" disabled />
+                                </div>
+
+                            </div>
+
+
 
                             <div class="form-group col-sm-10 m-1" ng-if="vm.mode=='new'">
                                 <label for="total ">
@@ -113,7 +140,7 @@
                         </div>
                         <div class="col-sm-6 p-1">
                             <div class="row">
-                                <div class="form-group col-sm-6  m-1">
+                                <!-- <div class="form-group col-sm-6  m-1">
                                     <label for="title"> पूर्ण सभासद नंबर </label>
                                     <div class="input-group">
                                         <input type="text" ng-blur="getMemberdetail()" class="form-control form-control-sm" name="पूर्ण सभासद नाव"
@@ -126,9 +153,9 @@
                                             </helper>
                                         </span>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="form-group col-sm-6 m-1">
+                                <!-- <div class="form-group col-sm-6 m-1">
                                     <label for="title"> पूर्ण सभासद नाव</label>
                                     <div>
                                         <input type="text" class="form-control form-control-sm"
@@ -137,7 +164,7 @@
                                             ng-value="vm.entity.member.cityCodeNavigation.cityName" disabled />
                                     </div>
 
-                                </div>
+                                </div> -->
                                 <div class="row">
                                     <div class="form-group col-sm-4 m-1">
                                         <label for="shareQty">शेअर संख्या</label>
@@ -160,7 +187,7 @@
                                     </div>
 
                                     <div class="form-group col-sm-4 m-1 ">
-                                        <label for="shareAmt">एकूण </label>
+                                        <label for="shareAmt">एकूण शेअर रक्कम </label>
 
                                         <div>
                                             <input type="text" id="share_amt" name="एकूण"
