@@ -378,7 +378,10 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
                 "value": 4,
                 "name": "बँक"
             },
-
+            {
+                "value": 5,
+                "name": "गाव/तालुका"
+            },
 
         ]
         vm.entity.group = 1;

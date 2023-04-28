@@ -233,7 +233,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 if (!vm.entity.vchId)
                     ajax.post('ShareIssue/insert', vm.entity).then(function (res) {
 
-                        vm.entity.vchId = vm.entity.vchId;
+                        vm.entity.vchId = res.vchId;
                         $(".loading").hide();
 
                         $scope.message = "Record Saved Sucessfully";
