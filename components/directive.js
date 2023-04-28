@@ -4700,6 +4700,50 @@ myApp.directive('sglclick', ['$parse', function ($parse) {
 }]);
 
 
+myApp.directive('myDatePicker', function() {
+    return {
+      restrict: 'A',
+      require: '?ngModel',
+      link: function(scope, element, attrs, ngModelCtrl) {
+        // initialize Flatpickr date picker
+        flatpickr(element[0], {
+          dateFormat: 'Y-m-d', // specify the date format
+          minDate: 'today', // specify the minimum date (set to "today" to prevent past dates)
+          onChange: function(selectedDates, dateStr, instance) {
+            // update the ngModel value
+            ngModelCtrl.$setViewValue(dateStr);
+          }
+        });
+      }
+    };
+  });
+
+// myApp.directive('myDatePicker', function() {
+//     return {
+//       restrict: 'A',
+//       require: '?ngModel',
+//       link: function(scope, element, attrs, ngModelCtrl) {
+//         // initialize Flatpickr date picker with monthSelectPlugin
+//         flatpickr(element[0], {
+//           dateFormat: 'Y-m-d', // specify the date format
+//           minDate: 'today', // specify the minimum date (set to "today" to prevent past dates)
+//           plugins: [new monthSelectPlugin({
+//             shorthand: true, // display month names as shorthand
+//             dateFormat: 'Y-m', // specify the date format for the input field
+//             theme: 'light' // specify the theme for the dropdown menu
+//           })],
+//           onChange: function(selectedDates, dateStr, instance) {
+//             // update the ngModel value
+//             ngModelCtrl.$setViewValue(dateStr);
+//           }
+//         });
+//       }
+//     };
+//   });
+  
+  
+
+
 myapp.service('Master', ['R1Util', 'orderByFilter', 'cache', 'ajax', '$q', 'companyinfo', '$filter', 'cfpLoadingBar', function (R1Util, orderBy, cache, ajax, $q, companyinfo, $filter, cfpLoadingBar) {
 
 

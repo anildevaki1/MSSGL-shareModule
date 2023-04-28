@@ -1,0 +1,47 @@
+<form class="form-horizontal" role="form" name="sharecertform">
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+        <div class="form-group p-1">
+            <div class="card">
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-cast"></i>
+                    <strong>शेअर भाग भांडवल यादी</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group col-sm-6 ">
+                                <label for="title">
+                                    अखेर तारीख
+                                </label>
+                                <div>
+                                    <input type="date" name="date" data-ng-model="vm.entity.edt"
+                                        class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-sm-6 ">
+                                <label for="title">स्वरूप (format)</label>
+                                <div>
+                                    <select class="form-select  form-select-sm" ng-model="vm.entity.format"
+                                        ng-options="item.value as item.name for item in vm.format">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class=" form-group col-sm-6">
+                                <br>
+                                <button type="button" class="btn btn-primary btn-sm" style="width: 130px;"
+                                    ng-click="show()">पहा </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </fieldset>
+</form>
