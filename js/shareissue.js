@@ -244,7 +244,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                     break;
                 case 'edit':
 
-                    if (vm.entity.vch_id != undefined) {
+                    if (vm.entity.vchId != undefined) {
                         if (NoViewing == true)
                             getExistEntity();
 
@@ -284,9 +284,10 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
                 $(".loading").show();
                 if (!vm.entity.vchId)
+                {
                     ajax.post('ShareIssue/insert', vm.entity).then(function (res) {
 
-                        vm.entity.vchId = vm.res.vchId;
+                        vm.entity.vchId = res.vchId;
                         $(".loading").hide();
 
                         $scope.message = "Record Saved Sucessfully";
@@ -321,7 +322,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                         R1Util.createAlert($scope, "Error", err.msg, null);
                     })
                 }
-
+            
             }
             else {
                 vm.mode = 'edit';
