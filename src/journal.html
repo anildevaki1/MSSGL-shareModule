@@ -1,0 +1,409 @@
+<form class="form-horizontal" role="form" name="journalform">
+    <div class="form-body p-0">
+        <div>
+            <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
+        </div>
+    </div>
+
+
+
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+
+
+        <div class="form-group p-1">
+            <div class="card ">
+                <!-- style="background-color:#e4e4e4" -->
+                <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-share-fill"></i>
+                    <strong>हस्तांतरण</strong>
+                </div>
+                <!-- #abc135offset-sm-2 -->
+               
+
+                <div class="card-body">
+                    <div class="row ">
+                        <div class="col-sm-2">
+
+                            <div class="form-group  m-1">
+                                <label for="title">
+                                    नंबर
+                                </label>
+                                <div>
+                                    <input type="text" name="vchid" data-ng-model="vm.entity.vchId"
+                                        class="form-control form-control-sm" placeholder="स्वयंम  क्रमांक"
+                                        autocomplete="off"/>
+                                </div>
+                            </div>
+                            <div class="form-group   m-1">
+                                <label for="title">
+                                    तारीख
+                                </label>
+                                <div>
+                                    <input type="date" name="vchdate" data-ng-model="vm.entity.vchDate"
+                                        class="form-control form-control-sm" autocomplete="off"/>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group  m-1">
+                                <label for="cert_no">
+                                    प्रमाणपत्र क्रमांक
+
+                                </label>
+                                <div>
+                                    <input type="text" id="cert_no" name="cert_no" autocomplete="off"
+                                        ng-model="vm.entity.certNo" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                            <div class="form-group  m-1">
+                                <label for="number">
+                                    ठराव क्र.
+                                </label>
+                                <div>
+                                    <input type="text" id="number" name="number" autocomplete="off"
+                                        ng-model="vm.entity.meetingRefNo" class="form-control form-control-sm" />
+                                </div>
+                            </div> -->
+
+
+                        </div>
+
+
+                        <div class="col-sm-4  p-1">
+
+                            <div class="form-group col-sm-10   m-1">
+                                <label for="title"> अपूर्ण सभासद नंबर </label>
+                                <div class="input-group">
+                                    <input type="text" ng-blur="getMemberRequestdetail()" class="form-control form-control-sm"
+                                        ng-model="vm.entity.reqId" ng-disabled="vm.mode=='edit'" numbers-only />
+
+                                    <span class="input-group-text p-0" >
+                                        <helper helperid="member1" id="name" list="vm.MemberRequests" width="30%"
+                                            hclick="getMemberRequests()" row="vm.entity.req" columns="memberReq_coldef"
+                                            filter="shName" selectedvalue="regCode" datasource="vm.entity.reqId"
+                                            ng-model="vm.entity.reqId" ng-change="getMemberRequestdetail()">
+                                        </helper>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-10 m-1">
+                                <label for="title"> अपूर्ण सभासद नाव</label>
+                                <div>
+                                    <input type="text" class="form-control form-control-sm" ng-value="vm.entity.req.shName"
+                                        disabled />
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.req.cityCodeNavigation.cityName" disabled />
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-sm-10 m-1"  ng-if="vm.mode=='new'" >
+                                <label for="total ">
+                                    एकूण शिल्लक रक्कम
+
+                                </label>
+                                <div>
+                                    <input type="text" id="total" name="total" autocomplete="off"
+                                        ng-model="vm.entity.balance" class="form-control form-control-sm fw-bold"
+                                        data-format="currency" data-fraction="2" disabled />
+                                </div>
+                            </div>
+<!-- 
+                            <div class="form-group col-sm-10 m-1">
+                                <label for="title"> टिप्पणी</label>
+                                <textarea  id="Address" data-ng-model="vm.entity.naration" 
+                                   class="form-control input-sm" id="Narration"
+                                  autocomplete="off" 
+                                    style="height:70px;width: 300px;">
+                                </textarea>
+                            </div>
+                            -->
+
+
+
+                        </div>
+
+                       
+                        <div class="col-sm-3 p-1">
+                            <div class="row">
+                                <div class="form-group col-sm-8  m-1">
+                                    <label for="title"> पूर्ण सभासद नंबर </label>
+                                    <div class="input-group">
+                                        <input type="text" ng-blur="getMemberdetail()" class="form-control form-control-sm" name="पूर्ण सभासद नाव"
+                                            ng-Model="vm.entity.memberId" numbers-only required/>
+                                        <span class="input-group-text p-0">
+                                            <helper helperid="member2" list="vm.Members" width="30%"
+                                                hclick="getMembers()" row="vm.entity.member" columns="memberReq_coldef"
+                                                filter="shName" selectedvalue="regCode" datasource="vm.entity.memberId"
+                                                ng-model="vm.entity.memberId" ng-change="getMemberdetail()" >
+                                            </helper>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-9 m-1">
+                                    <label for="title"> पूर्ण सभासद नाव</label>
+                                    <div>
+                                        <input type="text" class="form-control form-control-sm"
+                                            ng-value="vm.entity.member.shName" disabled />
+                                        <input type="text" class="form-control form-control-sm"
+                                            ng-value="vm.entity.member.cityCodeNavigation.cityName" disabled />
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-9 m-1">
+                                        <label for="totalAmt">एकूण रक्कम</label>
+                                        <div>
+                                            <input type="text" id="total_amount" name="total_amount"
+                                                class="form-control form-control-sm text-end" ng-model="vm.entity.totalAmt"
+                                                data-format="currency" data-fraction="2"  />
+                                        </div>
+                                    </div>
+    
+                                  </div>
+                            </div>
+                           
+                        </div>
+
+                        <div class="col-sm-2 p-1">
+                            <div class="form-group col-sm-10">
+                                <label for="title"> टिप्पणी</label>
+                                <textarea  id="Address" data-ng-model="vm.entity.naration" 
+                                   class="form-control input-sm" id="Narration"
+                                  autocomplete="off" 
+                                    style="height: 141px;width: 260px;">
+                                </textarea>
+                            </div>
+                        </div>
+                      
+                       
+                    </div>
+  </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </fieldset>
+
+
+    <!-- <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+
+
+        <div class="form-group p-1">
+            <div class="card ">
+          style="background-color:#e4e4e4" -->
+                <!-- <div class="card-header" style="background-color:#caf0f8">
+                    <i class="bi bi-share-fill"></i>
+                    <strong>हस्तांतरण</strong>
+                </div> -->
+                <!-- #abc135offset-sm-2 -->
+               
+
+                <!-- <div class="card-body">
+                    <div class="row ">
+                        <div class="col-sm-2">
+
+                            <div class="form-group  m-1">
+                                <label for="title">
+                                    नंबर
+                                </label>
+                                <div>
+                                    <input type="text" name="vchid" data-ng-model="vm.entity.vchId"
+                                        class="form-control form-control-sm" placeholder="स्वयंम  क्रमांक"
+                                        autocomplete="off"/>
+                                </div>
+                            </div>
+                            <div class="form-group   m-1">
+                                <label for="title">
+                                    तारीख
+                                </label>
+                                <div>
+                                    <input type="date" name="vchdate" data-ng-model="vm.entity.vchDate"
+                                        class="form-control form-control-sm" autocomplete="off"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group  m-1">
+                                <label for="cert_no">
+                                    प्रमाणपत्र क्रमांक
+
+                                </label>
+                                <div>
+                                    <input type="text" id="cert_no" name="cert_no" autocomplete="off"
+                                        ng-model="vm.entity.certNo" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                            <div class="form-group  m-1">
+                                <label for="number">
+                                    ठराव क्र.
+                                </label>
+                                <div>
+                                    <input type="text" id="number" name="number" autocomplete="off"
+                                        ng-model="vm.entity.meetingRefNo" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="col-sm-3 ">
+
+                            <div class="form-group col-sm-10   m-1">
+                                <label for="title"> अपूर्ण सभासद नंबर </label>
+                                <div class="input-group">
+                                    <input type="text" ng-blur="getMemberRequestdetail()" class="form-control form-control-sm"
+                                        ng-model="vm.entity.reqId" ng-disabled="vm.mode=='edit'" numbers-only />
+
+                                    <span class="input-group-text p-0" ng-if="vm.mode=='new'">
+                                        <helper helperid="member1" id="name" list="vm.MemberRequests" width="30%"
+                                            hclick="getMemberRequests()" row="vm.entity.req" columns="memberReq_coldef"
+                                            filter="shName" selectedvalue="regCode" datasource="vm.entity.reqId"
+                                            ng-model="vm.entity.reqId" ng-change="getMemberRequestdetail()">
+                                        </helper>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-10 m-1">
+                                <label for="title"> अपूर्ण सभासद नाव</label>
+                                <div>
+                                    <input type="text" class="form-control form-control-sm" ng-value="vm.entity.req.shName"
+                                        disabled />
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.req.cityCodeNavigation.cityName" disabled />
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-sm-10 m-1" ng-if="vm.mode=='new'">
+                                <label for="total ">
+                                    एकूण शिल्लक रक्कम
+
+                                </label>
+                                <div>
+                                    <input type="text" id="total" name="total" autocomplete="off"
+                                        ng-model="vm.entity.balance" class="form-control form-control-sm fw-bold"
+                                        data-format="currency" data-fraction="2" disabled />
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="col-sm-3  ">
+
+                            <div class="form-group col-sm-10   m-1">
+                                <label for="title"> पूर्ण सभासद नंबर </label>
+                                    <div class="input-group">
+                                        <input type="text" ng-blur="getMemberdetail()" class="form-control form-control-sm" name="पूर्ण सभासद नाव"
+                                            ng-Model="vm.entity.memberId" numbers-only required/>
+                                        <span class="input-group-text p-0">
+                                            <helper helperid="member2" list="vm.Members" width="30%"
+                                                hclick="getMembers()" row="vm.entity.member" columns="memberReq_coldef"
+                                                filter="shName" selectedvalue="regCode" datasource="vm.entity.memberId"
+                                                ng-model="vm.entity.memberId" ng-change="getMemberdetail()" >
+                                            </helper>
+                                        </span>
+                                    </div>
+                            </div>
+
+                            <div class="form-group col-sm-10 m-1">
+                                <label for="title"> पूर्ण सभासद नाव</label>
+                                <div>
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.member.shName" disabled />
+                                    <input type="text" class="form-control form-control-sm"
+                                        ng-value="vm.entity.member.cityCodeNavigation.cityName" disabled />
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group col-sm-10 m-1" ng-if="vm.mode=='new'">
+                                <label for="totalAmt">एकूण रक्कम</label>
+                                    <div>
+                                        <input type="text" id="total_amount" name="total_amount"
+                                            class="form-control form-control-sm text-end" ng-model="vm.entity.totalAmt"
+                                            data-format="currency" data-fraction="2" />
+                                    </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="col-sm-6 p-1">
+                            <div class="row">
+                                <div class="form-group col-sm-6  m-1">
+                                    <label for="title"> पूर्ण सभासद नंबर </label>
+                                    <div class="input-group">
+                                        <input type="text" ng-blur="getMemberdetail()" class="form-control form-control-sm" name="पूर्ण सभासद नाव"
+                                            ng-Model="vm.entity.memberId" numbers-only required/>
+                                        <span class="input-group-text p-0">
+                                            <helper helperid="member2" list="vm.Members" width="30%"
+                                                hclick="getMembers()" row="vm.entity.member" columns="memberReq_coldef"
+                                                filter="shName" selectedvalue="regCode" datasource="vm.entity.memberId"
+                                                ng-model="vm.entity.memberId" ng-change="getMemberdetail()" >
+                                            </helper>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-6 m-1">
+                                    <label for="title"> पूर्ण सभासद नाव</label>
+                                    <div>
+                                        <input type="text" class="form-control form-control-sm"
+                                            ng-value="vm.entity.member.shName" disabled />
+                                        <input type="text" class="form-control form-control-sm"
+                                            ng-value="vm.entity.member.cityCodeNavigation.cityName" disabled />
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-sm-4 m-2">
+                                    <label for="totalAmt">एकूण रक्कम</label>
+                                    <div>
+                                        <input type="text" id="total_amount" name="total_amount"
+                                            class="form-control form-control-sm text-end" ng-model="vm.entity.totalAmt"
+                                            data-format="currency" data-fraction="2" disabled />
+                                    </div>
+                                </div>
+                             
+                            </div>
+                         
+                          
+                        </div> -->
+
+<!--                    
+                    </div>
+
+
+                
+                    </div> --> 
+
+
+                 
+
+<!-- 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </fieldset> --> 
+</form>
+
+<style>
+    .form-group{
+        margin-bottom: 15px !important;
+    }
+</style>

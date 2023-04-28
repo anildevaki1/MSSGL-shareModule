@@ -1,10 +1,12 @@
 var myApp = angular.module('myApp');
-myApp.controller('sharereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
-    function ($scope, $state, ajax, R1Util,) {
+myApp.controller('sharereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter',
+    function ($scope, $state, ajax, R1Util,$filter) {
 
         var vm = this;
 
-
+        vm.entity={};
+        vm.entity.sdt= new Date();
+        vm.entity.edt= new Date();
 
         vm.serviceGrid = {
             enableRowSelection: true,
@@ -45,7 +47,7 @@ myApp.controller('sharereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
             {
                 field: 'regCode',
-                displayName: 'नंबर',
+                displayName: 'सभासद नंबर',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
@@ -109,9 +111,34 @@ myApp.controller('sharereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
         }
 
-        vm.getRecords = function () {
-
-            ajax.get('ShareReturn/list').then(function (res) {
+        $scope.show = function (){
+            $(".loading").show();
+           var params = {
+            "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+            "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),
+           }
+           ajax.get('ShareReturn/list',null,params).then(function(res){
+            if(res){
+                vm.serviceGrid.data = res;
+            }
+            else {
+                var error = "Error";
+                if(res.error)
+                if (res.error.message)
+                error = res.error.message;
+                R1Util.createAlert($scope,"Error",error,null);
+            }
+            $(".loading").hide();
+      })
+    
+        }
+        $scope.refreshData = function (){
+            $(".loading").show();
+            var params = {
+                "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+                "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),
+            }
+            ajax.get('ShareReturn/list',null,params).then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
                 }
@@ -125,11 +152,7 @@ myApp.controller('sharereturndashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 $(".loading").hide();
             },)
         }
-
-        vm.getRecords()
-
-
-    }
+  }
 
 
 ])
@@ -142,7 +165,7 @@ myApp.controller('sharereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
         vm.mode = 'new';
          var pastEntity = {};
 
-var NoViewing=true;
+           var NoViewing=true;
 
         if ($stateParams.action)
             vm.mode = $stateParams.action;
@@ -301,7 +324,7 @@ var NoViewing=true;
 
         getExistEntity = function () {
 
-            ajax.get('ShareReturn/get', null, { id: vm.entity.vchId }).then(function (res) {
+            ajax.get('ShareReturn/get',null, { id: vm.entity.vchId }).then(function (res) {
                 vm.entity = res;
                 vm.entity.vchDate = new Date(vm.entity.vchDate);
                 pastEntity = angular.copy(vm.entity);
@@ -344,6 +367,8 @@ var NoViewing=true;
                                 error = res.error.message;
                         R1Util.createAlert($scope, "Error", error, null);
                 })
+            }else{
+                vm.entity.regCodeNavigation = {};
             }
 
 

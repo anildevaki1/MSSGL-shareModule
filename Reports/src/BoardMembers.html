@@ -26,16 +26,14 @@
                                         class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
                                 </div>
                             </div>
-
                             <div class="form-group col-sm-8 m-2">
                                 <label for="shareQty">
-                                    शेअर रक्कम 
+                                    शेअर रक्कम
                                 </label>
                                 <div>
-                                    <input type="text" id="shareQty" name=" शेअर रक्कम"
+                                    <input type="text" id="shareQty" name="शेअर रक्कम"
                                         class="form-control form-control-sm text-end" ng-model="vm.entity.shareQty"
-                                        data-format="currency" data-fraction="2"
-                                         />
+                                        data-format="currency" data-fraction="2" />
                                 </div>
                             </div>
 
@@ -44,15 +42,14 @@
                                     सभासद शुल्क
                                 </label>
                                 <div>
-                                    <input type="text" id="member_charge" name=" सभासद शुल्क"
+                                    <input type="text" id="member_charge" name="सभासद शुल्क"
                                         class="form-control form-control-sm text-end" ng-model="vm.entity.mbrCharges"
-                                        numbers-only/>
+                                        numbers-only />
                                 </div>
                             </div>
 
                         </div>
                         <div class="col-sm-5">
-
 
                             <div class="form-group col-sm-6 m-1">
                                 <label for="title">गाव</label>
@@ -75,11 +72,10 @@
                                 </div>
                             </div>
 
-
-
                             <div class="col-sm-3  text-center m-4">
                                 <!-- <br> -->
-                                <button type="button" class="btn btn-primary"  ng-disabled="!vm.entity.shareQty|| !vm.entity.mbrCharges"  style="width: 122px;"
+                                <button type="button" class="btn btn-primary btn-sm"
+                                    ng-disabled="!vm.entity.shareQty|| !vm.entity.mbrCharges" style="width: 122px;"
                                     ng-click="show()">पहा</button>
 
                             </div>

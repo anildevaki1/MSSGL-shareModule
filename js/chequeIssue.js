@@ -1,8 +1,11 @@
 var myApp = angular.module('myApp');
-myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
-    function ($scope, $state, ajax, R1Util) {
+myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter',
+    function ($scope, $state, ajax, R1Util,$filter) {
 
         var vm = this;
+        vm.entity = {};
+        vm.entity.sdt=new Date();
+        vm.entity.edt=new Date();
         vm.serviceGrid = {
             enableRowSelection: true,
             enableRowHeaderSelection: false,
@@ -41,7 +44,7 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
             {
                 field: 'regCode',
-                displayName: 'नंबर',
+                displayName: ' सभासद नंबर',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
@@ -60,7 +63,7 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
             {
                 field: 'chNo',
-                displayName: 'नंबर',
+                displayName: 'चेक नंबर',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
@@ -90,6 +93,7 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
             }
         ];
 
+
         vm.edit = function (grid, row) {
             var param = {
                 action: 'view',
@@ -116,9 +120,15 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
 
         }
 
-        vm.getRecords = function () {
 
-            ajax.get('ChequeIssue/list').then(function (res) {
+
+        $scope.show = function () {
+            $(".loading").show();
+            var params = {
+                "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+                "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),
+         }
+       ajax.get('ChequeIssue/list',null,params).then(function (res) {
                 if (res) {
                     vm.serviceGrid.data = res;
                 }
@@ -132,8 +142,31 @@ myApp.controller('chequeissuedashCtrl', ['$scope', '$state', 'ajax', 'R1Util',
                 $(".loading").hide();
             },)
         }
+    
+     //  vm.getRecords = function () {
+      $scope.refreshData = function (){
+        $(".loading").show();
+        var params = {
+            "sdt": $filter('date')(new Date(vm.entity.sdt), 'yyyy/MM/dd'),
+            "edt": $filter('date')(new Date(vm.entity.edt), 'yyyy/MM/dd'),
+         }
 
-        vm.getRecords()
+        ajax.get('ChequeIssue/list',null,params).then(function (res) {
+            if (res) {
+                vm.serviceGrid.data = res;
+            }
+            else {
+                var error = "Error";
+                if (res.error)
+                    if (res.error.message)
+                        error = res.error.message;
+                R1Util.createAlert($scope, "Error", error, null);
+            }
+            $(".loading").hide();
+        },)
+     }
+
+      
 
 
 
@@ -281,7 +314,7 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
             var q = $q.defer();
            
            
-                q.resolve();
+            q.resolve();
             
 
             return q.promise;
@@ -341,6 +374,10 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
                     
                 })
             }
+            else
+            {
+                vm.entity.regCodeNavigation ={};
+            }
 
 
         }
@@ -349,7 +386,7 @@ myApp.controller('chequeissueCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
         $scope.getMembers = function () {
             vm.Members = [];
             if (!vm.member)
-                ajax.get("Member/list").then(function (res) {
+                ajax.get("Member/getMemlist").then(function (res) {
                     vm.Members = res;
                 }, function (err) {
                     var e = err;

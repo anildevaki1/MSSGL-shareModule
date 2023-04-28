@@ -513,6 +513,41 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
     })
 
+// 21/04/2023
+    .state("parent.sub.memberreceiptdash", {
+      url: "/memberreceiptdash",
+      templateUrl: "src/memberreceiptdash.html",
+      controller: 'memberrecdashCtrl as vm',
+      params: { id: null,action:null }
+
+    })
+
+    .state("parent.sub.memberreceipt", {
+      url: "/memberreceipt",
+      templateUrl: "src/memberreceipt.html",
+      controller: 'memberreceiptCtrl as vm',
+      params: { id: null,action:null }
+
+    })
+
+    .state("parent.sub.journaldash", {
+      url: "/journaldash",
+      templateUrl: "src/journaldash.html",
+      controller: 'journaldashCtrl as vm',
+      params: { id: null,action:null }
+
+    })
+
+    .state("parent.sub.journal", {
+      url: "/journal",
+      templateUrl: "src/journal.html",
+      controller: 'journalCtrl as vm',
+      params: { id: null,action:null }
+
+    })
+
+
+
     .state("parent.sub.shareissue", {
       url: "/shareissue",
       templateUrl: "src/shareissue.html",
@@ -543,6 +578,28 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'paymentdashCtrl as vm',
 
     })
+
+
+    .state("parent.sub.memberpayment", {
+      url: "/memberpayment",
+      templateUrl: "src/memberpayment.html",
+      controller: 'mempaymentCtrl as vm',
+      params: { id: null,action:null }
+    })
+
+
+    .state("parent.sub.mempaydash", {
+      url: "/memberpaymentdash",
+      templateUrl: "src/mempaymentdash.html",
+      controller: 'mempaymentdashCtrl as vm',
+
+    })
+
+    
+
+
+
+
 
     .state("parent.sub.sharereturn", {
       url: "/sharereturn",
@@ -590,6 +647,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
     })
 
+    .state("parent.sub.bulkchequeissue",{
+      url:"/bulkchequeissue",
+      templateUrl: "src/bulkchequeissue.html",
+      controller: 'bulkchequeissueCtrl as vm',
+      params: { id: null,action:null }
+    })
+
     
     .state("parent.sub.Dividend", {
       url: "/Dividend",
@@ -599,12 +663,23 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     })
 
 
+
+
     // .state("parent.sub.Dividenddash", {
     //   url: "/Dividenddash",
     //   templateUrl: "src/Dividenddash.html",
     //   controller: 'DividenddashCtrl as vm',
 
     // })
+
+
+    // .state("parent.sub.date", {
+    //   url: "/date",
+    //   templateUrl: "src/date.html",
+    //   controller: 'dateCtrl as vm',
+
+    // })
+
 
     .state("parent.sub.userinfo", {
       url: "/userinfo",
@@ -627,7 +702,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'changepswCtrl as vm',
       params: { id: null,action:null }
     })
-
+//////REPORT////////
    
     .state("parent.sub.electorslist", {
       url: "/electorslist",
@@ -711,12 +786,30 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     })
 
 
-    // .state("parent.sub.chequereturn",{
-    //   url: "/chequereturn",
-    //   templateUrl: "Reports/src/chequereturnlist.html",
-    //   controller: 'chequereturnlistCtrl as vm',
-    //   params: { id: null,action:null}
-    // })
+    .state("parent.sub.chequereturn",{
+      url: "/chequereturn",
+      templateUrl: "Reports/src/chequereturnlist.html",
+      controller: 'chequereturnlistCtrl as vm',
+      params: { id: null,action:null}
+    })
+
+    .state("parent.sub.sharecertregister",{
+      url: "/sharecertregister",
+      templateUrl: "Reports/src/sharecertreg.html",
+      controller: 'sharecertregCtrl as vm',
+      params: { id: null,action:null}
+    })
+
+    .state("parent.sub.sharecapitalcert",{
+      url: "/sharecapitalcert",
+      templateUrl: "Reports/src/sharecapitalcert.html",
+      controller: 'sharecapitalcertCtrl as vm',
+      params: { id: null,action:null}
+    })
+
+
+
+
 
 
 

@@ -28,8 +28,9 @@
                                 <div class="form-group col-sm-6">
                                     <label>सभासद नंबर</label>
                                     <div>
-                                        <input type="text" id="member_no" name="सभासद नंबर" class="form-control form-control-sm"
-                                            placeholder="स्वयं क्रमांक" ng-Model="vm.entity.regCode" numbers-only />
+                                        <input type="text" id="member_no" name="सभासद नंबर"
+                                            class="form-control form-control-sm" placeholder="स्वयं क्रमांक"
+                                            ng-Model="vm.entity.regCode" numbers-only />
                                     </div>
                                 </div>
 
@@ -38,8 +39,8 @@
                             <div class="form-group col-sm-12">
                                 <label for="member_name">सभासदाचे नाव</label>
                                 <div>
-                                    <input type="text" id="member_name" name="सभासदाचे नाव" class="form-control form-control-sm"
-                                        ng-model="vm.entity.shName" required/>
+                                    <input type="text" id="member_name" name="सभासदाचे नाव"
+                                        class="form-control form-control-sm" ng-model="vm.entity.shName" required />
                                 </div>
                             </div>
 
@@ -69,7 +70,7 @@
                             <div>
                                 <multicolumncombo list="vm.reference.shares" datasource="vm.entity" datamember="shType"
                                     row="vm.reference.selectedshare" placeholder="Please select Share"
-                                    class="form-control p-1" displayvalue="shTypeName" name="शेअरस प्रकार "
+                                    class="form-control p-1" displayvalue="shTypeName" name="शेअरस प्रकार"
                                     selectedvalue="shTypeCode" extralables="" disablefn="Master.formdisabled(vm.mode)"
                                     required>
                                 </multicolumncombo>
@@ -128,6 +129,16 @@
                                         ng-model="vm.entity.shNomineeRelation" class="form-control form-control-sm" />
                                 </div>
                             </div>
+                            <div class="form-group col-sm-12">
+                                <label for="mobile_no">
+                                    मोबाइल नंबर
+                                </label>
+                                <div>
+                                    <input type="text" id="nominee_ralation" name="nominee_ralation" autocomplete="off"
+                                        maxlength="10" ng-model="vm.entity.mobileNo"
+                                        class="form-control form-control-sm" numbers-only />
+                                </div>
+                            </div>
 
                         </div>
                         <div class="col-sm-4 offset-sm-1">
@@ -183,8 +194,8 @@
                                         <multicolumncombo list="vm.reference.Religions" datasource="vm.entity"
                                             datamember="castCode" row="vm.reference.selectedreligions"
                                             placeholder="Please select religions" class="form-control p-1"
-                                            displayvalue="castName" name="जात" selectedvalue="castCode"
-                                            extralables="" disablefn="Master.formdisabled(vm.mode)" required>
+                                            displayvalue="castName" name="जात" selectedvalue="castCode" extralables=""
+                                            disablefn="Master.formdisabled(vm.mode)" required>
                                         </multicolumncombo>
 
 
@@ -223,17 +234,20 @@
                                         वय
                                     </label>
                                     <div>
-                                        <input type="text" id="age" name="age" class="form-control form-control-sm text-end"
-                                            ng-model="vm.entity.age" autocomplete="off" numbers-only />
+                                        <input type="text" id="age" name="age"
+                                            class="form-control form-control-sm text-end" ng-model="vm.entity.age"
+                                            autocomplete="off" numbers-only />
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-10">
                                     <label for="date">मंजूरी तारीख</label>
                                     <div>
                                         <input type="date" name="date" data-ng-model="vm.entity.regDt"
-                                            class="form-control form-control-sm" id="date" autocomplete="off" title="" />
+                                            class="form-control form-control-sm" id="date" autocomplete="off"
+                                            title="" />
                                     </div>
                                 </div>
+
 
                                 <div class="form-group col-sm-10">
                                     <label for="number">
@@ -301,13 +315,14 @@
                     <div class="card mb-3">
 
 
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion accordion-flush" id="accordionFlushExample1">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed" type="button"  style="background-color:#caf0f8" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" type="button"
+                                        style="background-color:#caf0f8" data-bs-toggle="collapse"
                                         data-bs-target="#flush-collapseOne" aria-expanded="false"
                                         aria-controls="flush-collapseOne">
-                                       मयत संबधीत माहिती
+                                        मयत संबधीत माहिती
                                     </button>
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse"
@@ -338,13 +353,42 @@
 
                                                 </div>
                                             </div>
-                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       </div>
+                    </div>
 
+                    <div class="card mb-3">
+
+
+                        <div class="accordion accordion-flush" id="accordionFlushExample2">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button"
+                                        style="background-color:#caf0f8" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                    संभासदत्व रद्द 
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample2">
+                                    <div class="accordion-body">
+                                        <div class="form-group col-sm-3">
+                                            <label for="date">रद्द तारीख</label>
+                                            <div>
+                                                <input type="date" name="date" data-ng-model="vm.entity.cancelDate"
+                                                    class="form-control form-control-sm" id="date" autocomplete="off"
+                                                    title="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </div>
@@ -368,9 +412,8 @@
     .selectize-control>.selectize-dropdown {
         top: 36px;
     }
-  
-    .form-group{
+
+    .form-group {
         margin-bottom: 15px !important;
     }
-
 </style>

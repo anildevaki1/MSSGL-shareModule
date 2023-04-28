@@ -1,0 +1,272 @@
+<form class="form-horizontal" role="form" name="chequereturnform">
+
+
+
+    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
+
+        <div class="form-group p-1">
+
+            <div class="card ">
+                <!-- style="background-color:#e4e4e4" -->
+                <div class="card-header" style="background-color:#acedae">
+                    <i class="bi bi-cast"></i>
+                    <strong>बल्क चेक इश्यू </strong>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col col-sm-2">
+                            <div class="form-group p-1">
+                                <label for="title">
+                                    अखेर तारीख
+                                </label>
+                                <div>
+                                    <input type="date" name="date" ng-model="vm.entity.edt"
+                                        class="form-control  form-control-sm" autocomplete="off" title="vchdate"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-sm-2">
+                            <div class="form-group p-1">
+                                <label for="title">सुरुवातीपासून चेक नंबर</label>
+
+                                <div>
+                                    <input type="text" ng-model="vm.entity.chNo" name="chno"
+                                        class="form-control form-control-sm" id="chno" autocomplete="off"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col  col-sm-2">
+                            <div class="form-group p-1">
+                                <label for="title">चेक तारीख</label>
+                                <div>
+                                    <input type="date" name="date" ng-model="vm.entity.chDt"
+                                        class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col col-sm-2">
+                            <div class="form-group  p-1">
+                                <label for="title">बँक(शाखा)</label>
+
+                                <div>
+                                    <input type="text" id="bankbranch" name="bankbranch"
+                                        class="form-control form-control-sm" ng-model="vm.entity.bankName" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-sm-2">
+                            <div class="form-group p-1">
+                                <label for="title">गाव</label>
+                                <div>
+                                    <multicolumncombo list="vm.reference.Places" datasource="vm.entity"
+                                        datamember="cityCode" row="vm.reference.selectedplace"
+                                        placeholder="Please select place" class="form-control p-1"
+                                        displayvalue="cityName" name="areanm" selectedvalue="cityCode" extralables=""
+                                        disablefn="Master.formdisabled(vm.mode)">
+                                    </multicolumncombo>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col col-sm-1">
+                            <br>
+                            <button class="btn btn-primary bi bi-plus-lg" style="width: 43px;height: 40px;"
+                                ng-click="showfn()"></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+<!-- <div> -->
+<!-- <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left p-1 " scope="col" style="width:20%">
+                सुरुवातीचा चेक नंबर </th>
+            <th class="text-left p-1 " scope="col" style="width:20%">
+                चेक तारीख </th>
+            <th class="text-left p-1 " scope="col" style="width:20%">
+                सभासद नंबर</th>
+            <th class="text-left p-1 " scope="col" style="width:20%">
+                सभासदाचे नाव </th>
+                <th class="text-left p-1 " scope="col" style="width:20%">
+                  गाव</th>
+
+            <th class="text-left p-1 " scope="col" style="width:20%">
+                रक्कम </th>
+          -->
+
+<!-- <th class="text-center p-1" scope="col" style="width:5%">
+                Action
+            </th> -->
+<!-- </tr>
+    </thead>
+    <tbody style="height:calc(100vh - 500px);overflow-y: scroll;">
+        <tr *ngFor="let v of entity.purchaseOrderItems;let i=index;">
+            <td style="width:25%" class="p-1">{{v.iName}}</td>
+            <td style="width:10%" class="p-1">{{v.unit}}</td>
+            <td style="width:10%" class="p-1 text-end">{{v.qty | number:'1.2-2'}}</td>
+            <td style="width:10%" class="p-1 text-end">{{v.freeQty | number:'1.2-2'}}</td>
+            <td style="width:10%" class="p-1 text-end">{{v.rate | number:'1.2-2'}}</td>
+            -->
+
+<!--           
+            <td style="width:5%" class="p-1 text-right">
+                <div>
+                    <button class="btn rounded-circle btn-light p-1 px-3" placement="start"
+                        popoverClass="actionpopover" [ngbPopover]="popovercontent" tabindex="0">
+                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    </button> -->
+<!-- <ng-template #popovercontent>
+                        <ul class="list-group">
+                            <li class="list-group-item" style="cursor:pointer;"
+                                (click)="InventryEdit(v)">
+                                <i class="fa fa-edit text-primary"></i> &nbsp;Edit
+                            </li>
+                            <li class="list-group-item" style="cursor:pointer;"
+                                (click)="InventryDelete(v)">
+                                <i class="fa fa-trash text-danger"></i> &nbsp;Delete
+                            </li>
+                        </ul>
+                    </ng-template> -->
+<!-- </div> -->
+<!-- </td> -->
+<!-- </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="p-1" scope="col" style="width:25%"><b>Total</b></td>
+            <td class="p-1" scope="col" style="width:10%"></td>
+            <td class="p-1" scope="col" style="width:10%"></td>
+            <td class="p-1" scope="col" style="width:10%"></td>
+            <td class="p-1" scope="col" style="width:10%"></td>
+            <td class="p-1" scope="col" style="width:10%"></td>
+            <td class="p-1" scope="col" style="width:10%"></td>
+            <td class="p-1 text-end" scope="col" style="width:10%">
+                <b> ₹ {{entity.grossTotal| number:'1.2-2'}}</b>
+            </td>
+            <td class="p-1" scope="col" style="width:5%"></td>
+        </tr>
+    </tfoot>
+</table> -->
+
+
+<!-- <form class="form-horizontal" role="form" name="divopenform">
+    <fieldset>
+        <div class="form-group">
+            <div class="card">
+                <div class="card-header" style="background-color:#acedae">
+                    <i class="fa fa-edit"></i>
+                    <strong>लाभांश</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row w-100">
+                        
+
+                            <div class="col col-sm-3">
+                                <div class="form-group p-1">
+                                    <label for="title">वर्ष</label>
+                                    <div>
+                                        <input type="text" ng-model="vm.entity.yr" maxlength="4" minlength="4"
+                                            class="form-control form-control-sm" id="year" placeholder="वर्ष"
+                                            autocomplete="off" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-sm-3">
+                                <div class="form-group  p-1">
+                                    <label for="title">प्रती शेअर दर</label>
+                                    <div>
+                                        <input type="text" name="Member" ng-model="vm.entity.divRate"
+                                            class="form-control form-control-sm" id="rate" placeholder="प्रती शेअर दर"
+                                            autocomplete="off" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col col-sm-1">
+                                <br>
+                               <button class="btn  btn-primary bi bi-plus-lg" ng-click="showfn()"></button>
+                              
+                            </div>
+ 
+
+                        
+                       
+                    </div>
+
+                </div>
+                <!-- <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="bg-primary">
+                                <td style="width:5%">Sr.no</td>
+                                <td style="width:20%">Memmber Id</td>
+                                <td style="width:25%">Member Name</td>
+                                <td style="width:20%">Credit</td>
+                                <td style="width:20%">Debit</td>
+                                <td style="width:10%">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody style="height:calc(100vh - 400px); overflow-y:scroll; border: 0px;">
+                            <tr ng-repeat="item in vm.entity.diviopen">
+                                <td style="width:5%">{{index + 1}}</td>
+                                <td style="width:20%">{{item.member_id}}</td>
+                                <td style="width:25%">{{item.member_name}}</td>
+                                <td style="width:20%">{{item.cramt}}</td>
+                                <td style="width:20%">{{item.dramt}}</td>
+                                <td style="width:10%">
+                                    <button type="button" style="border: 0px; padding: 0px;" id="edit"
+                                    ng-click="edit(item);">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                &nbsp;&nbsp;
+                                <button   type="button" style="border: 0px; padding: 0px;"
+                                    ng-click="remove(item);" id="delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div> -->
+
+
+<!-- </div>
+    </fieldset>
+    </div>
+</form> -->
+<!-- </div> -->
+
+<div class="card-body p-0">
+    <center class="ui-grid">
+        <div id="serviceGrid" ui-grid-move-columns ui-grid-pagination ui-grid-selection ui-grid-resize-columns
+            ui-grid-pinning ui-grid-exporter ui-grid-auto-resize ui-grid-edit ui-grid-cellnav ui-grid="vm.serviceGrid"
+            class="my-grid" style="height: calc(100vh - 265px)">
+        </div>
+    </center>
+
+</div>
+
+
+
+
+<style>
+    .my-active-class {
+        background-color: yellow;
+        color: red;
+    }
+</style>

@@ -1,4 +1,4 @@
-<form class="form-horizontal" role="form" name="paymentform">
+<form class="form-horizontal" role="form" name="memberpaymentform">
     <div class="form-body p-0">
         <div>
             <navbar ng-model="vm.mode" navtype="MU" actionfn="vm.action()"></navbar>
@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header" style="background-color:#caf0f8">
                     <i class="bi bi-receipt"></i>
-                    <strong>पेमेंट</strong>
+                    <strong>पूर्ण पेमेंट</strong>
                 </div>
 
                 <div class="card-body">
@@ -43,30 +43,32 @@
 
 
                                 <div class="form-group col-sm-6  m-1">
-                                    <label for="title"> अपूर्ण सभासद नंबर </label>
+                                    <label for="title"> पूर्ण सभासद नंबर </label>
+                                 
                                     <div class="input-group">
-                                        <input type="text" id="member_number" name="अपूर्ण सभासद नाव"
-                                            ng-blur="getMemberRequestdetail()" class="form-control form-control-sm"
-                                            ng-Model="vm.entity.regCode" numbers-only required/>
+                                        <input type="text" class="form-control form-control-sm" ng-blur="getMemberdetail()" name="पूर्ण सभासद नाव "
+                                             ng-Model="vm.entity.regCode" numbers-only required/>
+ 
+                                             <span class="input-group-text p-0">
+                                                 <helper helperid="member" list="vm.Members" width="30%"
+                                                     hclick="getMembers()" row="vm.entity.regCodeNavigation" columns="memberReq_coldef"
+                                                     filter="shName" selectedvalue="regCode" 
+                                                     ng-model="vm.entity.regCode" ng-change="getMemberdetail()">
+                                                 </helper>
+                                             </span>
+                                     </div>
 
-                                        <span class="input-group-text p-0">
-                                            <helper helperid="memberRequest"id="name" list=" vm.MemberRequests" width="30%"
-                                            hclick="getMemberRequests()"  row="vm.entity.regCodeNavigation"  columns="memberReq_coldef" filter="shName"
-                                            selectedvalue="regCode" ng-Model="vm.entity.regCode"
-                                            ng-change="getMemberRequestdetail()" >
-                                            </helper>
-                                        </span>
-                                    </div>
+                                   
                                 </div>
 
                                 <div class="form-group col-sm-10 m-1">
-                                    <label for="title"> अपूर्ण सभासद नाव</label>
+                                    <label for="title"> पूर्ण सभासद नाव</label>
                                     <div>
                                         <input type="text" class="form-control form-control-sm"
-                                            ng-value="vm.entity.regCodeNavigation.shName" disabled />
+                                            ng-value="vm.entity.regCodeNavigation.shName" disabled/>
                                         <input type="text" class="form-control form-control-sm"
                                             ng-value="vm.entity.regCodeNavigation.cityCodeNavigation.cityName"
-                                            disabled />
+                                            disabled/>
                                     </div>
 
                                 </div>
