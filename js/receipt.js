@@ -448,8 +448,18 @@ myApp.controller('memberrecdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$fi
 
         vm.serviceGrid.columnDefs = [
 
+            // {
+            //     field: 'vchId',
+            //     displayName: 'नंबर',
+            //     enableSorting: true,
+            //     type: 'string',
+            //     enableCellEdit: false,
+            //     cellClass: 'alignLgrid',
+
+            //     width: "10%"
+            // },
             {
-                field: 'vchId',
+                field: 'recNo',
                 displayName: 'नंबर',
                 enableSorting: true,
                 type: 'string',
@@ -458,6 +468,7 @@ myApp.controller('memberrecdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$fi
 
                 width: "10%"
             },
+
 
             {
                 field: 'vchDate',
@@ -472,7 +483,7 @@ myApp.controller('memberrecdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$fi
 
             {
                 field: 'regCode',
-                displayName: 'नंबर',
+                displayName: 'स.नंबर',
                 enableSorting: true,
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',

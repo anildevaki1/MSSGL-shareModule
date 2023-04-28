@@ -720,6 +720,107 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
 
  }])
 
+ myApp.controller('sharecertregCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+ function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+     var vm = this;
+     vm.entity = {};
+   
+     vm.reference = {};
+     vm.entity.edt = new Date();
+    
+ 
+
+   
+
+     vm.format = [
+         {
+             "value": 1,
+             "name": "Pdf"
+         },
+         {
+             "value": 2,
+             "name": "Excel"
+         },
+
+     ]
+     vm.entity.format = 1;
+
+ 
+ 
+
+
+     $scope.show = function () {
+      
+
+           var params ="&edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+          params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
+
+         
+       
+        window.open(myprovider.appserver + "Report/sharecertreg?" + params);
+
+     }
+
+
+
+ 
+
+
+ }])
+
+ myApp.controller('sharecapitalcertCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter', 'myprovider',
+ function ($scope, $state, ajax, R1Util, $filter, myprovider) {
+
+
+     var vm = this;
+     vm.entity = {};
+   
+     vm.reference = {};
+     vm.entity.edt = new Date();
+    
+ 
+
+   
+
+     vm.format = [
+         {
+             "value": 1,
+             "name": "Pdf"
+         },
+         {
+             "value": 2,
+             "name": "Excel"
+         },
+
+     ]
+     vm.entity.format = 1;
+
+ 
+ 
+
+
+     $scope.show = function () {
+      
+
+           var params ="&edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+          params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
+
+         
+       
+        window.open(myprovider.appserver + "Report/sharecapitalcert?" + params);
+
+     }
+
+
+
+ 
+
+
+ }])
+
+
 
 
 

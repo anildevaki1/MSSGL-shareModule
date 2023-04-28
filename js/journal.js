@@ -556,7 +556,7 @@ myApp.controller('journaldashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filt
         vm.remove = function (grid, row) {
             if (row.entity.vchId) {
                 $scope.grid = grid;
-                $scope.param = { "id": row.entity.vchId };
+                $scope.param = { "id": row.entity.vchId};
                 $scope.index = vm.serviceGrid.data.indexOf(row.entity);
 
                 R1Util.createAlert($scope, "Warning", "Do You Want Delete Row", $scope.iConfirmFn);

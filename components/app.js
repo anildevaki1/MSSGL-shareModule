@@ -702,7 +702,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'changepswCtrl as vm',
       params: { id: null,action:null }
     })
-
+//////REPORT////////
    
     .state("parent.sub.electorslist", {
       url: "/electorslist",
@@ -792,6 +792,22 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'chequereturnlistCtrl as vm',
       params: { id: null,action:null}
     })
+
+    .state("parent.sub.sharecertregister",{
+      url: "/sharecertregister",
+      templateUrl: "Reports/src/sharecertreg.html",
+      controller: 'sharecertregCtrl as vm',
+      params: { id: null,action:null}
+    })
+
+    .state("parent.sub.sharecapitalcert",{
+      url: "/sharecapitalcert",
+      templateUrl: "Reports/src/sharecapitalcert.html",
+      controller: 'sharecapitalcertCtrl as vm',
+      params: { id: null,action:null}
+    })
+
+
 
 
 

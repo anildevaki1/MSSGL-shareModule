@@ -94,11 +94,9 @@ myApp.controller('paymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filt
         vm.remove = function (grid, row) {
             if (row.entity.vchId) {
                 $scope.grid = grid;
-                $scope.param = { "id": row.entity.vchId };
+                $scope.param = { "id": row.entity.vchId};
                 $scope.index = vm.serviceGrid.data.indexOf(row.entity);
-
                 R1Util.createAlert($scope, "Warning", "Do You Want Delete Row", $scope.iConfirmFn);
-
             }
         }
 
@@ -315,23 +313,13 @@ myApp.controller('paymentCtrl', ['$scope', '$stateParams', '$q', '$rootScope', '
 
         }
 
-
-
-
-
-
-
-
-
         $scope.init = function () {
             vm.entity = {};
             var q = $q.defer();
 
            
                 q.resolve();
-             
-
-            return q.promise;
+         return q.promise;
 
 
         }
@@ -456,7 +444,7 @@ myApp.controller('mempaymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$f
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
 
-                width: "15%"
+                width: "20%"
             },
 
             {
@@ -467,7 +455,7 @@ myApp.controller('mempaymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$f
                 enableCellEdit: false,
                 cellFilter: 'date:\'dd/MM/yyyy\'',
                 cellClass: 'alignLgrid',
-                width: "15%"
+                width: "20%"
 
             },
             {
@@ -501,7 +489,7 @@ myApp.controller('mempaymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$f
                 name: 'Action ',
                 enableSorting: false,
                 enableCellEdit: false,
-                width: "20%",
+                width: "10%",
                 cellTemplate: '<center><a role="button" ng-click="grid.appScope.vm.edit(grid, row)"><i class="bi bi-eye"></i></a>&nbsp &nbsp <a  role="button" ng-click="grid.appScope.vm.remove(grid, row)"><i class="bi bi-trash3"></i></a></center>'
             }
         ];
@@ -518,7 +506,7 @@ myApp.controller('mempaymentdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$f
         vm.remove = function (grid, row) {
             if (row.entity.vchId) {
                 $scope.grid = grid;
-                $scope.param = { "id": row.entity.vchId };
+                $scope.param = {"id": row.entity.vchId};
                 $scope.index = vm.serviceGrid.data.indexOf(row.entity);
 
                 R1Util.createAlert($scope, "Warning", "Do You Want Delete Row", $scope.iConfirmFn);

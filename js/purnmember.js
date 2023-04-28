@@ -129,13 +129,12 @@ myApp.controller('purnmemberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util', '$
             },
             {
                 field: 'reqCode',
-                displayName: ' अ.स. खाते न.',
+                displayName: ' अ.स.खाते न.',
                 enableSorting: true,
                 type: 'string',
                 enableCellEdit: false,
                 cellClass: 'alignLgrid',
                 width: "7%"
-
             },
 
             {
@@ -453,7 +452,7 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
             vm.entity = {};
             vm.entity.gender = 1;
             vm.entity.regDt = new Date();
-            vm.entity.deathDate = new Date();
+            // vm.entity.deathDate = new Date();
         }
 
         var getDesignations = function () {
@@ -532,7 +531,8 @@ myApp.controller('purnmemberCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
 
                 vm.entity = res;
                 vm.entity.regDt = new Date(vm.entity.regDt);
-                vm.entity.deathDate = new Date(vm.entity.deathDate);
+                vm.entity.cancelDate =new Date(vm.entity.cancelDate) 
+                // vm.entity.deathDate = new Date(vm.entity.deathDate);
                 pastEntity = angular.copy(vm.entity);
             }, function (err) {
 

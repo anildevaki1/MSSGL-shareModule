@@ -221,7 +221,7 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
             path: 'parent.sub.Dividend',
             params: { action: '', mode: true },
         },
-
+///////////////////REPORT///////////////////////////
 
         {
             icon: 'bi bi-mastodon', name: "रिपोर्ट", path: 'masterchild',
@@ -304,6 +304,20 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                     icon: "bi bi-person-circle",
                     name: 'चेक परत यादी',
                      path: 'parent.sub.chequereturn',
+                    params: { action: '', mode: true },
+
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'शेअर प्रमाणपत्राची यादी ',
+                     path: 'parent.sub.sharecertregister',
+                    params: { action: '', mode: true },
+
+                },
+                {
+                    icon: "bi bi-person-circle",
+                    name: 'शेअर भाग भांडवल यादी',
+                     path: 'parent.sub.sharecapitalcert',
                     params: { action: '', mode: true },
 
                 }

@@ -169,7 +169,7 @@ myApp.controller('memberdashCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filte
                     vm.serviceGrid.data = res;
                 }
                 else {
-                    var error = "Error";
+                    var error ="Error";
                     if (res.error)
                         if (res.error.message)
                             error = res.error.message;
