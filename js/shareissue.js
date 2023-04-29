@@ -244,7 +244,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                     break;
                 case 'edit':
 
-                    if (vm.entity.vch_id != undefined) {
+                    if (vm.entity.vchId != undefined) {
                         if (NoViewing == true)
                             getExistEntity();
 
@@ -285,25 +285,24 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                 $(".loading").show();
                 if (!vm.entity.vchId)
                 {
-                    if (vm.entity.balance > vm.entity.totalAmt) {
-                        ajax.post('ShareIssue/insert', vm.entity).then(function (res) {
-                            vm.entity.vchId = vm.entity.vchId;
-                            $(".loading").hide();
-                            $scope.message = "Record Saved Sucessfully";
-                            R1Util.createAlert($scope, "Success", $scope.message, null);
-                            pastEntity = angular.copy(vm.entity);
-                            fn("OK");
-                        }, function (err) {
-                            $(".loading").hide();
-                            vm.mode = 'edit';
-                            fn("CANCEL")
-                            R1Util.createAlert($scope, "Error", err.msg, null);
-                        })
-                    } else {
+                    ajax.post('ShareIssue/insert', vm.entity).then(function (res) {
 
-                        // var fields = invalid.Error($scope.shareissueform);
-                        R1Util.createAlert($scope, "Error", "Total Amount Should Be Less Than Total Share Amount", fields, null);
-                    }
+                        vm.entity.vchId = res.vchId;
+                        $(".loading").hide();
+
+                        $scope.message = "Record Saved Sucessfully";
+                        R1Util.createAlert($scope, "Success", $scope.message, null);
+                        pastEntity = angular.copy(vm.entity);
+                        fn("OK");
+
+
+
+                    }, function (err) {
+                        $(".loading").hide();
+                        vm.mode = 'edit';
+                        fn("CANCEL")
+                        R1Util.createAlert($scope, "Error", err.msg, null);
+                    })
 
                 }
                 else {
@@ -323,7 +322,7 @@ myApp.controller('shareissueCtrl', ['$scope', '$stateParams', '$q', '$rootScope'
                         R1Util.createAlert($scope, "Error", err.msg, null);
                     })
                 }
-
+            
             }
             else {
                 vm.mode = 'edit';
