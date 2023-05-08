@@ -52,7 +52,7 @@ myApp.controller('memberreqCtrl', ['$scope', '$state', 'ajax', 'R1Util', '$filte
         $scope.getMemberRequests = function () {
             vm.MemberRequests = [];
             if (!vm.memberRequest)
-                ajax.get("MemberRequest/list").then(function (res) {
+                ajax.get("MemberRequest/getMemReqlist").then(function (res) {
                     vm.MemberRequests = res;
                 }, function (err) {
                     var e = err;
@@ -161,7 +161,7 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
         $scope.getMembers = function () {
             vm.Members = [];
             if (!vm.member)
-                ajax.get("Member/list").then(function (res) {
+                ajax.get("Member/getMemlist").then(function (res) {
                     vm.Members = res;
                 }, function (err) {
                     var e = err;
@@ -777,46 +777,131 @@ myApp.controller('memberrepCtrl', ['$scope', '$state', 'ajax', 'R1Util','$filter
  function ($scope, $state, ajax, R1Util, $filter, myprovider) {
 
 
-     var vm = this;
-     vm.entity = {};
-   
-     vm.reference = {};
-     vm.entity.edt = new Date();
-    
- 
-
-   
-
-     vm.format = [
-         {
-             "value": 1,
-             "name": "Pdf"
-         },
-         {
-             "value": 2,
-             "name": "Excel"
-         },
-
-     ]
-     vm.entity.format = 1;
-
- 
- 
+    var vm = this;
+    vm.entity = {};
+    vm.reference = {};
+    vm.entity.edt = new Date();
+  
 
 
-     $scope.show = function () {
-      
-
-           var params ="&edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
-          params += "&format=" + (vm.entity.format == 1 ? "PDF" : "EXCEL")
-
-         
-       
-        window.open(myprovider.appserver + "Report/sharecapitalcert?" + params);
-
-     }
 
 
+
+    vm.ALLplace = {
+        'cityName': 'सर्व',
+        'cityCode': ''
+    }
+
+    vm.reference.Places = [];
+    ajax.get('place/list').then(function (res) {
+        // res.splice(0, 0, vm.ALLplace);
+        vm.reference.Places = res;
+        vm.reference.Places.push(vm.ALLplace);
+        vm.entity.cityCode = "";
+    }, function (err) {
+
+    })
+
+    vm.ALLarea = {
+        'areaName': 'सर्व',
+        'areaCode': ''
+    }
+
+
+    vm.reference.areas = [];
+    vm.reference.selectedarea = {};
+    ajax.get("Area/list").then(function (res) {
+        //res.splice(0, 0, vm.ALLarea);
+        vm.reference.areas = res;
+        vm.reference.areas.push(vm.ALLarea);
+        vm.entity.areaCode = "";
+    }, function (err) {
+    })
+
+
+    vm.format = [
+        {
+            "value": 1,
+            "name": "Pdf"
+        },
+        {
+            "value": 2,
+            "name": "Excel"
+        },
+
+    ]
+    vm.entity.format = 1;
+
+
+    vm.index = [
+        {
+            "value": 1,
+            "name": "सभासद नंबर"
+        },
+        {
+            "value": 2,
+            "name": "सभासद नाव"
+        },
+        {
+            "value": 3,
+            "name": "गावं"
+        },
+        {
+            "value": 4,
+            "name": "गट क्रमांक"
+        },
+        {
+            "value": 5,
+            "name": "गट"
+        },
+    ]
+    vm.entity.index = 1;
+
+    vm.group = [
+        {
+            "value": 0,
+            // "name": "[All]"
+            "name": "None"
+        },
+        {
+            "value": 1,
+            "name": "गाव"
+        },
+        {
+            "value": 2,
+            "name": "गट"
+        },
+
+
+    ]
+    vm.entity.group = 0;
+
+
+    $scope.show = function () {
+        var params = {
+            edt:  $filter('date')(vm.entity.edt, 'yyyy-MM-dd'),
+            placeId: vm.entity.cityCode,
+            // areaId:vm.entity.areaCode,
+            // placeId: vm.reference.selectedplace.cityCode,
+            areaId: vm.reference.selectedarea.areaCode,
+            format: (vm.entity.format==1 ? "PDF" :"EXCEL"),
+            groupBy: vm.entity.group,
+            orderBy: vm.entity.index,
+            pagebreak: (vm.entity.break||"false")
+        }
+     
+
+     var params= "edt="+ $filter('date')(vm.entity.edt, 'yyyy-MM-dd')
+         params +="&placeId="+vm.entity.cityCode
+         params +="&areaId="+vm.entity.areaCode
+         params +="&format="+ (vm.entity.format==1 ? "PDF" :"EXCEL")
+         params +="&groupBy="+vm.entity.group
+         params +="&orderBy="+vm.entity.index
+         params +="&pagebreak="+(vm.entity.break||"false")
+
+      window.open(myprovider.appserver+"report/sharecapitalcert?"+params);
+  
+}
 
  
 

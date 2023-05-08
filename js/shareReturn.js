@@ -378,7 +378,7 @@ myApp.controller('sharereturnCtrl', [ '$scope', '$stateParams', '$q', '$rootScop
         $scope.getMembers = function () {
             vm.Members = [];
             if (!vm.member)
-                ajax.get("Member/list").then(function (res) {
+                ajax.get("Member/getMemlist").then(function (res) {
                     vm.Members = res;
                 }, function (err) {
                     var e = err;

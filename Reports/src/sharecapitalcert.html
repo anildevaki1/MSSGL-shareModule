@@ -1,47 +1,126 @@
-<form class="form-horizontal" role="form" name="sharecertform">
-    <fieldset ng-disabled="Master.formdisabled(vm.mode);">
-        <div class="form-group p-1">
-            <div class="card">
-                <div class="card-header" style="background-color:#caf0f8">
-                    <i class="bi bi-cast"></i>
-                    <strong>शेअर भाग भांडवल यादी</strong>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group col-sm-6 ">
-                                <label for="title">
-                                    अखेर तारीख
-                                </label>
-                                <div>
-                                    <input type="date" name="date" data-ng-model="vm.entity.edt"
-                                        class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
-                                </div>
+<form class="form-horizontal" role="form" name="placeform">
 
-                            </div>
+    
+    
+    <div class="form-group p-1">
 
-                            <div class="form-group col-sm-6 ">
-                                <label for="title">स्वरूप (format)</label>
-                                <div>
-                                    <select class="form-select  form-select-sm" ng-model="vm.entity.format"
-                                        ng-options="item.value as item.name for item in vm.format">
-                                    </select>
-                                </div>
+        <div class="card ">
+
+            <div class="card-header" style="background-color:#caf0f8">
+                <i class="bi bi-cast"></i>
+                <strong>सभासद खाते शिल्लक यादी </strong>
+
+            </div>
+            <!-- #abc135 -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3  offset-sm-1">
+                        <div class="form-group">
+                            <label for="title">
+                                अखेर तारीख
+                            </label>
+                            <div>
+                                <input type="date" name="date" data-ng-model="vm.entity.edt"
+                                    class="form-control  form-control-sm" autocomplete="off" title="vchdate" />
                             </div>
-                            <div class=" form-group col-sm-6">
-                                <br>
-                                <button type="button" class="btn btn-primary btn-sm" style="width: 130px;"
-                                    ng-click="show()">पहा </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">अनुक्रमणिका</label>
+
+                            <div>
+                                <select class="form-select form-select-sm" ng-model="vm.entity.index"
+                                    ng-options="item.value as item.name for item in vm.index">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">वर्गीकरण </label>
+                            <div>
+                                <select class="form-select form-select-sm" ng-model="vm.entity.group"
+                                    ng-options="item.value as item.name for item in vm.group">
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group ">
+
+                            <div class="form-check form-switch  border p-1">
+
+
+                                <input class="form-check-input" type="checkbox" ng-model="vm.entity.break"
+                                    ng-disabled="vm.entity.group == 0" id="flexSwitchCheckChecked" checked>
+
+
+                                <label class="form-check-label" for="flexSwitchCheckChecked">
+                                    पृष्ठ खंड</label>
 
                             </div>
 
                         </div>
 
+
                     </div>
+                    <div class="col-sm-5 offset-sm-1">
+
+
+                        <div class="form-group col-sm-5 m-1">
+                            <label for="title">स्वरूप (format) </label>
+                            <div>
+                                <select class="form-select form-select-sm" ng-model="vm.entity.format"
+                                    ng-options="item.value as item.name for item in vm.format">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 m-1">
+                            <label for="title">गाव</label>
+
+
+                            <div>
+                                <multicolumncombo list="vm.reference.Places" datasource="vm.entity"
+                                    datamember="cityCode" row="vm.reference.selectedplace"
+                                    placeholder="Please select place" class="form-control p-1"
+                                    displayvalue="cityName" name="areanm" selectedvalue="cityCode" extralables=""
+                                    disablefn="Master.formdisabled(vm.mode)">
+                                </multicolumncombo>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6 m-1">
+                            <label for="title">गट</label>
+
+
+                            <div>
+                                <multicolumncombo list="vm.reference.areas" datasource="vm.entity"
+                                    datamember="areaCode" row="vm.reference.selectedarea"
+                                    placeholder="Please select areas" class="form-control p-1"
+                                    displayvalue="areaName" name="areasnm" selectedvalue="areaCode" extralables=""
+                                    disablefn="Master.formdisabled(vm.mode)">
+                                </multicolumncombo>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3  text-center m-3">
+                            <!-- <br> -->
+                            <button type="button" class="btn btn-primary btn-sm" style="width: 110px;"
+                                ng-click="show()">पहा</button>
+
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-    </fieldset>
+    </div>
+
+
 </form>
+<style>
+.form-group {
+    margin-bottom: 15px !important;
+}
+</style>

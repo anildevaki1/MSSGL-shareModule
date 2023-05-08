@@ -316,7 +316,7 @@ myApp.controller('menuCtrl', ['$scope', '$state', 'cache', 'R1Util', function ($
                 },
                 {
                     icon: "bi bi-person-circle",
-                    name: 'शेअर भाग भांडवल यादी',
+                    name: 'पू. स. खाते शिल्लक यादी',
                      path: 'parent.sub.sharecapitalcert',
                     params: { action: '', mode: true },
 
